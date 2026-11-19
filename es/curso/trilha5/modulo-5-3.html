@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Módulo 5.3 · La presentación que cierra + Capstone | Fábrica de Estrategia de IA</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: {
+      primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' }
+    } } } }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    /* Light mode - base */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    /* Light mode - teal (T5) */
+    html:not(.dark) .text-teal-400 { color: #0d9488; }
+    html:not(.dark) .bg-teal-500\/20 { background-color: rgba(13,148,136,0.12); }
+    html:not(.dark) .bg-teal-500\/10 { background-color: rgba(13,148,136,0.08); }
+    html:not(.dark) .border-teal-500\/30 { border-color: rgba(13,148,136,0.25); }
+    html:not(.dark) .hover\:bg-teal-500\/30:hover { background-color: rgba(13,148,136,0.18); }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13,148,136,0.08); }
+    /* Light mode - cores auxiliares */
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37,99,235,0.12); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37,99,235,0.25); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,0.08); }
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,0.08); }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5,150,105,0.12); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5,150,105,0.25); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,0.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-500\/20 { background-color: rgba(185,28,28,0.10); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185,28,28,0.25); }
+    /* Light mode - remove gradientes + especiais */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,0.22); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+    /* Dark - bordas suaves */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+  </style>
+<link href="https://inematds.github.io/aiestrategia/curso/trilha5/modulo-5-3.html" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/aiestrategia/en/curso/trilha5/modulo-5-3.html" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/aiestrategia/es/curso/trilha5/modulo-5-3.html" hreflang="es" rel="alternate"/></head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="../../../curso/trilha5/modulo-5-3.html" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">PT</a><a href="../../../en/curso/trilha5/modulo-5-3.html" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">EN</a><a href="modulo-5-3.html" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">ES</a></div>
+<!-- NAV -->
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4">
+<a class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300" href="../../index.html">
+<span class="text-2xl">🏭</span>
+<span class="font-bold text-lg hidden sm:inline">Fábrica de Estrategia de IA</span>
+</a>
+<span class="text-neutral-600">|</span>
+<a class="text-sky-400 hover:text-sky-300 text-sm font-medium" href="https://inema.club" target="_blank">INEMA.CLUB</a>
+</div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors" href="../trilha1/index.html"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentos</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors" href="../trilha2/index.html"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Síntesis</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors" href="../trilha3/index.html"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Skills y agentes</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors" href="../trilha4/index.html"><span class="sm:hidden">T4</span><span class="hidden sm:inline">La Fábrica</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-teal-400 bg-teal-500/10" href="index.html"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Consultor</span></a>
+<button class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2" id="theme-toggle">
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-dark-icon" viewbox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-light-icon" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- BREADCRUMB -->
+<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+<div class="flex items-center space-x-2 text-sm text-neutral-400">
+<a class="hover:text-teal-400" href="../../index.html">Inicio</a><span>/</span>
+<a class="hover:text-teal-400" href="index.html">Ruta 5</a><span>/</span>
+<span class="text-teal-400">Módulo 5.3</span>
+</div>
+</nav>
+<!-- HEADER -->
+<header class="bg-gradient-to-br from-teal-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<span class="inline-block px-3 py-1 bg-teal-500/20 text-teal-400 text-xs font-semibold rounded-full mb-4">MÓDULO 5.3 · CAPSTONE</span>
+<h1 class="text-3xl sm:text-4xl font-bold mb-4">🎤 La presentación que cierra + Capstone</h1>
+<p class="text-lg text-neutral-400 max-w-3xl">El paquete está listo y la oferta definida. Falta la conversación que transforma todo en un contrato: el deck que decide, el SOW que protege el alcance y la reunión conducida con método. Al final, el capstone: la Fábrica en funcionamiento para un cliente real.</p>
+<div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-teal-400">6</div><div class="text-xs text-neutral-400">Temas</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-teal-400">~60</div><div class="text-xs text-neutral-400">Minutos</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-teal-400">Final</div><div class="text-xs text-neutral-400">Nivel</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-teal-400">Proyecto final</div><div class="text-xs text-neutral-400">Tipo</div></div>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<!-- SECAO 1 -->
+<section class="mb-16" id="topico-1">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">1</span>
+<h2 class="text-2xl font-bold">📊 El deck ejecutivo</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">La Fábrica genera un <strong class="text-teal-400">Executive Summary</strong> en PPTX, listo para la dirección. No es una lista de todo: es una narrativa que conduce del problema a la decisión. El orden de las diapositivas es el orden de la conversación.</p>
+<div class="rounded-2xl border border-teal-500/30 bg-dark-900/40 p-3 sm:p-4 mb-6 overflow-hidden">
+<svg aria-label="Flujo del deck ejecutivo: contexto, diagnóstico, oportunidades, roadmap y siguiente paso" class="w-full h-auto" role="img" viewbox="0 0 1000 240">
+<defs>
+<lineargradient id="m53-grad" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#2dd4bf"></stop><stop offset="1" stop-color="#14b8a6"></stop></lineargradient>
+<filter height="180%" id="m53-glow" width="180%" x="-40%" y="-40%"><fegaussianblur result="b" stddeviation="1.8"></fegaussianblur><femerge><femergenode in="b"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter>
+<pattern height="32" id="m53-grid" patternunits="userSpaceOnUse" width="32"><circle cx="1.3" cy="1.3" fill="#14b8a6" opacity="0.12" r="1.3"></circle></pattern>
+</defs>
+<rect fill="url(#m53-grid)" height="240" width="1000" x="0" y="0"></rect>
+<path d="M110,120 L890,120" fill="none" opacity="0.4" stroke="#2dd4bf" stroke-dasharray="8 8" stroke-width="2"></path>
+<g font-family="Inter,sans-serif" font-size="12" font-weight="600">
+<g><rect fill="#0e1b26" height="60" rx="11" stroke="#38bdf8" stroke-width="2" width="140" x="60" y="90"></rect><text fill="#bfe6ff" font-size="22" text-anchor="middle" x="130" y="116">①</text><text fill="#bfe6ff" text-anchor="middle" x="130" y="138">Contexto</text></g>
+<g><rect fill="#0e1b26" height="60" rx="11" stroke="#38bdf8" stroke-width="2" width="140" x="228" y="90"></rect><text fill="#bfe6ff" font-size="22" text-anchor="middle" x="298" y="116">②</text><text fill="#bfe6ff" text-anchor="middle" x="298" y="138">Diagnóstico</text></g>
+<g><rect fill="#0e1b26" height="60" rx="11" stroke="#38bdf8" stroke-width="2" width="140" x="396" y="90"></rect><text fill="#bfe6ff" font-size="22" text-anchor="middle" x="466" y="116">③</text><text fill="#bfe6ff" text-anchor="middle" x="466" y="138">Oportunidades</text></g>
+<g><rect fill="#0e1b26" height="60" rx="11" stroke="#38bdf8" stroke-width="2" width="140" x="564" y="90"></rect><text fill="#bfe6ff" font-size="22" text-anchor="middle" x="634" y="116">④</text><text fill="#bfe6ff" text-anchor="middle" x="634" y="138">Roadmap</text></g>
+<g filter="url(#m53-glow)"><rect fill="#0c1f1c" height="72" rx="11" stroke="url(#m53-grad)" stroke-width="2.5" width="158" x="732" y="84"></rect><text fill="#2dd4bf" font-size="22" text-anchor="middle" x="811" y="112">⑤</text><text fill="#2dd4bf" text-anchor="middle" x="811" y="134">Siguiente paso</text></g>
+</g>
+</svg>
+</div>
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📊</span> La estructura que decide</h3>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-0.5">•</span><span><strong>Contexto:</strong> dónde está la empresa y por qué importa la IA ahora.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-0.5">•</span><span><strong>Diagnóstico:</strong> madurez, problemas por área, qué lo frena.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-0.5">•</span><span><strong>Oportunidades:</strong> quick wins y dónde la IA da resultados primero.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-0.5">•</span><span><strong>Roadmap + próximo paso:</strong> plan 30/60/90 y la solicitud clara.</span></li>
+</ul>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-semibold text-sm mb-1">Contexto</div><p class="text-xs text-neutral-400">por qué ahora</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-semibold text-sm mb-1">Diagnóstico</div><p class="text-xs text-neutral-400">dónde está</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-semibold text-sm mb-1">Oportunidad</div><p class="text-xs text-neutral-400">dónde genera valor</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-semibold text-sm mb-1">Siguiente paso</div><p class="text-xs text-neutral-400">la solicitud</p></div>
+</div>
+</section>
+<!-- SECAO 2 -->
+<section class="mb-16" id="topico-2">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">2</span>
+<h2 class="text-2xl font-bold">📜 El SOW (Statement of Work)</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">La Fábrica también genera la <strong class="text-teal-400">Declaración de trabajo</strong> en DOCX, el documento que se convierte en contrato. Responde tres preguntas: qué incluye, cuánto cuesta y en cuánto tiempo. Un alcance claro evita conflictos y protege tu margen.</p>
+<div class="space-y-6 mb-6">
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-teal-500/20 flex items-center justify-center"><span class="text-teal-400 font-bold">1</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2">Alcance (y fuera del alcance)</h4><p class="text-neutral-300 text-sm">Qué incluye: diagnóstico, deck, roadmap, SOW. Qué NO incluye: implementación, contratación, integración. Decir «no» evita el conflicto.</p></div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-teal-500/20 flex items-center justify-center"><span class="text-teal-400 font-bold">2</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2">Precio y condiciones</h4><p class="text-neutral-300 text-sm">Valor acordado, forma y plazo de pago. Basado en el valor de mercado (Trilha 5.2), no en tu costo de API.</p></div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-teal-500/20 flex items-center justify-center"><span class="text-teal-400 font-bold">3</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2">Plazo y entrega</h4><p class="text-neutral-300 text-sm">Cuándo se entrega cada pieza y en qué formato. Un cronograma breve (días) es parte de la ventaja diferencial: entregas rápido.</p></div>
+</div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> El SOW es la mitad del cierre</h3>
+<p class="text-neutral-300 text-sm">Un cliente indeciso se convence cuando ve el alcance por escrito y con claridad. El SOW convierte una conversación vaga en una propuesta concreta con precio y plazo, y le da al cliente algo para firmar.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-semibold text-sm mb-1">Alcance</div><p class="text-xs text-neutral-400">lo que entra</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-semibold text-sm mb-1">Fuera de alcance</div><p class="text-xs text-neutral-400">lo que no</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-semibold text-sm mb-1">Precio</div><p class="text-xs text-neutral-400">y condiciones</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-semibold text-sm mb-1">Plazo</div><p class="text-xs text-neutral-400">cronograma</p></div>
+</div>
+</section>
+<!-- SECAO 3 -->
+<section class="mb-16" id="topico-3">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">3</span>
+<h2 class="text-2xl font-bold">🗣️ Conducir la reunión</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">La reunión es donde el paquete se convierte en contrato. Sin método, se convierte en una charla sin desenlace. Con una guía sencilla, avanza del diagnóstico al siguiente paso y termina con una solicitud clara.</p>
+<div class="space-y-3 mb-6">
+<div class="flex items-center space-x-3 bg-dark-800 rounded-lg p-4 border border-dark-600"><span class="text-lg">👂</span><div><strong class="text-teal-400">1. Escuchar el problema</strong><span class="text-neutral-400 text-sm"> — deja que el cliente describa el problema antes de mostrar nada.</span></div></div>
+<div class="flex items-center space-x-3 bg-dark-800 rounded-lg p-4 border border-dark-600"><span class="text-lg">🔍</span><div><strong class="text-teal-400">2. Mostrar el diagnóstico</strong><span class="text-neutral-400 text-sm"> — conecta lo que dijo con lo que encontró la Fábrica.</span></div></div>
+<div class="flex items-center space-x-3 bg-dark-800 rounded-lg p-4 border border-dark-600"><span class="text-lg">💡</span><div><strong class="text-teal-400">3. Señalar la oportunidad</strong><span class="text-neutral-400 text-sm"> — los quick wins y el roadmap, de lo más fácil a lo más valioso.</span></div></div>
+<div class="flex items-center space-x-3 bg-dark-800 rounded-lg p-4 border border-dark-600"><span class="text-lg">🤝</span><div><strong class="text-teal-400">4. Proponer el siguiente paso</strong><span class="text-neutral-400 text-sm"> — la pregunta clara: «¿empezamos con el diagnóstico completo?»</span></div></div>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<h3 class="text-lg font-semibold text-teal-400 mb-3 flex items-center"><span class="mr-2">🎬</span> La demo como argumento</h3>
+<p class="text-neutral-300 text-sm">Si puedes, ejecuta la Fábrica en vivo (Trilha 5.1) con el nombre del cliente. Ver cómo se crea el paquete en el momento es más persuasivo que cualquier diapositiva y demuestra que realmente entregas rápido.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-semibold text-sm mb-1">Escuchar</div><p class="text-xs text-neutral-400">el dolor primero</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-semibold text-sm mb-1">Conectar</div><p class="text-xs text-neutral-400">problema × hallazgo</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-semibold text-sm mb-1">Señalar</div><p class="text-xs text-neutral-400">la oportunidad</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-semibold text-sm mb-1">Pedir</div><p class="text-xs text-neutral-400">el siguiente paso</p></div>
+</div>
+</section>
+<!-- SECAO 4 -->
+<section class="mb-16" id="topico-4">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">4</span>
+<h2 class="text-2xl font-bold">🛡️ Objeciones comunes y respuestas</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Quien se anticipa a las objeciones cierra más ventas. Casi siempre son las mismas tres. Tener una respuesta lista mantiene el control de la conversación y transmite seguridad, sin prometer lo que no puedes cumplir.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ Objeción → respuesta</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span><strong>"Es caro."</strong> Ancla el valor: los programas de estrategia de IA cuestan de US$1.850 a US$28.000 y solo enseñan; tú entregas el diagnóstico listo.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span><strong>"¿Esto es solo IA?"</strong> Uso IA para agilizar la investigación y la redacción, y reviso todo. El criterio es mío; la IA es la herramienta.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span><strong>"¿Cómo sé que es confiable?"</strong> La investigación es en vivo y citable; reviso cada pieza y la adapto a tu contexto.</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Qué no hacer</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Bajar el precio ante la primera vacilación</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Ocultar que usas IA en el proceso</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Prometer «verdad absoluta» o ejecución lista</span></li>
+</ul>
+</div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> La transparencia desarma las objeciones</h3>
+<p class="text-neutral-300 text-sm">La objeción «¿esto es solo IA?» desaparece cuando explicas el método con naturalidad. El cliente no compra magia: compra a un profesional que usa buenas herramientas y responde por el resultado.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-semibold text-sm mb-1">Precio</div><p class="text-xs text-neutral-400">toma como referencia el precio más alto</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-semibold text-sm mb-1">"¿Solo IA?"</div><p class="text-xs text-neutral-400">revisión humana</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-semibold text-sm mb-1">Confianza</div><p class="text-xs text-neutral-400">fuentes citables</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-semibold text-sm mb-1">Control</div><p class="text-xs text-neutral-400">respuesta lista</p></div>
+</div>
+</section>
+<!-- SECAO 5 -->
+<section class="mb-16" id="topico-5">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">5</span>
+<h2 class="text-2xl font-bold">🏁 Capstone: Fábrica para un cliente real</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Es la prueba de que todo se conecta. Elige una empresa real, ejecuta la Fábrica de punta a punta, revisa los entregables y prepara el deck + SOW para presentar. Terminas el curso con un caso real en tu portafolio.</p>
+<div class="rounded-2xl border border-teal-500/30 bg-dark-900/40 p-3 sm:p-4 mb-6 overflow-hidden">
+<svg aria-label="El ciclo del capstone: elegir una empresa, ejecutar la Fábrica, revisar, preparar el deck y el SOW, presentar y cerrar" class="w-full h-auto" role="img" viewbox="0 0 1000 230">
+<defs>
+<lineargradient id="m53b-grad" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#2dd4bf"></stop><stop offset="1" stop-color="#14b8a6"></stop></lineargradient>
+<filter height="180%" id="m53b-glow" width="180%" x="-40%" y="-40%"><fegaussianblur result="b" stddeviation="1.8"></fegaussianblur><femerge><femergenode in="b"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter>
+<pattern height="32" id="m53b-grid" patternunits="userSpaceOnUse" width="32"><circle cx="1.3" cy="1.3" fill="#14b8a6" opacity="0.12" r="1.3"></circle></pattern>
+</defs>
+<rect fill="url(#m53b-grid)" height="230" width="1000" x="0" y="0"></rect>
+<path d="M120,115 L300,115 L500,115 L700,115 L880,115" fill="none" opacity="0.4" stroke="#2dd4bf" stroke-dasharray="8 8" stroke-width="2"></path>
+<g font-family="Inter,sans-serif" font-size="11" font-weight="600">
+<g><rect fill="#0e1b26" height="58" rx="11" stroke="#38bdf8" stroke-width="2" width="130" x="55" y="86"></rect><text font-size="20" text-anchor="middle" x="120" y="110">🏢</text><text fill="#bfe6ff" text-anchor="middle" x="120" y="132">Empresa real</text></g>
+<g><rect fill="#0c1f1c" height="58" rx="11" stroke="#14b8a6" stroke-width="2" width="130" x="205" y="86"></rect><text font-size="20" text-anchor="middle" x="270" y="110">🏭</text><text fill="#5eead4" text-anchor="middle" x="270" y="132">Ejecutar</text></g>
+<g><rect fill="#0c1f1c" height="58" rx="11" stroke="#14b8a6" stroke-width="2" width="130" x="355" y="86"></rect><text font-size="20" text-anchor="middle" x="420" y="110">🔎</text><text fill="#5eead4" text-anchor="middle" x="420" y="132">Revisar</text></g>
+<g><rect fill="#0c1f1c" height="58" rx="11" stroke="#14b8a6" stroke-width="2" width="150" x="505" y="86"></rect><text font-size="20" text-anchor="middle" x="580" y="110">📊</text><text fill="#5eead4" text-anchor="middle" x="580" y="132">Deck + SOW</text></g>
+<g filter="url(#m53b-glow)"><rect fill="#0c1f1c" height="70" rx="11" stroke="url(#m53b-grad)" stroke-width="2.5" width="160" x="710" y="80"></rect><text font-size="22" text-anchor="middle" x="790" y="108">🤝</text><text fill="#2dd4bf" text-anchor="middle" x="790" y="132">Presentar</text></g>
+</g>
+</svg>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-6">
+<p class="text-xs text-neutral-500 mb-2 font-mono">// qué pedirle a Claude Code para el capstone</p>
+<pre class="font-mono text-sm text-neutral-300 whitespace-pre-wrap leading-relaxed">Ejecuta la Fábrica en modo deep para la empresa
+"[cliente real]" con el contexto "[sector, tamaño]".
+Cuando termine, abre el Executive Summary y el
+SOW para que los revise antes de presentarlos.</pre>
+</div>
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📊</span> Qué reúne el capstone</h3>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-0.5">•</span><span>El pipeline de las Rutas 1-4: investigación, síntesis, skills, agentes y la Fábrica completa.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-0.5">•</span><span>El empaquetado con tu marca (5.1) y la oferta de 1 página (5.2).</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-0.5">•</span><span>El deck y el SOW (5.3), listos para la reunión de cierre.</span></li>
+</ul>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-semibold text-sm mb-1">Elegir</div><p class="text-xs text-neutral-400">empresa real</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-semibold text-sm mb-1">Ejecutar</div><p class="text-xs text-neutral-400">de principio a fin</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-semibold text-sm mb-1">Revisar</div><p class="text-xs text-neutral-400">y adaptar</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-semibold text-sm mb-1">Presentar</div><p class="text-xs text-neutral-400">deck + SOW</p></div>
+</div>
+</section>
+<!-- SECAO 6 -->
+<section class="mb-16" id="topico-6">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl">6</span>
+<h2 class="text-2xl font-bold">🧭 Próximos pasos</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">La Fábrica es un activo vivo. Cada cliente atendido te enseña algo que se convierte en la próxima versión, más precisa. El curso termina aquí; la evolución de tu máquina continúa.</p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><h4 class="font-semibold text-teal-400 mb-2">➕ Nuevos entregables</h4><p class="text-neutral-300 text-sm">Agrega documentos que tu nicho necesita: un prompt nuevo en <code class="text-teal-400">synthesis/prompts/</code> y se incorpora al pipeline.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><h4 class="font-semibold text-teal-400 mb-2">🧩 Skills por sector</h4><p class="text-neutral-300 text-sm">Crea skills especializadas (Trilha 3) para los sectores a los que atiendes. Cada una afina el diagnóstico.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><h4 class="font-semibold text-teal-400 mb-2">📈 Mejorar la oferta</h4><p class="text-neutral-300 text-sm">Usa lo aprendido en cada proyecto para afinar el nicho, el precio y el formato. La oferta también evoluciona.</p></div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Lo que sigue siendo tuyo</h3>
+<p class="text-neutral-300 text-sm">La Fábrica, el arsenal de skills y agentes, la base de conocimiento y la oferta. Todo lo que construiste en las cinco rutas es un activo reutilizable: no desaparece cuando termina el curso.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-semibold text-sm mb-1">Iterar</div><p class="text-xs text-neutral-400">a cada cliente</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-semibold text-sm mb-1">Expandir</div><p class="text-xs text-neutral-400">entregables</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-semibold text-sm mb-1">Especializar</div><p class="text-xs text-neutral-400">skills de sector</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-teal-400 font-semibold text-sm mb-1">Crecer</div><p class="text-xs text-neutral-400">activo vivo</p></div>
+</div>
+</section>
+<!-- RESUMO + MISSAO (CAPSTONE / FIM DO CURSO) -->
+<section class="mb-12">
+<div class="bg-gradient-to-br from-teal-900/40 via-dark-800 to-dark-800 rounded-xl border border-teal-500/30 p-8">
+<h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">✅</span> Resumen del módulo</h2>
+<div class="space-y-4 mb-8">
+<div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-neutral-100">El deck ejecutivo conduce a la decisión</strong><span class="text-neutral-400"> — contexto, diagnóstico, oportunidad, roadmap, siguiente paso.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-neutral-100">El SOW protege el alcance</strong><span class="text-neutral-400"> — qué incluye, el precio y el plazo. Es la mitad del cierre.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-neutral-100">La reunión tiene un método</strong><span class="text-neutral-400"> — escuchar, mostrar, señalar, pedir. Y una objeción prevista es una objeción neutralizada.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-neutral-100">El capstone reúne todo</strong><span class="text-neutral-400"> — la Fábrica de los Módulos 1-4 entregando a un cliente real.</span></div></div>
+</div>
+<div class="bg-dark-900/50 rounded-lg p-6 border border-primary/30 mb-8">
+<h3 class="font-bold text-primary mb-2 flex items-center"><span class="mr-2">🎯</span> Misión Capstone — Paquete completo de una empresa real</h3>
+<p class="text-neutral-300 text-sm mb-3">El proyecto final que cierra el curso:</p>
+<ol class="space-y-2 text-neutral-300 text-sm list-decimal list-inside">
+<li>Elige una empresa real de tu nicho (5.2).</li>
+<li>Ejecuta la Fábrica de principio a fin y revisa los entregables.</li>
+<li>Empaqueta con tu marca (5.1) y prepara el deck + SOW.</li>
+<li>Prepara cómo conducir la reunión y las respuestas a las objeciones.</li>
+</ol>
+<p class="text-neutral-400 text-xs mt-3"><strong>Éxito:</strong> paquete completo + deck + SOW de una empresa real, listos para presentar. <strong>Lo que obtuviste:</strong> un caso real en el portafolio y una oferta que ya puede convertirse en contrato.</p>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-6 mb-8 border border-teal-500/30">
+<h3 class="font-semibold text-teal-400 mb-2 flex items-center"><span class="mr-2">👑</span> Completaste el curso</h3>
+<p class="text-neutral-300 text-sm">Cinco rutas, del concepto al contrato. Te llevas una Fábrica funcionando, un arsenal de skills y agentes, una oferta definida y un caso real entregado. El nivel Consultor no es un título: es lo que acabas de construir. A partir de aquí, la evolución de la máquina y de la oferta depende de ti.</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors" href="../trilha4/index.html">← Ruta 4</a>
+<a class="flex-1 text-center px-6 py-3 bg-teal-600 text-white rounded-lg font-semibold hover:bg-teal-500 transition-colors" href="../../index.html">Volver al inicio →</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="border-t border-dark-600 py-8 mt-8">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+<p>Fábrica de Estratégia de IA · Módulo 5.3 · <a class="text-sky-400 hover:text-sky-300" href="https://inema.club" target="_blank">INEMA.CLUB</a></p>
+</div>
+</footer>
+<script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const darkIcon = document.getElementById('theme-toggle-dark-icon');
+    const lightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light') { html.classList.remove('dark'); darkIcon.classList.remove('hidden'); }
+    else { lightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      darkIcon.classList.toggle('hidden'); lightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

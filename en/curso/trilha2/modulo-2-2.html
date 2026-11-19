@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Module 2.2 · Lazy RAG | AI Strategy Factory</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: {
+      primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' }
+    } } } }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    /* Light mode - base */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    /* Light mode - acento blue (T2) */
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37,99,235,0.12); }
+    html:not(.dark) .bg-blue-500\/10 { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37,99,235,0.25); }
+    html:not(.dark) .hover\:bg-blue-500\/30:hover { background-color: rgba(37,99,235,0.18); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,0.08); }
+    /* Light mode - cores auxiliares */
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5,150,105,0.12); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5,150,105,0.25); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,0.08); }
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,0.08); }
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,0.08); }
+    html:not(.dark) .text-teal-400 { color: #0d9488; }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13,148,136,0.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-500\/20 { background-color: rgba(185,28,28,0.10); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185,28,28,0.25); }
+    /* Light mode - remove gradientes + especiais */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,0.22); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+    /* Dark - bordas suaves */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+  </style>
+<link href="https://inematds.github.io/aiestrategia/curso/trilha2/modulo-2-2.html" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/aiestrategia/en/curso/trilha2/modulo-2-2.html" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/aiestrategia/es/curso/trilha2/modulo-2-2.html" hreflang="es" rel="alternate"/></head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="../../../curso/trilha2/modulo-2-2.html" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">PT</a><a href="modulo-2-2.html" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">EN</a><a href="../../../es/curso/trilha2/modulo-2-2.html" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">ES</a></div>
+<!-- NAV -->
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4">
+<a class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300" href="../../index.html">
+<span class="text-2xl">🏭</span>
+<span class="font-bold text-lg hidden sm:inline">AI Strategy Factory</span>
+</a>
+<span class="text-neutral-600">|</span>
+<a class="text-sky-400 hover:text-sky-300 text-sm font-medium" href="https://inema.club" target="_blank">INEMA.CLUB</a>
+</div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors" href="../trilha1/index.html"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentals</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10" href="index.html"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Synthesis</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors" href="../trilha3/index.html"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Skills &amp; Agents</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors" href="../trilha4/index.html"><span class="sm:hidden">T4</span><span class="hidden sm:inline">The Factory</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors" href="../trilha5/index.html"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Consultant</span></a>
+<button class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2" id="theme-toggle">
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-dark-icon" viewbox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-light-icon" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- BREADCRUMB -->
+<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+<div class="flex items-center space-x-2 text-sm text-neutral-400">
+<a class="hover:text-blue-400" href="../../index.html">Start</a><span>/</span>
+<a class="hover:text-blue-400" href="index.html">Track 2</a><span>/</span>
+<span class="text-blue-400">Module 2.2</span>
+</div>
+</nav>
+<!-- HEADER -->
+<header class="bg-gradient-to-br from-blue-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-4">MODULE 2.2</span>
+<h1 class="text-3xl sm:text-4xl font-bold mb-4">🗜️ Lazy RAG: huge PDF → cheat sheet</h1>
+<p class="text-lg text-neutral-400 max-w-3xl">McKinsey, BCG, and KPMG playbooks are 28 to 46 pages long—they blow past any context limit and are packed with buzzwords. The solution is simple and low-effort: split them into chunks, summarize each one, and put together a one-page cheat sheet.</p>
+<div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">6</div><div class="text-xs text-neutral-400">Topics</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">~40</div><div class="text-xs text-neutral-400">Minutes</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Interm.</div><div class="text-xs text-neutral-400">Level</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Technical</div><div class="text-xs text-neutral-400">Type</div></div>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<!-- SECAO 1 -->
+<section class="mb-16" id="topico-1">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span>
+<h2 class="text-2xl font-bold">📚 The Context Problem</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">You want the elite knowledge in these PDFs. But dropping a document from <strong class="text-blue-400">46 pages</strong> whole in Claude Code exceeds the context limit—and worse: it fills the window with summaries, thank-yous, and buzzwords. You need the <em>valuable</em>, not from the <em>volume</em>.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Upload the entire PDF</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Exceeds the token limit</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Wastes expensive context on junk</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Dilutes the signal with noise</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Generic, superficial response</span></li>
+</ul>
+</div>
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ Distill before using</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Fits comfortably in the context</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Only frameworks, numbers, and insights</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Pure signal, high density</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Reusable in any project</span></li>
+</ul>
+</div>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">28–46 pages</div><p class="text-xs text-neutral-400">Huge PDFs</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Limit</div><p class="text-xs text-neutral-400">of context</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Signal vs. noise</div><p class="text-xs text-neutral-400">value vs. volume</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Density</div><p class="text-xs text-neutral-400">what matters</p></div>
+</div>
+</section>
+<!-- SECAO 2 -->
+<section class="mb-16" id="topico-2">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span>
+<h2 class="text-2xl font-bold">✂️ Chunking into blocks of ~10k tokens</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">The core idea behind lazy RAG: instead of processing everything at once, you <strong class="text-blue-400">slice</strong>. Extracts the text from the PDF, counts the tokens, and splits it into chunks of ~10,000 tokens. Each chunk fits comfortably in an API call.</p>
+<div class="rounded-2xl border border-blue-500/30 bg-dark-900/40 p-3 sm:p-4 mb-6 overflow-hidden">
+<svg aria-label="A large PDF is extracted to text, counted in tokens, and split into three blocks of ten thousand tokens" class="w-full h-auto" role="img" viewbox="0 0 1000 230">
+<defs>
+<lineargradient id="m22-grad" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#60a5fa"></stop><stop offset="1" stop-color="#3b82f6"></stop></lineargradient>
+<filter height="180%" id="m22-glow" width="180%" x="-40%" y="-40%"><fegaussianblur result="b" stddeviation="1.8"></fegaussianblur><femerge><femergenode in="b"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter>
+<pattern height="32" id="m22-grid" patternunits="userSpaceOnUse" width="32"><circle cx="1.3" cy="1.3" fill="#3b82f6" opacity="0.12" r="1.3"></circle></pattern>
+</defs>
+<rect fill="url(#m22-grid)" height="230" width="1000" x="0" y="0"></rect>
+<!-- PDF -->
+<rect fill="#0e1622" height="110" rx="10" stroke="#60a5fa" stroke-width="2" width="120" x="44" y="64"></rect>
+<text fill="#bfdbfe" font-family="Inter,sans-serif" font-size="15" font-weight="700" text-anchor="middle" x="104" y="124">PDF</text>
+<!-- extrair -->
+<path d="M168,118 L240,118" fill="none" opacity="0.7" stroke="#38bdf8" stroke-dasharray="7 7" stroke-width="2"></path>
+<text fill="#7dd3fc" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="204" y="106">extract</text>
+<!-- texto + token count -->
+<rect fill="#0e1b26" height="90" rx="10" stroke="#38bdf8" stroke-width="2" width="150" x="244" y="74"></rect>
+<text fill="#bfe6ff" font-family="Inter,sans-serif" font-size="13" font-weight="600" text-anchor="middle" x="319" y="115">raw text</text>
+<text fill="#7dd3fc" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="319" y="135">counts tokens</text>
+<!-- chunk -->
+<path d="M398,118 L470,118" fill="none" opacity="0.7" stroke="#38bdf8" stroke-dasharray="7 7" stroke-width="2"></path>
+<text fill="#7dd3fc" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="434" y="106">cuts</text>
+<!-- blocos -->
+<g font-family="Inter,sans-serif" font-size="12" font-weight="600">
+<g filter="url(#m22-glow)"><rect fill="#0e1622" height="34" rx="8" stroke="url(#m22-grad)" stroke-width="2" width="200" x="476" y="58"></rect><text fill="#93c5fd" text-anchor="middle" x="576" y="80">block 1 · ~10k tk</text></g>
+<g filter="url(#m22-glow)"><rect fill="#0e1622" height="34" rx="8" stroke="url(#m22-grad)" stroke-width="2" width="200" x="476" y="100"></rect><text fill="#93c5fd" text-anchor="middle" x="576" y="122">block 2 · ~10k tk</text></g>
+<g filter="url(#m22-glow)"><rect fill="#0e1622" height="34" rx="8" stroke="url(#m22-grad)" stroke-width="2" width="200" x="476" y="142"></rect><text fill="#93c5fd" text-anchor="middle" x="576" y="164">block 3 · rest</text></g>
+</g>
+<!-- nota -->
+<text fill="#9ca3af" font-family="Inter,sans-serif" font-size="12" text-anchor="middle" x="800" y="100">each block becomes</text>
+<text fill="#9ca3af" font-family="Inter,sans-serif" font-size="12" text-anchor="middle" x="800" y="120">1 API call</text>
+<text fill="#7dd3fc" font-family="Inter,sans-serif" font-size="12" text-anchor="middle" x="800" y="148">processed in parallel →</text>
+</svg>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-6">
+<p class="text-xs text-neutral-500 mb-2 font-mono">// the concept of chunking — splitting by tokens</p>
+<pre class="font-mono text-sm text-neutral-300 whitespace-pre-wrap leading-relaxed">CHUNK_SIZE = 10_000   # tokens por bloco
+
+texto  = extrair_texto_do_pdf("bcg-guide.pdf")   # via PyMuPDF
+tokens = tokenizer.encode(texto)                 # cl100k_base
+
+blocos = []
+for i in range(0, len(tokens), CHUNK_SIZE):
+    pedaco = tokens[i : i + CHUNK_SIZE]
+    blocos.append(tokenizer.decode(pedaco))
+
+# 1 PDF de 46 págs ≈ 3-4 blocos → cabem na API um a um</pre>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">10k tokens</div><p class="text-xs text-neutral-400">by block</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">PyMuPDF</div><p class="text-xs text-neutral-400">extracts text</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Tokenizer</div><p class="text-xs text-neutral-400">cl100k_base</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">In parts</div><p class="text-xs text-neutral-400">not all at once</p></div>
+</div>
+</section>
+<!-- SECAO 3 -->
+<section class="mb-16" id="topico-3">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span>
+<h2 class="text-2xl font-bold">🧪 The synthesis prompt</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">This is where the quality of the cheat sheet comes from. The prompt instructs the model to extract <strong class="text-blue-400">only what's worthwhile</strong> — frameworks, statistics, insights, citations, terms — preserving numbers and cutting buzzwords. A block with no value gets the label <code>[MINIMAL_CONTENT]</code> and is discarded afterward.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-6">
+<p class="text-xs text-neutral-500 mb-2 font-mono">// actual structure of the synthesis prompt (pdf_to_cheatsheet.py)</p>
+<pre class="font-mono text-sm text-neutral-300 whitespace-pre-wrap leading-relaxed">Você é um consultor criando um cheat sheet a partir
+deste documento. Extraia o conhecimento mais valioso:
+
+## Conceitos &amp; Frameworks   → liste cada um em 1-2 frases
+## Estatísticas críticas     → preserve números e fontes
+## Insights acionáveis       → o que dá para implementar
+## Citações notáveis         → 2-3 frases de impacto
+## Terminologia              → defina termos e siglas
+
+Regras: seja conciso, NÃO generalize números, use bullets,
+negrito no termo na 1ª vez. Se o bloco for só sumário/
+referências, responda: [MINIMAL_CONTENT: ...]</pre>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> The detail that makes a difference</h3>
+<p class="text-neutral-300 text-sm">The rule <strong>"DO NOT generalize numbers"</strong> is what separates a useful cheat sheet from an empty summary. “AI boosts productivity” is worthless; <strong>"40% productivity gain (Google Cloud, 2025)"</strong> is ammunition for your deliverable.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">5 sections</div><p class="text-xs text-neutral-400">fixed extraction</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Preserve #</div><p class="text-xs text-neutral-400">doesn't generalize</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Cuts the buzzwords</div><p class="text-xs text-neutral-400">only what's valuable</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">[MINIMAL]</div><p class="text-xs text-neutral-400">mark the gap</p></div>
+</div>
+</section>
+<!-- SECAO 4 -->
+<section class="mb-16" id="topico-4">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span>
+<h2 class="text-2xl font-bold">✨ Gemini 2.5 Flash: affordable and massive context window</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">The model that synthesizes. A deliberate choice: huge context, rock-bottom price. It makes it possible to distill an entire library of PDFs for pennies — with <strong class="text-blue-400">exponential retry</strong> and a delay between calls to respect the rate limit.</p>
+<div class="space-y-6 mb-6">
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">1</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2">Huge context</h4><p class="text-neutral-300 text-sm">Handles 10k-token blocks with room to spare — and responds without cutting off halfway.</p></div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">2</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2">Very low cost</h4><p class="text-neutral-300 text-sm">The entire guide library costs pennies. It’s the same model that writes the deliverables in the Factory.</p></div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">3</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2">Resilient</h4><p class="text-neutral-300 text-sm">Exponential retry (3 attempts) and ~5s delay between calls. A network error won’t bring down the process.</p></div>
+</div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Practical tip</h3>
+<p class="text-neutral-300 text-sm">This was a real error during development (in the video, Gemini's chunking failed on a file). Building in public means showing the mess: if an API error occurs, just ask Claude Code to run it again—the process resumes where it left off.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">2.5 Flash</div><p class="text-xs text-neutral-400">the model</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Context</div><p class="text-xs text-neutral-400">huge</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Cents</div><p class="text-xs text-neutral-400">low cost</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Retry</div><p class="text-xs text-neutral-400">exponential</p></div>
+</div>
+</section>
+<!-- SECAO 5 -->
+<section class="mb-16" id="topico-5">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span>
+<h2 class="text-2xl font-bold">🧩 Build the cheat sheet</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">With the blocks synthesized, you <strong class="text-blue-400">rebuilds</strong>: combines them in the right order, discards those marked as empty, and generates a single Markdown file—with a header (source, date), numbered sections, and a "verify against the original" footer.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-6">
+<p class="text-xs text-neutral-500 mb-2 font-mono">// reassembling the blocks into a final cheat sheet</p>
+<pre class="font-mono text-sm text-neutral-300 whitespace-pre-wrap leading-relaxed">cheat = cabecalho(fonte="bcg-guide.pdf", data=hoje)
+
+for i, bloco in ordenar_por_indice(blocos_sintetizados):
+    if "[MINIMAL_CONTENT" in bloco and tamanho_util(bloco) &lt; 500:
+        continue                      # descarta o vazio
+    cheat += f"## Seção {i+1}\n\n{bloco}\n"
+
+cheat += rodape("verifique no documento original")
+salvar("bcg-guide_TLDR.md", cheat)    # 1 página, pronto</pre>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ Well-structured cheat sheet</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Blocks in the original order</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Empty entries discarded</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Header with source and date</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Footer requesting verification</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Poorly structured cheat sheet</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Blocks out of order</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Summary and acknowledgments in the middle</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>No source trail</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Treated as absolute truth</span></li>
+</ul>
+</div>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Sort</div><p class="text-xs text-neutral-400">by index</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Discard</div><p class="text-xs text-neutral-400">the empty ones</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Header</div><p class="text-xs text-neutral-400">source + date</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">1 page</div><p class="text-xs text-neutral-400">Final Markdown</p></div>
+</div>
+</section>
+<!-- SECAO 6 -->
+<section class="mb-16" id="topico-6">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span>
+<h2 class="text-2xl font-bold">🐍 <code>pdf_to_cheatsheet.py</code> in practice</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">You don’t write any of this by hand — the script already exists. It reads a folder of PDFs, saves progress to <code>progress.json</code>, skips blocks already completed, and accepts useful flags. Just ask Claude Code to run it.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-6">
+<p class="text-xs text-neutral-500 mb-2 font-mono">// what you type to Claude Code</p>
+<pre class="font-mono text-sm text-neutral-300 whitespace-pre-wrap leading-relaxed"># dá uma olhada sem gastar API (só conta os blocos)
+python pdf_to_cheatsheet.py --dry-run
+
+# processa só um arquivo
+python pdf_to_cheatsheet.py --single-pdf "bcg-guide.pdf"
+
+# se o contexto encher ou a API falhar, rode de novo:
+# ele retoma pelos blocos que faltam (progress.json)</pre>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Why resuming matters</h3>
+<p class="text-neutral-300 text-sm">O <code>ProgressTracker</code> saves each completed block. If the process fails at block 7 of 10, when you run it again, it skips the first 6 and continues. You <strong>doesn't pay twice</strong> through the same block — savings that add up in a large library.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">--dry-run</div><p class="text-xs text-neutral-400">without spending on API calls</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">--single-pdf</div><p class="text-xs text-neutral-400">a single file</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Resumable</div><p class="text-xs text-neutral-400">resumes where you left off</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">progress.json</div><p class="text-xs text-neutral-400">saves what was done</p></div>
+</div>
+</section>
+<!-- RESUMO + MISSAO -->
+<section class="mb-12">
+<div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-xl border border-blue-500/30 p-8">
+<h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">✅</span> Module summary</h2>
+<div class="space-y-4 mb-8">
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">The entire PDF overloads the context</strong><span class="text-neutral-400"> — you want what’s valuable, not volume.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Chunking + synthesis is lazy RAG</strong><span class="text-neutral-400"> — blocks of ~10k tokens, a prompt that extracts only the gold.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Gemini 2.5 Flash does it for pennies</strong><span class="text-neutral-400"> — huge context, retry, resume.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">The result is one reusable page</strong><span class="text-neutral-400"> — ready to feed into Claude Code.</span></div></div>
+</div>
+<div class="bg-dark-900/50 rounded-lg p-6 border border-primary/30 mb-8">
+<h3 class="font-bold text-primary mb-2 flex items-center"><span class="mr-2">🎯</span> Mission 2.2 — Your first cheat sheet</h3>
+<p class="text-neutral-300 text-sm mb-3">Get 1 consulting PDF (a free guide from McKinsey, BCG, KPMG, Google Cloud…) and turn it into a 1-page cheat sheet:</p>
+<ol class="space-y-2 text-neutral-300 text-sm list-decimal list-inside">
+<li>Ask Claude Code to run the <code>pdf_to_cheatsheet.py</code> in it (or apply the block-by-block synthesis prompt).</li>
+<li>Check: did frameworks, numbers, and insights remain—without buzzwords?</li>
+<li>Save as <code>fonte_TLDR.md</code> with a header (source + date).</li>
+</ol>
+<p class="text-neutral-400 text-xs mt-3"><strong>Success:</strong> 1 generated 1-page cheat sheet. <strong>What you gained:</strong> the first piece of your knowledge base—and the technique for distilling any PDF from now on.</p>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+<h3 class="font-semibold text-blue-400 mb-2">Next module:</h3>
+<p class="text-neutral-300">2.3 — Your consultant brain (organize multiple cheat sheets in a curated, injectable knowledge base)</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors" href="index.html">← Back to Track</a>
+<a class="flex-1 text-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition-colors" href="modulo-2-3.html">Next Module →</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="border-t border-dark-600 py-8 mt-8">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+<p>AI Strategy Factory · Module 2.2 · <a class="text-sky-400 hover:text-sky-300" href="https://inema.club" target="_blank">INEMA.CLUB</a></p>
+</div>
+</footer>
+<script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const darkIcon = document.getElementById('theme-toggle-dark-icon');
+    const lightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light') { html.classList.remove('dark'); darkIcon.classList.remove('hidden'); }
+    else { lightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      darkIcon.classList.toggle('hidden'); lightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

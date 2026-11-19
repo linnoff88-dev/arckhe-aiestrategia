@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Trilha 3 · Skills &amp; Agentes | Fábrica de Estratégia de IA</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: {
+      primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' }
+    } } } }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    .topic-explanation { display: none; }
+    .topic-explanation.active { display: block; }
+
+    /* Light mode - base */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    /* Light mode - acento purple (T3) */
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .bg-purple-500\/20 { background-color: rgba(124,58,237,0.12); }
+    html:not(.dark) .bg-purple-500\/10 { background-color: rgba(124,58,237,0.08); }
+    html:not(.dark) .border-purple-500\/30 { border-color: rgba(124,58,237,0.25); }
+    html:not(.dark) .hover\:bg-purple-500\/30:hover { background-color: rgba(124,58,237,0.18); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,0.08); }
+    html:not(.dark) .group:hover .group-hover\:text-purple-400 { color: #7c3aed; }
+    /* Light mode - blue (box de dados) */
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37,99,235,0.12); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37,99,235,0.25); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,0.08); }
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,0.08); }
+    html:not(.dark) .text-teal-400 { color: #0d9488; }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13,148,136,0.08); }
+    /* Light mode - remove gradientes + especiais */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,0.22); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+    /* Dark - bordas suaves */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+    @keyframes wf-pulse { 0%,100% { opacity:.5 } 50% { opacity:1 } }
+    @media (prefers-reduced-motion: no-preference) {
+      .wf-a { animation: wf-pulse 2.6s ease-in-out infinite; }
+      .wf-a:nth-child(2){animation-delay:.3s} .wf-a:nth-child(3){animation-delay:.6s}
+      .wf-a:nth-child(4){animation-delay:.9s} .wf-a:nth-child(5){animation-delay:1.2s}
+    }
+    .modal.hidden { display: none; }
+  </style>
+<link href="https://inematds.github.io/aiestrategia/curso/trilha3/" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/aiestrategia/en/curso/trilha3/" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/aiestrategia/es/curso/trilha3/" hreflang="es" rel="alternate"/></head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="./" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">PT</a><a href="../../en/curso/trilha3/" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">EN</a><a href="../../es/curso/trilha3/" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">ES</a></div>
+<!-- NAV -->
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4">
+<a class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300" href="../../index.html">
+<span class="text-2xl">🏭</span>
+<span class="font-bold text-lg hidden sm:inline">Fábrica de Estratégia de IA</span>
+</a>
+<span class="text-neutral-600">|</span>
+<a class="text-sky-400 hover:text-sky-300 text-sm font-medium" href="https://inema.club" target="_blank">INEMA.CLUB</a>
+</div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors" href="../trilha1/index.html"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentos</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors" href="../trilha2/index.html"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Síntese</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-purple-400 bg-purple-500/10" href="index.html"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Skills &amp; Agentes</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors" href="../trilha4/index.html"><span class="sm:hidden">T4</span><span class="hidden sm:inline">A Fábrica</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors" href="../trilha5/index.html"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Consultor</span></a>
+<button class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2" id="theme-toggle">
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-dark-icon" viewbox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-light-icon" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- HEADER -->
+<header class="bg-gradient-to-br from-purple-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<span class="inline-block px-3 py-1 bg-purple-500/20 text-purple-400 text-xs font-semibold rounded-full mb-4">TRILHA 3 · 🥇 NÍVEL CONSTRUTOR</span>
+<h1 class="text-3xl sm:text-4xl font-bold mb-4">🛠️ Skills &amp; Agentes</h1>
+<p class="text-lg text-neutral-400 max-w-3xl">Pare de repetir tarefas. Aqui você empacota cada capacidade da Fábrica em skills sob demanda e subagentes que trabalham sozinhos. No fim, seu arsenal vira ativo: constrói uma vez, dispara infinitas vezes.</p>
+<div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">4</div><div class="text-xs text-neutral-400">Módulos</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">24</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">~3h</div><div class="text-xs text-neutral-400">Duração</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">Intermediário</div><div class="text-xs text-neutral-400">Nível</div></div>
+</div>
+</div>
+</header>
+<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<!-- HERO SVG -->
+<div class="rounded-2xl border border-purple-500/30 bg-dark-900/40 p-3 sm:p-4 mb-12 overflow-hidden">
+<svg aria-label="Uma skill que contém passos à esquerda e um orquestrador que distribui trabalho para subagentes paralelos à direita" class="w-full h-auto" role="img" viewbox="0 0 1000 240">
+<defs>
+<lineargradient id="t3-grad" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#c084fc"></stop><stop offset="1" stop-color="#a855f7"></stop></lineargradient>
+<filter height="180%" id="t3-glow" width="180%" x="-40%" y="-40%"><fegaussianblur result="b" stddeviation="1.8"></fegaussianblur><femerge><femergenode in="b"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter>
+<pattern height="32" id="t3-grid" patternunits="userSpaceOnUse" width="32"><circle cx="1.3" cy="1.3" fill="#a855f7" opacity="0.12" r="1.3"></circle></pattern>
+</defs>
+<rect fill="url(#t3-grid)" height="240" width="1000" x="0" y="0"></rect>
+<!-- SKILL: caixa que contém passos aninhados -->
+<g filter="url(#t3-glow)"><rect fill="#1a1230" height="160" rx="14" stroke="url(#t3-grad)" stroke-width="2.5" width="300" x="44" y="40"></rect></g>
+<text fill="#c084fc" font-family="Inter,sans-serif" font-size="16" font-weight="700" text-anchor="middle" x="194" y="70">SKILL · diagnostico-ia</text>
+<g font-family="Inter,sans-serif" font-size="12" font-weight="500">
+<rect class="wf-a" fill="#0e1b26" height="26" rx="7" stroke="#38bdf8" stroke-width="1.5" width="252" x="68" y="84"></rect><text fill="#bfe6ff" x="80" y="101">1 · ler descrição da empresa</text>
+<rect class="wf-a" fill="#0e1b26" height="26" rx="7" stroke="#38bdf8" stroke-width="1.5" width="252" x="68" y="116"></rect><text fill="#bfe6ff" x="80" y="133">2 · aplicar frameworks (T2)</text>
+<rect class="wf-a" fill="#0e1b26" height="26" rx="7" stroke="#38bdf8" stroke-width="1.5" width="252" x="68" y="148"></rect><text fill="#bfe6ff" x="80" y="165">3 · cuspir mini-diagnóstico</text>
+</g>
+<!-- seta orquestrador -->
+<path d="M360,120 L470,120" fill="none" stroke="#a855f7" stroke-dasharray="8 6" stroke-width="2.5"></path>
+<polygon fill="#a855f7" points="470,120 460,114 460,126"></polygon>
+<g filter="url(#t3-glow)"><circle cx="520" cy="120" fill="#1a1230" r="30" stroke="url(#t3-grad)" stroke-width="2.5"></circle></g>
+<text fill="#c084fc" font-family="Inter,sans-serif" font-size="13" font-weight="700" text-anchor="middle" x="520" y="118">orques-</text>
+<text fill="#c084fc" font-family="Inter,sans-serif" font-size="13" font-weight="700" text-anchor="middle" x="520" y="132">trador</text>
+<!-- fan-out de subagentes -->
+<g font-family="Inter,sans-serif" font-size="12" font-weight="600">
+<path d="M550,108 L640,58" fill="none" opacity="0.8" stroke="#a855f7" stroke-width="2"></path>
+<path d="M550,120 L640,120" fill="none" opacity="0.8" stroke="#a855f7" stroke-width="2"></path>
+<path d="M550,132 L640,182" fill="none" opacity="0.8" stroke="#a855f7" stroke-width="2"></path>
+<g class="wf-a"><rect fill="#0e1b26" height="38" rx="10" stroke="#38bdf8" stroke-width="2" width="300" x="640" y="40"></rect><text fill="#bfe6ff" x="660" y="63">🕵️ pesquisador-empresa</text></g>
+<g class="wf-a"><rect fill="#0e1b26" height="38" rx="10" stroke="#38bdf8" stroke-width="2" width="300" x="640" y="100"></rect><text fill="#bfe6ff" x="660" y="123">✍️ redator-estrategia</text></g>
+<g class="wf-a"><rect fill="#1a1230" height="38" rx="10" stroke="url(#t3-grad)" stroke-width="2" width="300" x="640" y="160"></rect><text fill="#c084fc" x="660" y="183">📄 gerar-entregavel</text></g>
+</g>
+</svg>
+</div>
+<!-- MAPA DA TRILHA -->
+<section class="mb-12">
+<h2 class="text-2xl font-bold mb-6">Mapa da trilha</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<a class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-purple-500/30 p-5 transition-all" href="#modulo-3-1">
+<div class="flex items-center justify-between mb-2"><span class="text-purple-400 font-bold text-sm">3.1</span><span class="text-xs text-neutral-500">~45 min</span></div>
+<h3 class="font-semibold mb-1 group-hover:text-purple-400 transition-colors">🧱 Skills e subagentes</h3>
+<p class="text-xs text-neutral-400">O que são e quando usar</p>
+</a>
+<a class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-purple-500/30 p-5 transition-all" href="#modulo-3-2">
+<div class="flex items-center justify-between mb-2"><span class="text-purple-400 font-bold text-sm">3.2</span><span class="text-xs text-neutral-500">~45 min</span></div>
+<h3 class="font-semibold mb-1 group-hover:text-purple-400 transition-colors">🎯 Sua primeira skill</h3>
+<p class="text-xs text-neutral-400">diagnostico-ia rodando</p>
+</a>
+<a class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-purple-500/30 p-5 transition-all" href="#modulo-3-3">
+<div class="flex items-center justify-between mb-2"><span class="text-purple-400 font-bold text-sm">3.3</span><span class="text-xs text-neutral-500">~45 min</span></div>
+<h3 class="font-semibold mb-1 group-hover:text-purple-400 transition-colors">📄 A skill de documentos</h3>
+<p class="text-xs text-neutral-400">DocX/PPTX/Excel/PDF</p>
+</a>
+<a class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-purple-500/30 p-5 transition-all" href="#modulo-3-4">
+<div class="flex items-center justify-between mb-2"><span class="text-purple-400 font-bold text-sm">3.4</span><span class="text-xs text-neutral-500">~45 min</span></div>
+<h3 class="font-semibold mb-1 group-hover:text-purple-400 transition-colors">🕵️ Construa seu subagente</h3>
+<p class="text-xs text-neutral-400">Pesquisador &amp; redator</p>
+</a>
+</div>
+</section>
+<h2 class="text-2xl font-bold mb-6">Conteúdo detalhado</h2>
+<!-- MODULO 3.1 -->
+<div class="bg-dark-800 rounded-xl border border-dark-600 mb-6" id="modulo-3-1">
+<div class="p-6 border-b border-dark-600">
+<div class="flex items-center justify-between mb-2"><span class="text-purple-400 font-bold">3.1</span><span class="text-xs text-neutral-500">~45 min</span></div>
+<h3 class="text-2xl font-bold mb-2">🧱 Skills e subagentes: o que são</h3>
+<p class="text-neutral-400 text-sm">As duas peças que transformam o Claude Code numa fábrica: skill (capacidade reutilizável sob demanda) e subagente (trabalho isolado, contexto próprio). Quando usar cada um e por que isso vira ativo.</p>
+</div>
+<div class="divide-y divide-dark-600">
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+<span class="text-lg">🧩</span>
+<div><span class="font-medium">O que é uma skill</span><span class="text-neutral-500 text-sm ml-2">- capacidade reutilizável, sob demanda</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-purple-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Uma capacidade que o Claude Code carrega quando precisa: um arquivo SKILL.md com instruções e referências. Ensina uma vez, usa sempre que o gatilho disparar.</p></div>
+<div><span class="text-purple-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Cada tarefa repetida da Fábrica (diagnosticar, gerar doc) vira skill. Você para de re-explicar e ganha consistência.</p></div>
+<div><span class="text-purple-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Sob demanda · SKILL.md · reutilização · gatilho por description.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+<span class="text-lg">🕵️</span>
+<div><span class="font-medium">O que é um subagente</span><span class="text-neutral-500 text-sm ml-2">- trabalho isolado, contexto próprio</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-purple-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Uma instância separada do Claude com janela de contexto própria, prompt de sistema e ferramentas. Recebe uma tarefa, trabalha sozinho e devolve só o resultado.</p></div>
+<div><span class="text-purple-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Pesquisar uma empresa enche o contexto. Um subagente isola essa bagunça e te entrega só o essencial — o pai não suja.</p></div>
+<div><span class="text-purple-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Contexto isolado · system prompt · ferramentas próprias · retorna resumo.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+<span class="text-lg">⚖️</span>
+<div><span class="font-medium">Skill vs agente: quando cada um</span><span class="text-neutral-500 text-sm ml-2">- capacidade vs trabalhador</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-purple-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Skill = uma habilidade que o agente principal ganha (gerar PPTX). Subagente = um trabalhador separado para uma missão que consome muito contexto (varrer a web).</p></div>
+<div><span class="text-purple-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Escolher errado custa contexto e tempo. A regra simples evita sobre-engenharia.</p></div>
+<div><span class="text-purple-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Habilidade vs delegação · custo de contexto · "no mesmo fio" vs "fio separado".</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+<span class="text-lg">🔬</span>
+<div><span class="font-medium">Anatomia de uma skill</span><span class="text-neutral-500 text-sm ml-2">- SKILL.md e frontmatter</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-purple-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Um arquivo SKILL.md com frontmatter (name + description) no topo e o corpo em Markdown com os passos. A description é o que faz a skill disparar.</p></div>
+<div><span class="text-purple-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Escrever a description certa decide se a skill é usada. É a peça mais importante e a mais ignorada.</p></div>
+<div><span class="text-purple-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Frontmatter · name · description-gatilho · corpo com passos.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+<span class="text-lg">📁</span>
+<div><span class="font-medium">Onde skills e agentes vivem</span><span class="text-neutral-500 text-sm ml-2">- projeto vs pessoal</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-purple-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Skills ficam em <code>.claude/skills/</code> (do projeto) ou <code>~/.claude/skills/</code> (pessoais). Subagentes ficam em <code>.claude/agents/</code>. Cada um numa pasta com seu arquivo.</p></div>
+<div><span class="text-purple-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Saber o lugar é o que faz o Claude Code achar o recurso. Pessoal = vale em todo projeto; do projeto = vai junto no repo.</p></div>
+<div><span class="text-purple-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">.claude/skills · .claude/agents · escopo projeto vs pessoal.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+<span class="text-lg">💎</span>
+<div><span class="font-medium">O ecossistema reutilizável</span><span class="text-neutral-500 text-sm ml-2">- por que isso vira ativo</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-purple-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Cada skill e agente é uma peça que você constrói uma vez e reusa sempre. Juntas, formam a engrenagem da Fábrica — seu arsenal.</p></div>
+<div><span class="text-purple-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">É a tese "entrada mínima, saída máxima" virando código. O esforço fica na construção, não na entrega.</p></div>
+<div><span class="text-purple-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Ativo reutilizável · composição · arsenal · custo marginal quase zero.</p></div>
+</div></div>
+</div>
+</div>
+<div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+<button class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors" onclick="openModal('modal-3-1')">Ver em Modal</button>
+<a class="px-4 py-2 text-sm bg-purple-600 hover:bg-purple-500 text-white rounded-lg transition-colors" href="modulo-3-1.html">Ver Completo</a>
+</div>
+</div>
+<!-- MODULO 3.2 -->
+<div class="bg-dark-800 rounded-xl border border-dark-600 mb-6" id="modulo-3-2">
+<div class="p-6 border-b border-dark-600">
+<div class="flex items-center justify-between mb-2"><span class="text-purple-400 font-bold">3.2</span><span class="text-xs text-neutral-500">~45 min</span></div>
+<h3 class="text-2xl font-bold mb-2">🎯 Construa sua primeira skill (diagnostico-ia)</h3>
+<p class="text-neutral-400 text-sm">Do gatilho ao empacotamento: definir a description que dispara, escrever o corpo determinístico, anexar os cheat sheets da T2, testar, iterar e versionar. No fim, uma skill cuspindo um mini-diagnóstico.</p>
+</div>
+<div class="divide-y divide-dark-600">
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+<span class="text-lg">🎣</span>
+<div><span class="font-medium">Definir o gatilho (description)</span><span class="text-neutral-500 text-sm ml-2">- a frase que faz disparar</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-purple-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">A description do frontmatter descreve quando usar a skill. "Use ao diagnosticar a maturidade de IA de uma empresa descrita em texto."</p></div>
+<div><span class="text-purple-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Se a description for vaga, a skill nunca dispara. Boa description = bons verbos + gatilhos concretos.</p></div>
+<div><span class="text-purple-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Gatilho · verbos de ação · "use quando" · especificidade.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+<span class="text-lg">📝</span>
+<div><span class="font-medium">Escrever o corpo</span><span class="text-neutral-500 text-sm ml-2">- passos claros, determinísticos</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-purple-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">O corpo em Markdown lista os passos: ler a empresa, pontuar maturidade 1-5, listar 3 quick wins, sugerir roadmap 30/60/90.</p></div>
+<div><span class="text-purple-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Passos numerados e específicos dão saída repetível. Vago gera resultado diferente toda vez.</p></div>
+<div><span class="text-purple-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Passos numerados · determinismo · formato de saída fixo.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+<span class="text-lg">📎</span>
+<div><span class="font-medium">Anexar referências</span><span class="text-neutral-500 text-sm ml-2">- os cheat sheets da T2</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-purple-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">A skill aponta para arquivos de apoio (os cheat sheets de maturidade e quick wins que você destilou na T2), carregados só quando precisa.</p></div>
+<div><span class="text-purple-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Referências dão o rigor de consultoria à skill sem inchar o SKILL.md. RAG preguiçoso aplicado.</p></div>
+<div><span class="text-purple-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Arquivos de apoio · carregamento sob demanda · contexto enxuto.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+<span class="text-lg">🧪</span>
+<div><span class="font-medium">Testar a skill</span><span class="text-neutral-500 text-sm ml-2">- com um caso real</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-purple-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Rodar a skill com uma empresa de verdade e checar: ela disparou sozinha? A saída tem maturidade, quick wins e roadmap?</p></div>
+<div><span class="text-purple-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Teste com caso real revela se a description dispara e se a saída serve. Sem isso é só teoria.</p></div>
+<div><span class="text-purple-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Caso de teste · disparo · checagem de saída.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+<span class="text-lg">🔁</span>
+<div><span class="font-medium">Iterar e empacotar</span><span class="text-neutral-500 text-sm ml-2">- afinar até confiar</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-purple-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Ajustar a description e os passos com base no teste, fechar a pasta da skill (SKILL.md + referências) e deixá-la pronta para uso.</p></div>
+<div><span class="text-purple-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">A primeira versão raramente acerta. Iterar é o trabalho real; empacotar é o que a torna ativo.</p></div>
+<div><span class="text-purple-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Iteração · pasta da skill · pronto para reuso.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+<span class="text-lg">🏷️</span>
+<div><span class="font-medium">Versionar e compartilhar</span><span class="text-neutral-500 text-sm ml-2">- a skill vira ativo</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-purple-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Versionar a skill no Git (junto ao projeto) e, se quiser, compartilhar com o time ou na comunidade. Histórico = evolução rastreável.</p></div>
+<div><span class="text-purple-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Versionar protege seu ativo e deixa melhorar sem medo. Compartilhar gera autoridade.</p></div>
+<div><span class="text-purple-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Git · versão · compartilhar · ativo durável.</p></div>
+</div></div>
+</div>
+</div>
+<div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+<button class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors" onclick="openModal('modal-3-2')">Ver em Modal</button>
+<a class="px-4 py-2 text-sm bg-purple-600 hover:bg-purple-500 text-white rounded-lg transition-colors" href="modulo-3-2.html">Ver Completo</a>
+</div>
+</div>
+<!-- MODULO 3.3 -->
+<div class="bg-dark-800 rounded-xl border border-dark-600 mb-6" id="modulo-3-3">
+<div class="p-6 border-b border-dark-600">
+<div class="flex items-center justify-between mb-2"><span class="text-purple-400 font-bold">3.3</span><span class="text-xs text-neutral-500">~45 min</span></div>
+<h3 class="text-2xl font-bold mb-2">📄 A skill de documentos (DocX/PPTX/Excel/PDF)</h3>
+<p class="text-neutral-400 text-sm">Os entregáveis chiques não saem de Markdown: saem de Python. python-docx, python-pptx, openpyxl (com convenção de cores) e reportlab — embrulhados na skill gerar-entregavel. Markdown entra, .docx e .pptx saem.</p>
+</div>
+<div class="divide-y divide-dark-600">
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+<span class="text-lg">🎁</span>
+<div><span class="font-medium">Por que gerar documentos</span><span class="text-neutral-500 text-sm ml-2">- programaticamente</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-purple-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">O cliente abre .docx, .pptx, .xlsx e .pdf — não Markdown cru. Gerar via código deixa tudo formatado, repetível e com a sua marca.</p></div>
+<div><span class="text-purple-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">É o que faz o pacote parecer consultoria de elite. Sem isso, o entregável morre no editor de texto.</p></div>
+<div><span class="text-purple-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Entregável final · formatação · repetível · marca.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+<span class="text-lg">📘</span>
+<div><span class="font-medium">python-docx</span><span class="text-neutral-500 text-sm ml-2">- relatórios Word</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-purple-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">A biblioteca que cria .docx: <code>Document()</code>, <code>add_heading</code>, <code>add_paragraph</code>, <code>add_table</code> e runs com cor/negrito. Gera o relatório e o SOW.</p></div>
+<div><span class="text-purple-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Relatório final e SOW são entregáveis Word. Dominar docx é gerar os dois sem trabalho manual.</p></div>
+<div><span class="text-purple-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Document · headings · tabelas · runs formatados.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+<span class="text-lg">📙</span>
+<div><span class="font-medium">python-pptx</span><span class="text-neutral-500 text-sm ml-2">- apresentações (RGBColor, layouts)</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-purple-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm"><code>Presentation()</code>, slides por layout (0 título, 6 branco), textboxes, bullets e <code>RGBColor</code> para cores. Gera o deck executivo.</p></div>
+<div><span class="text-purple-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">O deck é o que fecha a venda (T5). Cuidado com a pegadinha: é <code>RGBColor</code>, não <code>RgbColor</code>.</p></div>
+<div><span class="text-purple-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Layouts · textboxes · RGBColor · deck executivo.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+<span class="text-lg">📊</span>
+<div><span class="font-medium">openpyxl</span><span class="text-neutral-500 text-sm ml-2">- Excel com convenção de cores</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-purple-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Cria .xlsx com fórmulas reais (nunca valores fixos) e a convenção de cores: azul = input, preto = fórmula, verde = link, vermelho = externo, amarelo = premissa.</p></div>
+<div><span class="text-purple-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">A calculadora de ROI vive em Excel. Fórmulas + cores certas deixam o cliente confiar e editar premissas.</p></div>
+<div><span class="text-purple-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Fórmulas vs valores · indexação 1-based · convenção de cores · ROI.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+<span class="text-lg">📕</span>
+<div><span class="font-medium">reportlab</span><span class="text-neutral-500 text-sm ml-2">- PDF (Platypus)</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-purple-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">O método Platypus monta um <code>story</code> de elementos (Paragraph, Spacer, Table) e fecha com <code>doc.build(story)</code>. Gera PDFs prontos para enviar.</p></div>
+<div><span class="text-purple-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">PDF é o formato universal de entrega. Platypus dá controle de estilo sem mexer em coordenadas.</p></div>
+<div><span class="text-purple-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Platypus · story · build no fim · estilos.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+<span class="text-lg">📦</span>
+<div><span class="font-medium">Empacotar como skill</span><span class="text-neutral-500 text-sm ml-2">- gerar-entregavel</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-purple-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Embrulhar as quatro bibliotecas numa skill: "dado um Markdown, gere o .docx/.pptx/.xlsx/.pdf correspondente". Uma referência única para todo o pacote.</p></div>
+<div><span class="text-purple-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Vira o motor de saída da Fábrica. Markdown entra de qualquer prompt; arquivo profissional sai.</p></div>
+<div><span class="text-purple-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">gerar-entregavel · wrapper · Markdown → arquivo · motor de saída.</p></div>
+</div></div>
+</div>
+</div>
+<div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+<button class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors" onclick="openModal('modal-3-3')">Ver em Modal</button>
+<a class="px-4 py-2 text-sm bg-purple-600 hover:bg-purple-500 text-white rounded-lg transition-colors" href="modulo-3-3.html">Ver Completo</a>
+</div>
+</div>
+<!-- MODULO 3.4 -->
+<div class="bg-dark-800 rounded-xl border border-dark-600 mb-6" id="modulo-3-4">
+<div class="p-6 border-b border-dark-600">
+<div class="flex items-center justify-between mb-2"><span class="text-purple-400 font-bold">3.4</span><span class="text-xs text-neutral-500">~45 min</span></div>
+<h3 class="text-2xl font-bold mb-2">🕵️ Construa seu subagente (pesquisador &amp; redator)</h3>
+<p class="text-neutral-400 text-sm">Dois trabalhadores isolados: o pesquisador-empresa coleta contexto estruturado, o redator-estrategia rascunha o entregável. Saída em schema confiável, orquestrados com a skill — e quando vale paralelizar.</p>
+</div>
+<div class="divide-y divide-dark-600">
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+<span class="text-lg">🔬</span>
+<div><span class="font-medium">Anatomia de um subagente</span><span class="text-neutral-500 text-sm ml-2">- system prompt, ferramentas, saída</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-purple-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Um arquivo de agente: frontmatter (name/description), prompt de sistema (quem ele é), ferramentas liberadas e o formato de saída que deve devolver.</p></div>
+<div><span class="text-purple-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Definir bem essas quatro partes é o que separa um agente útil de um que devolve texto solto.</p></div>
+<div><span class="text-purple-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">System prompt · ferramentas · saída esperada · escopo.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+<span class="text-lg">🏢</span>
+<div><span class="font-medium">O agente pesquisador-empresa</span><span class="text-neutral-500 text-sm ml-2">- coleta contexto estruturado</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-purple-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Um subagente que recebe nome + descrição da empresa, pesquisa e devolve um <code>CompanyContext</code>: setor, stack, dores, concorrentes e iniciativas de IA.</p></div>
+<div><span class="text-purple-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">É a Fase 1 da Fábrica virando trabalhador. Isola a pesquisa pesada e devolve só o contexto limpo.</p></div>
+<div><span class="text-purple-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">CompanyContext · pesquisa isolada · saída estruturada.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+<span class="text-lg">✍️</span>
+<div><span class="font-medium">O agente redator-estrategia</span><span class="text-neutral-500 text-sm ml-2">- rascunha o entregável</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-purple-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Recebe o <code>CompanyContext</code> + um framework (ex.: quick wins) e escreve o entregável em Markdown, pronto para a skill gerar-entregavel formatar.</p></div>
+<div><span class="text-purple-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Separa pesquisa de escrita. Cada agente faz uma coisa bem — fica fácil de testar e melhorar.</p></div>
+<div><span class="text-purple-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Contexto + framework → rascunho · separação de papéis.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+<span class="text-lg">🧾</span>
+<div><span class="font-medium">Saída estruturada (schema)</span><span class="text-neutral-500 text-sm ml-2">- JSON confiável</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-purple-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Pedir ao agente que devolva JSON num formato fixo (um schema). Como o <code>CompanyInput</code>/<code>ResearchOutput</code> da arquitetura: campos previsíveis.</p></div>
+<div><span class="text-purple-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Saída estruturada é o que permite encadear agentes. Texto solto quebra o pipeline; schema, não.</p></div>
+<div><span class="text-purple-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Schema · JSON previsível · encadeável · contrato.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+<span class="text-lg">🎛️</span>
+<div><span class="font-medium">Orquestrar skill + agentes</span><span class="text-neutral-500 text-sm ml-2">- juntar tudo</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-purple-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">O agente principal chama o pesquisador-empresa, passa o contexto ao redator-estrategia e usa a skill gerar-entregavel para fechar o arquivo.</p></div>
+<div><span class="text-purple-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">É a Fábrica em miniatura: pesquisa → redação → documento. Orquestrar é o trabalho do construtor.</p></div>
+<div><span class="text-purple-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Orquestração · encadeamento · pipeline pesquisa→redação→doc.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-purple-500/20 text-purple-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+<span class="text-lg">⚡</span>
+<div><span class="font-medium">Quando paralelizar</span><span class="text-neutral-500 text-sm ml-2">- vários agentes de uma vez</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-purple-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Disparar vários subagentes ao mesmo tempo quando as tarefas são independentes — ex.: pesquisar 3 empresas em paralelo, sem estado compartilhado.</p></div>
+<div><span class="text-purple-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Paralelizar tarefas independentes economiza tempo. Mas se uma depende da outra, é sequencial — saber a diferença evita bug.</p></div>
+<div><span class="text-purple-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Paralelo vs sequencial · independência · sem estado compartilhado.</p></div>
+</div></div>
+</div>
+</div>
+<div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+<button class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors" onclick="openModal('modal-3-4')">Ver em Modal</button>
+<a class="px-4 py-2 text-sm bg-purple-600 hover:bg-purple-500 text-white rounded-lg transition-colors" href="modulo-3-4.html">Ver Completo</a>
+</div>
+</div>
+<!-- NAV INFERIOR -->
+<div class="flex flex-col sm:flex-row gap-4 mt-10">
+<a class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors" href="../trilha2/index.html">← Trilha 2: Síntese</a>
+<a class="flex-1 text-center px-6 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-500 transition-colors" href="../trilha4/index.html">Próxima trilha: A Fábrica →</a>
+</div>
+</main>
+<!-- MODAIS -->
+<div class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" id="modal-3-1" onclick="if(event.target === this) closeModal()">
+<div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+<div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+<div class="flex items-center space-x-3"><span class="text-purple-400 font-bold">3.1</span><span class="font-semibold">Skills e subagentes: o que são</span></div>
+<button class="text-neutral-400 hover:text-white text-2xl leading-none" onclick="closeModal()">×</button>
+</div>
+<iframe class="flex-1 w-full rounded-b-xl" src="modulo-3-1.html"></iframe>
+</div>
+</div>
+<div class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" id="modal-3-2" onclick="if(event.target === this) closeModal()">
+<div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+<div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+<div class="flex items-center space-x-3"><span class="text-purple-400 font-bold">3.2</span><span class="font-semibold">Construa sua primeira skill (diagnostico-ia)</span></div>
+<button class="text-neutral-400 hover:text-white text-2xl leading-none" onclick="closeModal()">×</button>
+</div>
+<iframe class="flex-1 w-full rounded-b-xl" src="modulo-3-2.html"></iframe>
+</div>
+</div>
+<div class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" id="modal-3-3" onclick="if(event.target === this) closeModal()">
+<div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+<div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+<div class="flex items-center space-x-3"><span class="text-purple-400 font-bold">3.3</span><span class="font-semibold">A skill de documentos (DocX/PPTX/Excel/PDF)</span></div>
+<button class="text-neutral-400 hover:text-white text-2xl leading-none" onclick="closeModal()">×</button>
+</div>
+<iframe class="flex-1 w-full rounded-b-xl" src="modulo-3-3.html"></iframe>
+</div>
+</div>
+<div class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" id="modal-3-4" onclick="if(event.target === this) closeModal()">
+<div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+<div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+<div class="flex items-center space-x-3"><span class="text-purple-400 font-bold">3.4</span><span class="font-semibold">Construa seu subagente (pesquisador &amp; redator)</span></div>
+<button class="text-neutral-400 hover:text-white text-2xl leading-none" onclick="closeModal()">×</button>
+</div>
+<iframe class="flex-1 w-full rounded-b-xl" src="modulo-3-4.html"></iframe>
+</div>
+</div>
+<footer class="border-t border-dark-600 py-8 mt-8">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+<p>Fábrica de Estratégia de IA · Trilha 3 — Skills &amp; Agentes · <a class="text-sky-400 hover:text-sky-300" href="https://inema.club" target="_blank">INEMA.CLUB</a></p>
+</div>
+</footer>
+<script>
+    function toggleTopic(button) {
+      const topicItem = button.closest('.topic-item');
+      const explanation = topicItem.querySelector('.topic-explanation');
+      const moduleCard = button.closest('.bg-dark-800');
+      moduleCard.querySelectorAll('.topic-explanation.active').forEach(exp => { if (exp !== explanation) exp.classList.remove('active'); });
+      explanation.classList.toggle('active');
+    }
+    function openModal(id){ const m=document.getElementById(id); if(m){ m.classList.remove('hidden'); document.body.style.overflow='hidden'; } }
+    function closeModal(){ document.querySelectorAll('.modal').forEach(m=>m.classList.add('hidden')); document.body.style.overflow='auto'; }
+    document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
+    const themeToggle = document.getElementById('theme-toggle');
+    const darkIcon = document.getElementById('theme-toggle-dark-icon');
+    const lightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light') { html.classList.remove('dark'); darkIcon.classList.remove('hidden'); }
+    else { lightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      darkIcon.classList.toggle('hidden'); lightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

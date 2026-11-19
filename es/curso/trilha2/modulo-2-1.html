@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Módulo 2.1 · Los frameworks que valen oro | Fábrica de Estrategia de IA</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: {
+      primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' }
+    } } } }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    /* Light mode - base */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    /* Light mode - acento blue (T2) */
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37,99,235,0.12); }
+    html:not(.dark) .bg-blue-500\/10 { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37,99,235,0.25); }
+    html:not(.dark) .hover\:bg-blue-500\/30:hover { background-color: rgba(37,99,235,0.18); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,0.08); }
+    /* Light mode - cores auxiliares */
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5,150,105,0.12); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5,150,105,0.25); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,0.08); }
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,0.08); }
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,0.08); }
+    html:not(.dark) .text-teal-400 { color: #0d9488; }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13,148,136,0.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-500\/20 { background-color: rgba(185,28,28,0.10); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185,28,28,0.25); }
+    /* Light mode - remove gradientes + especiais */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,0.22); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+    /* Dark - bordas suaves */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+  </style>
+<link href="https://inematds.github.io/aiestrategia/curso/trilha2/modulo-2-1.html" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/aiestrategia/en/curso/trilha2/modulo-2-1.html" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/aiestrategia/es/curso/trilha2/modulo-2-1.html" hreflang="es" rel="alternate"/></head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="../../../curso/trilha2/modulo-2-1.html" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">PT</a><a href="../../../en/curso/trilha2/modulo-2-1.html" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">EN</a><a href="modulo-2-1.html" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">ES</a></div>
+<!-- NAV -->
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4">
+<a class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300" href="../../index.html">
+<span class="text-2xl">🏭</span>
+<span class="font-bold text-lg hidden sm:inline">Fábrica de Estrategia de IA</span>
+</a>
+<span class="text-neutral-600">|</span>
+<a class="text-sky-400 hover:text-sky-300 text-sm font-medium" href="https://inema.club" target="_blank">INEMA.CLUB</a>
+</div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors" href="../trilha1/index.html"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentos</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10" href="index.html"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Síntesis</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors" href="../trilha3/index.html"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Skills y agentes</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors" href="../trilha4/index.html"><span class="sm:hidden">T4</span><span class="hidden sm:inline">La Fábrica</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors" href="../trilha5/index.html"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Consultor</span></a>
+<button class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2" id="theme-toggle">
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-dark-icon" viewbox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-light-icon" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- BREADCRUMB -->
+<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+<div class="flex items-center space-x-2 text-sm text-neutral-400">
+<a class="hover:text-blue-400" href="../../index.html">Inicio</a><span>/</span>
+<a class="hover:text-blue-400" href="index.html">Ruta 2</a><span>/</span>
+<span class="text-blue-400">Módulo 2.1</span>
+</div>
+</nav>
+<!-- HEADER -->
+<header class="bg-gradient-to-br from-blue-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-4">MÓDULO 2.1</span>
+<h1 class="text-3xl sm:text-4xl font-bold mb-4">📊 Los frameworks que valen oro</h1>
+<p class="text-lg text-neutral-400 max-w-3xl">La IA no inventa el valor: los frameworks lo aportan. Conoce los seis que la Fábrica usa internamente: madurez, quick wins, build vs buy, ROI, roadmap y gobernanza. Son los que hacen que el resultado parezca un trabajo de élite.</p>
+<div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">6</div><div class="text-xs text-neutral-400">Temas</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">~40</div><div class="text-xs text-neutral-400">Minutos</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Interm.</div><div class="text-xs text-neutral-400">Nivel</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Framework</div><div class="text-xs text-neutral-400">Tipo</div></div>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<!-- SECAO 1 -->
+<section class="mb-16" id="topico-1">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span>
+<h2 class="text-2xl font-bold">📈 AI Maturity Assessment (escala 1-5)</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Todo diagnóstico comienza con una pregunta: <strong class="text-blue-400">¿dónde está la empresa hoy?</strong> La Fábrica responde con la curva de madurez de BCG —cinco etapas— y una puntuación del 1 al 5 en siete dimensiones. Sin este retrato, el roadmap y el ROI quedan en el aire.</p>
+<div class="rounded-2xl border border-blue-500/30 bg-dark-900/40 p-3 sm:p-4 mb-6 overflow-hidden">
+<svg aria-label="Curva de madurez de IA de BCG con cinco etapas en una escalera ascendente: Pasivo, Consciente, Activo, Operativo y Transformacional" class="w-full h-auto" role="img" viewbox="0 0 1000 240">
+<defs>
+<lineargradient id="m21-grad" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#60a5fa"></stop><stop offset="1" stop-color="#3b82f6"></stop></lineargradient>
+<filter height="180%" id="m21-glow" width="180%" x="-40%" y="-40%"><fegaussianblur result="b" stddeviation="1.8"></fegaussianblur><femerge><femergenode in="b"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter>
+<pattern height="32" id="m21-grid" patternunits="userSpaceOnUse" width="32"><circle cx="1.3" cy="1.3" fill="#3b82f6" opacity="0.12" r="1.3"></circle></pattern>
+</defs>
+<rect fill="url(#m21-grid)" height="240" width="1000" x="0" y="0"></rect>
+<path d="M90,200 L280,168 L470,134 L660,100 L880,66" fill="none" opacity="0.5" stroke="#60a5fa" stroke-dasharray="9 9" stroke-width="2"></path>
+<g font-family="Inter,sans-serif" font-size="13" font-weight="600">
+<g><rect fill="#0e1622" height="40" rx="11" stroke="#38bdf8" stroke-width="2" width="150" x="44" y="172"></rect><text fill="#bfdbfe" text-anchor="middle" x="119" y="190">1 · Pasivo</text><text fill="#7dd3fc" font-size="10" font-weight="400" text-anchor="middle" x="119" y="205">sin IA</text></g>
+<g><rect fill="#0e1622" height="40" rx="11" stroke="#38bdf8" stroke-width="2" width="150" x="234" y="138"></rect><text fill="#bfdbfe" text-anchor="middle" x="309" y="156">2 · Consciente</text><text fill="#7dd3fc" font-size="10" font-weight="400" text-anchor="middle" x="309" y="171">pilotos</text></g>
+<g><rect fill="#0e1622" height="40" rx="11" stroke="#38bdf8" stroke-width="2" width="150" x="424" y="104"></rect><text fill="#bfdbfe" text-anchor="middle" x="499" y="122">3 · Activo</text><text fill="#7dd3fc" font-size="10" font-weight="400" text-anchor="middle" x="499" y="137">producción</text></g>
+<g><rect fill="#0e1622" height="40" rx="11" stroke="#38bdf8" stroke-width="2" width="150" x="614" y="70"></rect><text fill="#bfdbfe" text-anchor="middle" x="689" y="88">4 · Operativo</text><text fill="#7dd3fc" font-size="10" font-weight="400" text-anchor="middle" x="689" y="103">en el core</text></g>
+<g filter="url(#m21-glow)"><rect fill="#0e1622" height="44" rx="11" stroke="url(#m21-grad)" stroke-width="2.5" width="160" x="804" y="36"></rect><text fill="#93c5fd" text-anchor="middle" x="884" y="56">5 · Transform.</text><text fill="#7dd3fc" font-size="10" font-weight="400" text-anchor="middle" x="884" y="71">Nativa de IA</text></g>
+</g>
+</svg>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Las 7 dimensiones evaluadas</h3>
+<p class="text-neutral-300 text-sm">Estrategia y visión · Datos e infraestructura · Tecnología y herramientas · Talento y habilidades · Gobernanza y ética · Cultura y cambio · Casos de uso y valor. Cada una recibe una calificación de 1-5 con <strong>evidencia de la investigación</strong> — es lo que hace que el diagnóstico sea defendible, no una conjetura.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">BCG curve</div><p class="text-xs text-neutral-400">5 etapas</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">7 dimensiones</div><p class="text-xs text-neutral-400">nota del 1 al 5</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Radar</div><p class="text-xs text-neutral-400">preparación</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Evidencia</div><p class="text-xs text-neutral-400">de la investigación</p></div>
+</div>
+</section>
+<!-- SECAO 2 -->
+<section class="mb-16" id="topico-2">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span>
+<h2 class="text-2xl font-bold">⚡ Quick Wins (esfuerzo × impacto)</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">El diagnóstico por sí solo no vende. Lo que desbloquea el presupuesto es la <strong class="text-blue-400">prueba rápida de valor</strong>: iniciativas de IA que funcionan en menos de 60 días, cuestan poco y muestran el ROI. La matriz esfuerzo × impacto prioriza qué abordar primero.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ Es un Quick Win cuando</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Implementa en &lt; 60 días</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Inversión &lt; US$50K (o recursos internos)</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Riesgo bajo y requisitos mínimos</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>ROI demostrable y medible</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ NO es un Quick Win cuando</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Depende de una migración de datos larga</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Necesita un modelo personalizado entrenado</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Exige reorganizar el equipo</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>El valor es difuso y no tiene un KPI claro</span></li>
+</ul>
+</div>
+</div>
+<div class="rounded-2xl border border-blue-500/30 bg-dark-900/40 p-3 sm:p-4 mb-6 overflow-hidden">
+<svg aria-label="Matriz de esfuerzo e impacto con cuatro cuadrantes; el cuadrante de bajo esfuerzo y alto impacto es el de los quick wins" class="w-full h-auto" role="img" viewbox="0 0 1000 360">
+<defs>
+<pattern height="32" id="m21b-grid" patternunits="userSpaceOnUse" width="32"><circle cx="1.3" cy="1.3" fill="#3b82f6" opacity="0.12" r="1.3"></circle></pattern>
+<filter height="180%" id="m21b-glow" width="180%" x="-40%" y="-40%"><fegaussianblur result="b" stddeviation="1.8"></fegaussianblur><femerge><femergenode in="b"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter>
+</defs>
+<rect fill="url(#m21b-grid)" height="360" width="1000" x="0" y="0"></rect>
+<!-- eixos -->
+<line stroke="#374151" stroke-width="2" x1="120" x2="120" y1="40" y2="320"></line>
+<line stroke="#374151" stroke-width="2" x1="120" x2="900" y1="320" y2="320"></line>
+<line opacity="0.5" stroke="#374151" stroke-dasharray="5 5" stroke-width="1" x1="510" x2="510" y1="40" y2="320"></line>
+<line opacity="0.5" stroke="#374151" stroke-dasharray="5 5" stroke-width="1" x1="120" x2="900" y1="180" y2="180"></line>
+<text fill="#9ca3af" font-family="Inter,sans-serif" font-size="13" text-anchor="middle" transform="rotate(-90 60 185)" x="60" y="185">Impacto →</text>
+<text fill="#9ca3af" font-family="Inter,sans-serif" font-size="13" text-anchor="middle" x="510" y="350">Esfuerzo →</text>
+<!-- quadrante quick wins (baixo esforço, alto impacto) -->
+<g filter="url(#m21b-glow)"><rect fill="#0e1622" height="100" rx="10" stroke="url(#m21-grad)" stroke-width="2.5" width="340" x="140" y="60"></rect></g>
+<text fill="#93c5fd" font-family="Inter,sans-serif" font-size="18" font-weight="700" text-anchor="middle" x="310" y="105">QUICK WINS</text>
+<text fill="#7dd3fc" font-family="Inter,sans-serif" font-size="12" text-anchor="middle" x="310" y="130">hazlo ya · poco esfuerzo, alto impacto</text>
+<!-- grandes projetos -->
+<rect fill="#0e1b26" height="100" rx="10" stroke="#38bdf8" stroke-width="2" width="340" x="540" y="60"></rect>
+<text fill="#bfe6ff" font-family="Inter,sans-serif" font-size="15" font-weight="600" text-anchor="middle" x="710" y="105">Proyectos grandes</text>
+<text fill="#7dd3fc" font-family="Inter,sans-serif" font-size="12" text-anchor="middle" x="710" y="130">planifica · alto esfuerzo</text>
+<!-- preencher horas -->
+<rect fill="#0e1b26" height="100" rx="10" stroke="#475569" stroke-width="2" width="340" x="140" y="200"></rect>
+<text fill="#cbd5e1" font-family="Inter,sans-serif" font-size="15" font-weight="600" text-anchor="middle" x="310" y="245">Tareas más pequeñas</text>
+<text fill="#94a3b8" font-family="Inter,sans-serif" font-size="12" text-anchor="middle" x="310" y="270">si sobra tiempo</text>
+<!-- evitar -->
+<rect fill="#1b1014" height="100" rx="10" stroke="#7f1d1d" stroke-width="2" width="340" x="540" y="200"></rect>
+<text fill="#fca5a5" font-family="Inter,sans-serif" font-size="15" font-weight="600" text-anchor="middle" x="710" y="245">Evitar / postergar</text>
+<text fill="#f87171" font-family="Inter,sans-serif" font-size="12" text-anchor="middle" x="710" y="270">mucho costo, poco retorno</text>
+</svg>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">&lt; 60 días</div><p class="text-xs text-neutral-400">poco tiempo</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">&lt; US$50K</div><p class="text-xs text-neutral-400">bajo costo</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Riesgo bajo</div><p class="text-xs text-neutral-400">poca incertidumbre</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Momentum</div><p class="text-xs text-neutral-400">prueba de valor</p></div>
+</div>
+</section>
+<!-- SECAO 3 -->
+<section class="mb-16" id="topico-3">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span>
+<h2 class="text-2xl font-bold">⚖️ Build vs Buy</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Para cada caso de uso, una pregunta millonaria: <strong class="text-blue-400">¿construir o comprar?</strong> El framework no decide por gusto: pondera factores y asigna una puntuación. La decisión se puede defender ante el consejo.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-6 overflow-x-auto">
+<p class="text-xs text-neutral-500 mb-3 font-mono">// matriz de decisión ponderada (peso × calificación)</p>
+<table class="w-full text-sm text-neutral-300">
+<thead><tr class="border-b border-dark-600 text-blue-400"><th class="text-left py-2 pr-4">Factor</th><th class="text-left py-2 pr-4">Peso</th><th class="text-left py-2 pr-4">Construir</th><th class="text-left py-2">Comprar</th></tr></thead>
+<tbody class="divide-y divide-dark-600">
+<tr><td class="py-2 pr-4">Tiempo hasta obtener valor</td><td class="py-2 pr-4">25%</td><td class="py-2 pr-4">lento</td><td class="py-2">rápido</td></tr>
+<tr><td class="py-2 pr-4">Costo total (3 años)</td><td class="py-2 pr-4">20%</td><td class="py-2 pr-4">variable</td><td class="py-2">predecible</td></tr>
+<tr><td class="py-2 pr-4">Necesidad de personalización</td><td class="py-2 pr-4">15%</td><td class="py-2 pr-4">total</td><td class="py-2">limitada</td></tr>
+<tr><td class="py-2 pr-4">Capacidad interna</td><td class="py-2 pr-4">10%</td><td class="py-2 pr-4">requiere un equipo</td><td class="py-2">tercerizada</td></tr>
+<tr><td class="py-2 pr-4">Riesgo de dependencia</td><td class="py-2 pr-4">5%</td><td class="py-2 pr-4">bajo</td><td class="py-2">alto</td></tr>
+</tbody>
+</table>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ Tiende a COMPRAR cuando</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Necesita valor rápido</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>El caso de uso es común (no diferencia)</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>No tiene un equipo interno de ML</span></li>
+</ul>
+</div>
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6">
+<h4 class="font-bold text-blue-400 mb-4">→ Tiende a CONSTRUIR cuando</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-blue-400">→</span><span>Es una ventaja competitiva estratégica</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">→</span><span>La personalización es alta y los datos son sensibles</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">→</span><span>Quieres evitar el lock-in de proveedor</span></li>
+</ul>
+</div>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Matriz</div><p class="text-xs text-neutral-400">peso × calificación</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">TCO a 3 años</div><p class="text-xs text-neutral-400">costo real</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Por caso</div><p class="text-xs text-neutral-400">no al por mayor</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Lock-in</div><p class="text-xs text-neutral-400">riesgo de salida</p></div>
+</div>
+</section>
+<!-- SECAO 4 -->
+<section class="mb-16" id="topico-4">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span>
+<h2 class="text-2xl font-bold">💵 ROI de IA</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">El entregable que convence al área financiera. Los números pesan más que una diapositiva bonita. El framework parte de <strong class="text-blue-400">cuatro fuentes de valor</strong> y llega a un ROI simple, payback y VPL de 3 años, con las premisas siempre explícitas.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><h4 class="font-semibold text-blue-400 mb-2">⏱️ Ganancias de eficiencia</h4><p class="text-neutral-300 text-sm">Horas y costos ahorrados, menos errores. La ganancia más fácil de medir.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><h4 class="font-semibold text-blue-400 mb-2">📈 Aumento de ingresos</h4><p class="text-neutral-300 text-sm">Conversión, velocidad del negocio, retención de clientes.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><h4 class="font-semibold text-blue-400 mb-2">🛡️ Reducción de riesgos</h4><p class="text-neutral-300 text-sm">Costos evitados de cumplimiento normativo, seguridad y operación.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><h4 class="font-semibold text-blue-400 mb-2">🚀 Valor estratégico</h4><p class="text-neutral-300 text-sm">Ventaja competitiva y capacidad de innovar.</p></div>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-6">
+<p class="text-xs text-neutral-500 mb-2 font-mono">// las tres cuentas que todo cliente quiere ver</p>
+<pre class="font-mono text-sm text-neutral-300 whitespace-pre-wrap leading-relaxed">ROI simples  = (Benefícios − Investimento) / Investimento × 100
+Payback      = Investimento total / Benefício mensal   → em meses
+VPL (3 anos) = Σ fluxo / (1 + 0,10)^ano  (taxa de desconto 10%)</pre>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Consejo práctico</h3>
+<p class="text-neutral-300 text-sm">Entrega siempre <strong>tres escenarios</strong>: conservador, base y optimista (análisis de sensibilidad). Muestra que pensaste en el riesgo y te protege ante la pregunta «¿y si no funciona?».</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">4 fuentes</div><p class="text-xs text-neutral-400">de valor</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Payback</div><p class="text-xs text-neutral-400">en meses</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">VPL</div><p class="text-xs text-neutral-400">3 años, 10%</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">3 escenarios</div><p class="text-xs text-neutral-400">sensibilidad</p></div>
+</div>
+</section>
+<!-- SECAO 5 -->
+<section class="mb-16" id="topico-5">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span>
+<h2 class="text-2xl font-bold">🗺️ Roadmap 30/60/90/180/360</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Es lo que convierte "usa IA" en un plan ejecutable. Cinco fases temporales, cada una con un objetivo claro, actividades con responsables e hitos verificables. El cliente lo abre el lunes y sabe exactamente qué hacer.</p>
+<div class="space-y-4 mb-6">
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold text-sm">30</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-1">Fundación</h4><p class="text-neutral-300 text-sm">Comité de IA, auditoría de datos, priorizar quick wins, shortlist de proveedores.</p></div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold text-sm">60</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-1">Quick Wins</h4><p class="text-neutral-300 text-sm">Lanzar 2-3 iniciativas, poner en marcha la primera herramienta y capturar las primeras métricas de ROI.</p></div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold text-sm">90</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-1">Escalar</h4><p class="text-neutral-300 text-sm">Expandir los pilotos que dieron buenos resultados, 3+ iniciativas en producción, Centro de Excelencia en formación.</p></div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold text-sm">180</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-1">Optimizar</h4><p class="text-neutral-300 text-sm">Perfeccionar implementaciones, expandir a nuevos departamentos, dashboard ejecutivo en marcha.</p></div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold text-sm">360</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-1">Transformar</h4><p class="text-neutral-300 text-sm">IA en el núcleo de los procesos, ventaja competitiva medible, capacidad autosostenible.</p></div>
+</div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Indicadores adelantados vs. rezagados</h3>
+<p class="text-neutral-300 text-sm">Sigue ambos: <strong>líderes</strong> (tasa de finalización, adopción, capacitaciones) predicen el futuro; <strong>atrasados</strong> (ROI, aumento de eficiencia, impacto en los ingresos) demuestran el pasado. Solo líderes se convierte en teatro; solo rezagados, en sorpresa.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">5 fases</div><p class="text-xs text-neutral-400">30 → 360 días</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Hitos</div><p class="text-xs text-neutral-400">con checkbox</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Dueño</div><p class="text-xs text-neutral-400">por actividad</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Indicadores</div><p class="text-xs text-neutral-400">líder + atrasado</p></div>
+</div>
+</section>
+<!-- SECAO 6 -->
+<section class="mb-16" id="topico-6">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span>
+<h2 class="text-2xl font-bold">🛡️ Gobernanza de datos y políticas</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Es el entregable que tranquiliza al área legal y al consejo. Sin gobernanza, ningún piloto pasa a producción. Define <strong class="text-blue-400">lo que puede</strong> convertirse en entrenamiento, input y output de IA — y quién responde por eso.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-6 overflow-x-auto">
+<p class="text-xs text-neutral-500 mb-3 font-mono">// clasificación de datos y uso en IA</p>
+<table class="w-full text-sm text-neutral-300">
+<thead><tr class="border-b border-dark-600 text-blue-400"><th class="text-left py-2 pr-4">Nivel</th><th class="text-left py-2 pr-4">Entrenamiento en IA</th><th class="text-left py-2 pr-4">Entrada de IA</th><th class="text-left py-2">Output de IA</th></tr></thead>
+<tbody class="divide-y divide-dark-600">
+<tr><td class="py-2 pr-4">Público</td><td class="py-2 pr-4">permitido</td><td class="py-2 pr-4">permitido</td><td class="py-2">permitido</td></tr>
+<tr><td class="py-2 pr-4">Operativo</td><td class="py-2 pr-4">permitido</td><td class="py-2 pr-4">permitido</td><td class="py-2">permitido</td></tr>
+<tr><td class="py-2 pr-4">Cliente / PII</td><td class="py-2 pr-4 text-red-400">prohibido</td><td class="py-2 pr-4">restringido</td><td class="py-2">revisar</td></tr>
+<tr><td class="py-2 pr-4">Transacción</td><td class="py-2 pr-4">con consentimiento</td><td class="py-2 pr-4">anonimizado</td><td class="py-2">permitido</td></tr>
+</tbody>
+</table>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ Una buena política tiene</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Clasificación clara (Público → Restringido)</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Roles definidos (CDO, data stewards)</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Cumplimiento mapeado (LGPD, GDPR, CCPA)</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Reglas de uso aceptable de las herramientas</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Señales de gobernanza débil</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>PII compartida en una herramienta pública de IA</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Nadie es dueño del dato</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Sin una pista de auditoría de las decisiones</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Lo resolvemos después" — y nunca lo resuelven</span></li>
+</ul>
+</div>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Clasificación</div><p class="text-xs text-neutral-400">4 niveles</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Uso aceptable</div><p class="text-xs text-neutral-400">reglas claras</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Stewards</div><p class="text-xs text-neutral-400">responsable del dato</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">LGPD/GDPR</div><p class="text-xs text-neutral-400">cumplimiento</p></div>
+</div>
+</section>
+<!-- RESUMO + MISSAO -->
+<section class="mb-12">
+<div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-xl border border-blue-500/30 p-8">
+<h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">✅</span> Resumen del módulo</h2>
+<div class="space-y-4 mb-8">
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">La madurez indica dónde está la empresa</strong><span class="text-neutral-400"> — curva BCG, 5 etapas, 7 dimensiones de 1-5.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Quick Wins desbloquean presupuesto</strong><span class="text-neutral-400"> — poco esfuerzo, alto impacto, &lt;60 días.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Build vs Buy, ROI y Roadmap dan el plan</strong><span class="text-neutral-400"> — decisión, cifra y secuencia ejecutable.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">La gobernanza elimina el miedo</strong><span class="text-neutral-400"> — sin ella, el piloto no se convierte en producción.</span></div></div>
+</div>
+<div class="bg-dark-900/50 rounded-lg p-6 border border-primary/30 mb-8">
+<h3 class="font-bold text-primary mb-2 flex items-center"><span class="mr-2">🎯</span> Misión 2.1 — Quick Wins de un sector</h3>
+<p class="text-neutral-300 text-sm mb-3">Elige un sector que conozcas (comercio minorista, clínica, bufete de abogados…) y aplica el framework:</p>
+<ol class="space-y-2 text-neutral-300 text-sm list-decimal list-inside">
+<li>Enumera <strong>3 victorias rápidas</strong> de IA para él (&lt;60 días, bajo costo).</li>
+<li>Para cada uno: departamento, esfuerzo (bajo/medio), impacto y un KPI.</li>
+<li>Ordena las tres en una matriz pequeña de esfuerzo × impacto.</li>
+</ol>
+<p class="text-neutral-400 text-xs mt-3"><strong>Éxito:</strong> 3 quick wins priorizados. <strong>Lo que obtuviste:</strong> el esqueleto del entregable de quick wins, listo para pegar en un diagnóstico real.</p>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+<h3 class="font-semibold text-blue-400 mb-2">Siguiente módulo:</h3>
+<p class="text-neutral-300">2.2 — RAG perezoso: PDF gigante → cheat sheet (cómo destilar los playbooks que alimentan estos frameworks)</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors" href="index.html">← Volver a la ruta</a>
+<a class="flex-1 text-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition-colors" href="modulo-2-2.html">Siguiente módulo →</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="border-t border-dark-600 py-8 mt-8">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+<p>Fábrica de Estrategia de IA · Módulo 2.1 · <a class="text-sky-400 hover:text-sky-300" href="https://inema.club" target="_blank">INEMA.CLUB</a></p>
+</div>
+</footer>
+<script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const darkIcon = document.getElementById('theme-toggle-dark-icon');
+    const lightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light') { html.classList.remove('dark'); darkIcon.classList.remove('hidden'); }
+    else { lightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      darkIcon.classList.toggle('hidden'); lightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

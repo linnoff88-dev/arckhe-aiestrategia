@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Trilha 4 · A Fábrica | Fábrica de Estratégia de IA</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: {
+      primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' }
+    } } } }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    .topic-explanation { display: none; }
+    .topic-explanation.active { display: block; }
+
+    /* Light mode - base */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    /* Light mode - acento amber (T4) */
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .bg-amber-500\/20 { background-color: rgba(217,119,6,0.12); }
+    html:not(.dark) .bg-amber-500\/10 { background-color: rgba(217,119,6,0.08); }
+    html:not(.dark) .border-amber-500\/30 { border-color: rgba(217,119,6,0.25); }
+    html:not(.dark) .hover\:bg-amber-500\/30:hover { background-color: rgba(217,119,6,0.18); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,0.08); }
+    html:not(.dark) .group:hover .group-hover\:text-amber-400 { color: #92400e; }
+    /* Light mode - blue (box de dados) */
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37,99,235,0.12); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37,99,235,0.25); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,0.08); }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,0.08); }
+    html:not(.dark) .text-teal-400 { color: #0d9488; }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13,148,136,0.08); }
+    /* Light mode - remove gradientes + especiais */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,0.22); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+    /* Dark - bordas suaves */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+    @keyframes wf-pulse { 0%,100% { opacity:.5 } 50% { opacity:1 } }
+    @media (prefers-reduced-motion: no-preference) {
+      .wf-a { animation: wf-pulse 2.6s ease-in-out infinite; }
+      .wf-a:nth-child(2){animation-delay:.3s} .wf-a:nth-child(3){animation-delay:.6s}
+      .wf-a:nth-child(4){animation-delay:.9s} .wf-a:nth-child(5){animation-delay:1.2s}
+    }
+    .modal.hidden { display: none; }
+  </style>
+<link href="https://inematds.github.io/aiestrategia/curso/trilha4/" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/aiestrategia/en/curso/trilha4/" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/aiestrategia/es/curso/trilha4/" hreflang="es" rel="alternate"/></head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="./" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">PT</a><a href="../../en/curso/trilha4/" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">EN</a><a href="../../es/curso/trilha4/" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">ES</a></div>
+<!-- NAV -->
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4">
+<a class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300" href="../../index.html">
+<span class="text-2xl">🏭</span>
+<span class="font-bold text-lg hidden sm:inline">Fábrica de Estratégia de IA</span>
+</a>
+<span class="text-neutral-600">|</span>
+<a class="text-sky-400 hover:text-sky-300 text-sm font-medium" href="https://inema.club" target="_blank">INEMA.CLUB</a>
+</div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors" href="../trilha1/index.html"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentos</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors" href="../trilha2/index.html"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Síntese</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors" href="../trilha3/index.html"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Skills &amp; Agentes</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-amber-400 bg-amber-500/10" href="index.html"><span class="sm:hidden">T4</span><span class="hidden sm:inline">A Fábrica</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors" href="../trilha5/index.html"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Consultor</span></a>
+<button class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2" id="theme-toggle">
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-dark-icon" viewbox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-light-icon" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- HEADER -->
+<header class="bg-gradient-to-br from-amber-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full mb-4">TRILHA 4 · 💎 NÍVEL ENGENHEIRO</span>
+<h1 class="text-3xl sm:text-4xl font-bold mb-4">🏭 A Fábrica</h1>
+<p class="text-lg text-neutral-400 max-w-3xl">Conecte as três fases num pipeline só. Pesquisa ao vivo na Perplexity, os 15 prompts de entregáveis no Gemini e a orquestração que retoma sozinha quando o contexto enche. No fim, a sua Fábrica roda ponta a ponta — duas caixas de texto entram, o pacote sai.</p>
+<div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">3</div><div class="text-xs text-neutral-400">Módulos</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">18</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">~3h</div><div class="text-xs text-neutral-400">Duração</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">Avançado</div><div class="text-xs text-neutral-400">Nível</div></div>
+</div>
+</div>
+</header>
+<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<!-- HERO SVG -->
+<div class="rounded-2xl border border-amber-500/30 bg-dark-900/40 p-3 sm:p-4 mb-12 overflow-hidden">
+<svg aria-label="Pipeline da Fábrica: entrada de duas caixas de texto, orquestrador que dispara as três fases Pesquisa, Síntese e Geração, e o pacote final empacotado para download" class="w-full h-auto" role="img" viewbox="0 0 1000 240">
+<defs>
+<lineargradient id="t4-grad" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#fbbf24"></stop><stop offset="1" stop-color="#f59e0b"></stop></lineargradient>
+<filter height="180%" id="t4-glow" width="180%" x="-40%" y="-40%"><fegaussianblur result="b" stddeviation="1.8"></fegaussianblur><femerge><femergenode in="b"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter>
+<pattern height="32" id="t4-grid" patternunits="userSpaceOnUse" width="32"><circle cx="1.3" cy="1.3" fill="#f59e0b" opacity="0.12" r="1.3"></circle></pattern>
+</defs>
+<rect fill="url(#t4-grid)" height="240" width="1000" x="0" y="0"></rect>
+<!-- entrada -->
+<g font-family="Inter,sans-serif"><rect fill="#1f1604" height="56" rx="11" stroke="#fbbf24" stroke-width="2" width="120" x="34" y="92"></rect><text fill="#fbbf24" font-size="13" font-weight="600" text-anchor="middle" x="94" y="116">nome +</text><text fill="#fcd9a0" font-size="12" text-anchor="middle" x="94" y="134">descrição</text></g>
+<!-- orquestrador -->
+<g filter="url(#t4-glow)"><rect fill="#1f1604" height="68" rx="12" stroke="url(#t4-grad)" stroke-width="2.5" width="150" x="214" y="86"></rect><text fill="#fbbf24" font-family="Inter,sans-serif" font-size="14" font-weight="700" text-anchor="middle" x="289" y="116">Orquestrador</text><text fill="#fcd9a0" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="289" y="136">state.json</text></g>
+<path d="M154,120 H214" fill="none" stroke="#f59e0b" stroke-width="2.5"></path>
+<!-- fan-out 3 fases -->
+<path class="wf-a" d="M364,108 C430,76 470,60 540,58" fill="none" stroke="#fbbf24" stroke-width="2"></path>
+<path class="wf-a" d="M364,120 H540" fill="none" stroke="#fbbf24" stroke-width="2"></path>
+<path class="wf-a" d="M364,132 C430,164 470,182 540,184" fill="none" stroke="#fbbf24" stroke-width="2"></path>
+<g font-family="Inter,sans-serif" font-size="13" font-weight="600">
+<g><rect fill="#0e1b26" height="44" rx="11" stroke="#38bdf8" stroke-width="2" width="190" x="540" y="36"></rect><text fill="#bfe6ff" text-anchor="middle" x="635" y="63">1 · Pesquisa (Perplexity)</text></g>
+<g><rect fill="#1f1604" height="44" rx="11" stroke="#fbbf24" stroke-width="2" width="190" x="540" y="98"></rect><text fill="#fbbf24" text-anchor="middle" x="635" y="125">2 · Síntese (Gemini)</text></g>
+<g><rect fill="#0e1b26" height="44" rx="11" stroke="#38bdf8" stroke-width="2" width="190" x="540" y="160"></rect><text fill="#bfe6ff" text-anchor="middle" x="635" y="187">3 · Geração (PPTX/DOCX)</text></g>
+</g>
+<!-- convergência -->
+<path d="M730,58 C800,72 820,104 850,118" fill="none" stroke="#f59e0b" stroke-width="2"></path>
+<path d="M730,120 H850" fill="none" stroke="#f59e0b" stroke-width="2"></path>
+<path d="M730,182 C800,168 820,136 850,122" fill="none" stroke="#f59e0b" stroke-width="2"></path>
+<g filter="url(#t4-glow)"><rect fill="#1f1604" height="56" rx="11" stroke="url(#t4-grad)" stroke-width="2.5" width="118" x="850" y="92"></rect><text fill="#fbbf24" font-family="Inter,sans-serif" font-size="13" font-weight="700" text-anchor="middle" x="909" y="116">📦 pacote</text><text fill="#fcd9a0" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="909" y="134">.zip</text></g>
+</svg>
+</div>
+<!-- MAPA DA TRILHA -->
+<section class="mb-12">
+<h2 class="text-2xl font-bold mb-6">Mapa da trilha</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+<a class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-amber-500/30 p-5 transition-all" href="#modulo-4-1">
+<div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold text-sm">4.1</span><span class="text-xs text-neutral-500">~60 min</span></div>
+<h3 class="font-semibold mb-1 group-hover:text-amber-400 transition-colors">🔎 Pesquisa ao vivo</h3>
+<p class="text-xs text-neutral-400">Perplexity, 9 categorias, custo</p>
+</a>
+<a class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-amber-500/30 p-5 transition-all" href="#modulo-4-2">
+<div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold text-sm">4.2</span><span class="text-xs text-neutral-500">~60 min</span></div>
+<h3 class="font-semibold mb-1 group-hover:text-amber-400 transition-colors">📝 Os 15 prompts</h3>
+<p class="text-xs text-neutral-400">Entregáveis em 5 grupos</p>
+</a>
+<a class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-amber-500/30 p-5 transition-all" href="#modulo-4-3">
+<div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold text-sm">4.3</span><span class="text-xs text-neutral-500">~60 min</span></div>
+<h3 class="font-semibold mb-1 group-hover:text-amber-400 transition-colors">⚙️ Orquestração</h3>
+<p class="text-xs text-neutral-400">Retomada + diagramas que vendem</p>
+</a>
+</div>
+</section>
+<h2 class="text-2xl font-bold mb-6">Conteúdo detalhado</h2>
+<!-- MODULO 4.1 -->
+<div class="bg-dark-800 rounded-xl border border-dark-600 mb-6" id="modulo-4-1">
+<div class="p-6 border-b border-dark-600">
+<div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold">4.1</span><span class="text-xs text-neutral-500">~60 min</span></div>
+<h3 class="text-2xl font-bold mb-2">🔎 Pesquisa ao vivo com Perplexity</h3>
+<p class="text-neutral-400 text-sm">A Fase 1 da Fábrica. Por que pesquisa ao vivo bate conhecimento estático, como escolher entre quick e deep, e como montar as 9 categorias de query num <code class="text-amber-400">ResearchOutput</code> sólido — mesmo quando uma busca falha.</p>
+</div>
+<div class="divide-y divide-dark-600">
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+<span class="text-lg">📡</span>
+<div><span class="font-medium">Por que pesquisa ao vivo</span><span class="text-neutral-500 text-sm ml-2">- não ficar estático</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">A Perplexity busca fatos da empresa na hora. Rodou em junho de 2026, ele puxa até junho de 2026 — se um modelo melhor surgir, a recomendação muda sozinha.</p></div>
+<div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">É o que faz o pacote parecer vivo e não um template de prateleira. Um LLM sozinho inventa; com pesquisa, ele cita o presente.</p></div>
+<div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Pesquisa ao vivo · fatos vs alucinação · frescor da informação.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+<span class="text-lg">⚖️</span>
+<div><span class="font-medium">Quick vs Deep e custo</span><span class="text-neutral-500 text-sm ml-2">- sonar / sonar-pro / deep-research</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Quick (~9 queries, modelo sonar, ~US$0,05) para avaliação rápida; Comprehensive (~18 queries, sonar-pro e deep-research, ~US$0,50) para estratégia completa.</p></div>
+<div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">É a alavanca de custo da Fábrica. Você escolhe a profundidade conforme o orçamento e o valor do cliente.</p></div>
+<div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Modo quick · modo comprehensive · trade-off custo × profundidade.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+<span class="text-lg">🗓️</span>
+<div><span class="font-medium">Contexto temporal</span><span class="text-neutral-500 text-sm ml-2">- injetar a data nas queries</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">O <code class="text-amber-400">TemporalContext</code> injeta o ano e o mês atuais nos templates (<code class="text-amber-400">{current_year}</code>, <code class="text-amber-400">{current_month_year}</code>) e define o filtro de recência (day/week/month/year).</p></div>
+<div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Sem data na query, o buscador devolve coisa velha. O contexto temporal é o que garante "notícias deste mês", não de 2023.</p></div>
+<div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Placeholders temporais · recency filter · query datada.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+<span class="text-lg">🗂️</span>
+<div><span class="font-medium">As 9 categorias de query</span><span class="text-neutral-500 text-sm ml-2">- o leque completo</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Perfil da empresa, setor, concorrência, tecnologia, iniciativas de IA, regulatório, notícias, liderança e investimento — cada categoria com prioridade e flag de quick mode.</p></div>
+<div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">São as nove lentes que cobrem a empresa por inteiro. Sem elas, o diagnóstico fica torto e incompleto.</p></div>
+<div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm"><code class="text-amber-400">QueryCategory</code> · priority · required_for_quick_mode.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+<span class="text-lg">🛟</span>
+<div><span class="font-medium">Agregar e tratar resultados</span><span class="text-neutral-500 text-sm ml-2">- degradação graciosa</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Se uma query falha, o pipeline segue com os dados parciais. Retry com backoff exponencial e 2s de pausa entre chamadas evitam o rate limit.</p></div>
+<div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Uma busca que cai não pode derrubar o pacote inteiro. Degradação graciosa é o que mantém a Fábrica de pé.</p></div>
+<div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Degradação graciosa · retry/backoff · rate limit.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+<span class="text-lg">📥</span>
+<div><span class="font-medium">Montar o ResearchOutput</span><span class="text-neutral-500 text-sm ml-2">- a entrega da Fase 1</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Um objeto com <code class="text-amber-400">company_name</code>, <code class="text-amber-400">raw_research</code>, <code class="text-amber-400">sources</code> e <code class="text-amber-400">cost</code>. É o que a Síntese consome e o que vira <code class="text-amber-400">research_cache.json</code>.</p></div>
+<div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">É o contrato entre Fase 1 e Fase 2. Saída estruturada deixa a próxima etapa confiável e cacheável.</p></div>
+<div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm"><code class="text-amber-400">ResearchOutput</code> · sources · research_cache.json.</p></div>
+</div></div>
+</div>
+</div>
+<div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+<button class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors" onclick="openModal('modal-4-1')">Ver em Modal</button>
+<a class="px-4 py-2 text-sm bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors" href="modulo-4-1.html">Ver Completo</a>
+</div>
+</div>
+<!-- MODULO 4.2 -->
+<div class="bg-dark-800 rounded-xl border border-dark-600 mb-6" id="modulo-4-2">
+<div class="p-6 border-b border-dark-600">
+<div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold">4.2</span><span class="text-xs text-neutral-500">~60 min</span></div>
+<h3 class="text-2xl font-bold mb-2">📝 Os 15 prompts de entregáveis</h3>
+<p class="text-neutral-400 text-sm">A Fase 2 da Fábrica. A anatomia de um prompt que gera documento de consultoria e os 15 prompts organizados em cinco grupos — Avaliação, Planejamento, Implementação, Governança e Recursos. E como adaptar cada um ao PT-BR.</p>
+</div>
+<div class="divide-y divide-dark-600">
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+<span class="text-lg">🧬</span>
+<div><span class="font-medium">Anatomia de um prompt de entregável</span><span class="text-neutral-500 text-sm ml-2">- a receita por trás</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Todo prompt segue o mesmo molde: Task → Required Sections (com tabelas em Markdown) → Output Format. O contexto (pesquisa + cheat sheets) entra antes.</p></div>
+<div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Entender o molde te deixa editar qualquer prompt e criar novos sem quebrar o pipeline.</p></div>
+<div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Task/Sections/Format · tabelas Markdown · contexto injetado.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+<span class="text-lg">🔬</span>
+<div><span class="font-medium">Grupo Avaliação</span><span class="text-neutral-500 text-sm ml-2">- inventário, dores, maturidade</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Três prompts que diagnosticam onde a empresa está: <code class="text-amber-400">tech_inventory</code>, <code class="text-amber-400">pain_points</code> e <code class="text-amber-400">maturity_assessment</code> (escala 1-5).</p></div>
+<div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">É a base factual do pacote. Sem avaliação honesta, o roadmap vira chute.</p></div>
+<div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Inventário técnico · matriz de dores · prontidão de IA.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+<span class="text-lg">🧭</span>
+<div><span class="font-medium">Grupo Planejamento</span><span class="text-neutral-500 text-sm ml-2">- roadmap, quick wins, ROI</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm"><code class="text-amber-400">roadmap</code> (30/60/90/180/360), <code class="text-amber-400">quick_wins</code> (esforço × impacto, &lt;60 dias) e <code class="text-amber-400">roi_calculator</code> (ROI, payback, NPV 3 anos).</p></div>
+<div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">É a parte que o cliente abre na segunda e executa. Plano com número é o que fecha contrato.</p></div>
+<div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Roadmap faseado · vitórias rápidas · ROI/NPV.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+<span class="text-lg">🔩</span>
+<div><span class="font-medium">Grupo Implementação</span><span class="text-neutral-500 text-sm ml-2">- build vs buy, licenças, casos</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm"><code class="text-amber-400">vendor_comparison</code> (construir vs comprar), <code class="text-amber-400">license_consolidation</code> (cortar custo) e <code class="text-amber-400">use_case_library</code> (casos por departamento).</p></div>
+<div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Traduz estratégia em decisões concretas de compra e uso. É onde o plano encosta na realidade operacional.</p></div>
+<div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Build vs buy · consolidação de licenças · casos de uso.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+<span class="text-lg">🛡️</span>
+<div><span class="font-medium">Grupo Governança</span><span class="text-neutral-500 text-sm ml-2">- política, dados, mudança</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm"><code class="text-amber-400">ai_policy</code> (uso aceitável), <code class="text-amber-400">data_governance</code> (dados e privacidade) e <code class="text-amber-400">change_management</code> (treinamento e adoção).</p></div>
+<div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">É o que separa um piloto de um programa sério. Governança é a parte que o jurídico e o RH cobram.</p></div>
+<div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Política de IA · governança de dados · gestão de mudança.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+<span class="text-lg">🇧🇷</span>
+<div><span class="font-medium">Grupo Recursos + adaptar ao PT-BR</span><span class="text-neutral-500 text-sm ml-2">- prompts, glossário, idioma</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm"><code class="text-amber-400">prompt_library</code> (kit inicial de prompts) e <code class="text-amber-400">glossary</code> (termos de IA). E uma instrução de idioma para o output sair em português.</p></div>
+<div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Recursos deixam o cliente autônomo depois da entrega. Adaptar o idioma é o detalhe que vende no Brasil.</p></div>
+<div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Biblioteca de prompts · glossário · instrução de idioma.</p></div>
+</div></div>
+</div>
+</div>
+<div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+<button class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors" onclick="openModal('modal-4-2')">Ver em Modal</button>
+<a class="px-4 py-2 text-sm bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors" href="modulo-4-2.html">Ver Completo</a>
+</div>
+</div>
+<!-- MODULO 4.3 -->
+<div class="bg-dark-800 rounded-xl border border-dark-600 mb-6" id="modulo-4-3">
+<div class="p-6 border-b border-dark-600">
+<div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold">4.3</span><span class="text-xs text-neutral-500">~60 min</span></div>
+<h3 class="text-2xl font-bold mb-2">⚙️ Orquestração, retomada e diagramas que vendem</h3>
+<p class="text-neutral-400 text-sm">A cola que une tudo. O orquestrador que confirma cada etapa, o <code class="text-amber-400">state.json</code> que permite retomar quando o contexto enche, os diagramas Mermaid (estado atual vs futuro) renderizados em PNG e o empacotamento final para download.</p>
+</div>
+<div class="divide-y divide-dark-600">
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+<span class="text-lg">🎛️</span>
+<div><span class="font-medium">O orquestrador de pipeline</span><span class="text-neutral-500 text-sm ml-2">- cada etapa confirma</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Pesquisa → Síntese → Geração, em sequência. Cada fase confirma a conclusão antes da próxima começar — nada avança no escuro.</p></div>
+<div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">É a espinha da Fábrica. Confirmação por etapa é o que torna o pipeline auditável e retomável.</p></div>
+<div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Pipeline orchestrator · confirmação por fase · ordem encadeada.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+<span class="text-lg">💾</span>
+<div><span class="font-medium">Checkpoints e state.json</span><span class="text-neutral-500 text-sm ml-2">- progresso rastreado</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">O <code class="text-amber-400">state.json</code> guarda a fase atual, o status de cada entregável e o custo total acumulado da sessão.</p></div>
+<div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">É a memória da Fábrica. Sem checkpoint, qualquer queda obriga a refazer tudo — e a pagar de novo.</p></div>
+<div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Checkpoint · state.json · total_cost.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+<span class="text-lg">🔁</span>
+<div><span class="font-medium">Retomar quando o contexto enche</span><span class="text-neutral-500 text-sm ml-2">- nova sessão, mesma tarefa</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">O contexto do Claude Code pode encher (aconteceu duas vezes na construção). Você abre nova sessão e roda <code class="text-amber-400">resume "Empresa"</code> — ele continua de onde parou.</p></div>
+<div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">É o que faz a Fábrica sobreviver a sessões longas. Retomar pela lista de tarefas é a habilidade que separa quem termina de quem trava.</p></div>
+<div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Limite de contexto · resume · lista de tarefas persistida.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+<span class="text-lg">🪢</span>
+<div><span class="font-medium">Mermaid: estado atual vs futuro</span><span class="text-neutral-500 text-sm ml-2">- o "antes e depois" visual</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">Dois flowcharts: o stack de hoje (com gargalos marcados) e a arquitetura habilitada por IA (camada de dados unificada, serviços de IA, automações).</p></div>
+<div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">O "antes e depois" é o slide que vende. Ver o salto desenhado convence mais do que três páginas de texto.</p></div>
+<div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Current state · future state · gargalos marcados.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+<span class="text-lg">🖼️</span>
+<div><span class="font-medium">Renderizar Mermaid → PNG</span><span class="text-neutral-500 text-sm ml-2">- eraser.io e beautiful-mermaid</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">O <code class="text-amber-400">mermaid_renderer</code> transforma o código em PNG para entrar no PPTX. Alternativas: a skill <code class="text-amber-400">beautiful-mermaid</code> e o eraser.io.</p></div>
+<div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Cliente não abre arquivo <code class="text-amber-400">.mmd</code>; ele abre uma imagem no slide. Renderizar é o que torna o diagrama apresentável.</p></div>
+<div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Mermaid → PNG · beautiful-mermaid · eraser.io.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+<span class="text-lg">📦</span>
+<div><span class="font-medium">Empacotar para download</span><span class="text-neutral-500 text-sm ml-2">- o pacote completo</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-amber-400 font-semibold">O que é:</span><p class="text-neutral-300 text-sm">A Fase 3 organiza tudo em pastas (<code class="text-amber-400">markdown/</code>, <code class="text-amber-400">presentations/</code>, <code class="text-amber-400">documents/</code>, <code class="text-amber-400">mermaid_images/</code>) e fecha o pacote para download.</p></div>
+<div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Entregar é metade do trabalho. Um pacote bem organizado é o que faz o cliente sentir que pagou por algo sério.</p></div>
+<div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Estrutura de pastas · pacote final · download.</p></div>
+</div></div>
+</div>
+</div>
+<div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+<button class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors" onclick="openModal('modal-4-3')">Ver em Modal</button>
+<a class="px-4 py-2 text-sm bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors" href="modulo-4-3.html">Ver Completo</a>
+</div>
+</div>
+<!-- NAV INFERIOR -->
+<div class="flex flex-col sm:flex-row gap-4 mt-10">
+<a class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors" href="../trilha3/index.html">← Trilha 3</a>
+<a class="flex-1 text-center px-6 py-3 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-500 transition-colors" href="../trilha5/index.html">Próxima trilha: Consultor →</a>
+</div>
+</main>
+<!-- MODAIS -->
+<div class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" id="modal-4-1" onclick="if(event.target === this) closeModal()">
+<div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+<div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+<div class="flex items-center space-x-3"><span class="text-amber-400 font-bold">4.1</span><span class="font-semibold">Pesquisa ao vivo com Perplexity</span></div>
+<button class="text-neutral-400 hover:text-white text-2xl leading-none" onclick="closeModal()">×</button>
+</div>
+<iframe class="flex-1 w-full rounded-b-xl" src="modulo-4-1.html"></iframe>
+</div>
+</div>
+<div class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" id="modal-4-2" onclick="if(event.target === this) closeModal()">
+<div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+<div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+<div class="flex items-center space-x-3"><span class="text-amber-400 font-bold">4.2</span><span class="font-semibold">Os 15 prompts de entregáveis</span></div>
+<button class="text-neutral-400 hover:text-white text-2xl leading-none" onclick="closeModal()">×</button>
+</div>
+<iframe class="flex-1 w-full rounded-b-xl" src="modulo-4-2.html"></iframe>
+</div>
+</div>
+<div class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" id="modal-4-3" onclick="if(event.target === this) closeModal()">
+<div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+<div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+<div class="flex items-center space-x-3"><span class="text-amber-400 font-bold">4.3</span><span class="font-semibold">Orquestração, retomada e diagramas que vendem</span></div>
+<button class="text-neutral-400 hover:text-white text-2xl leading-none" onclick="closeModal()">×</button>
+</div>
+<iframe class="flex-1 w-full rounded-b-xl" src="modulo-4-3.html"></iframe>
+</div>
+</div>
+<footer class="border-t border-dark-600 py-8 mt-8">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+<p>Fábrica de Estratégia de IA · Trilha 4 — A Fábrica · <a class="text-sky-400 hover:text-sky-300" href="https://inema.club" target="_blank">INEMA.CLUB</a></p>
+</div>
+</footer>
+<script>
+    function toggleTopic(button) {
+      const topicItem = button.closest('.topic-item');
+      const explanation = topicItem.querySelector('.topic-explanation');
+      const moduleCard = button.closest('.bg-dark-800');
+      moduleCard.querySelectorAll('.topic-explanation.active').forEach(exp => { if (exp !== explanation) exp.classList.remove('active'); });
+      explanation.classList.toggle('active');
+    }
+    function openModal(id){ const m=document.getElementById(id); if(m){ m.classList.remove('hidden'); document.body.style.overflow='hidden'; } }
+    function closeModal(){ document.querySelectorAll('.modal').forEach(m=>m.classList.add('hidden')); document.body.style.overflow='auto'; }
+    document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
+    const themeToggle = document.getElementById('theme-toggle');
+    const darkIcon = document.getElementById('theme-toggle-dark-icon');
+    const lightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light') { html.classList.remove('dark'); darkIcon.classList.remove('hidden'); }
+    else { lightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      darkIcon.classList.toggle('hidden'); lightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

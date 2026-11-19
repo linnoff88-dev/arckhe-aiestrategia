@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Módulo 1.2 · Anatomía de la Fábrica | Fábrica de Estrategia de IA</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: {
+      primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' }
+    } } } }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    /* Light mode - base */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    /* Light mode - emerald (T1) */
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5,150,105,0.12); }
+    html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5,150,105,0.08); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5,150,105,0.25); }
+    html:not(.dark) .hover\:bg-emerald-500\/30:hover { background-color: rgba(5,150,105,0.18); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,0.08); }
+    /* Light mode - cores auxiliares */
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37,99,235,0.12); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37,99,235,0.25); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,0.08); }
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,0.08); }
+    html:not(.dark) .text-teal-400 { color: #0d9488; }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13,148,136,0.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-500\/20 { background-color: rgba(185,28,28,0.10); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185,28,28,0.25); }
+    /* Light mode - remove gradientes + especiais */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,0.22); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+    /* Dark - bordas suaves */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+  </style>
+<link href="https://inematds.github.io/aiestrategia/curso/trilha1/modulo-1-2.html" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/aiestrategia/en/curso/trilha1/modulo-1-2.html" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/aiestrategia/es/curso/trilha1/modulo-1-2.html" hreflang="es" rel="alternate"/></head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="../../../curso/trilha1/modulo-1-2.html" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">PT</a><a href="../../../en/curso/trilha1/modulo-1-2.html" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">EN</a><a href="modulo-1-2.html" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">ES</a></div>
+<!-- NAV -->
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4">
+<a class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300" href="../../index.html">
+<span class="text-2xl">🏭</span>
+<span class="font-bold text-lg hidden sm:inline">Fábrica de Estrategia de IA</span>
+</a>
+<span class="text-neutral-600">|</span>
+<a class="text-sky-400 hover:text-sky-300 text-sm font-medium" href="https://inema.club" target="_blank">INEMA.CLUB</a>
+</div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10" href="index.html"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentos</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors" href="../trilha2/index.html"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Síntesis</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors" href="../trilha3/index.html"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Skills y agentes</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors" href="../trilha4/index.html"><span class="sm:hidden">T4</span><span class="hidden sm:inline">La Fábrica</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors" href="../trilha5/index.html"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Consultor</span></a>
+<button class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2" id="theme-toggle">
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-dark-icon" viewbox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-light-icon" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- BREADCRUMB -->
+<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+<div class="flex items-center space-x-2 text-sm text-neutral-400">
+<a class="hover:text-emerald-400" href="../../index.html">Inicio</a><span>/</span>
+<a class="hover:text-emerald-400" href="index.html">Ruta 1</a><span>/</span>
+<span class="text-emerald-400">Módulo 1.2</span>
+</div>
+</nav>
+<!-- HEADER -->
+<header class="bg-gradient-to-br from-emerald-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<span class="inline-block px-3 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-semibold rounded-full mb-4">MÓDULO 1.2</span>
+<h1 class="text-3xl sm:text-4xl font-bold mb-4">🔧 Anatomía de la Fábrica</h1>
+<p class="text-lg text-neutral-400 max-w-3xl">Antes de construir, conoce el plano. Son 19 entregables que salen de un pipeline de 3 fases: Investigación, Síntesis y Generación. Aquí ves toda la máquina por dentro y entiendes por qué el resultado parece consultoría de élite.</p>
+<div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">6</div><div class="text-xs text-neutral-400">Temas</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">~40</div><div class="text-xs text-neutral-400">Minutos</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Básico</div><div class="text-xs text-neutral-400">Nivel</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Mapa</div><div class="text-xs text-neutral-400">Tipo</div></div>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<!-- SECAO 1 -->
+<section class="mb-16" id="topico-1">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">1</span>
+<h2 class="text-2xl font-bold">📦 Los 19 entregables</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Entran dos cuadros de texto. Salen diecinueve archivos. La cuenta es simple: <strong class="text-emerald-400">15 documentos Markdown + 2 presentaciones PPTX + 2 documentos Word</strong>. Cada pieza es un entregable por el que una consultora cobraría caro, y tu Fábrica genera el conjunto completo por menos de US$1.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5">
+<h4 class="font-semibold text-emerald-400 mb-3 flex items-center"><span class="mr-2">📋</span> Evaluación (assessment)</h4>
+<ul class="space-y-1.5 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">•</span><span>Inventario de tecnología e infraestructura de datos</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">•</span><span>Matriz de puntos de dolor por departamento</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">•</span><span>Evaluación de madurez y preparación para la IA (1-5)</span></li>
+</ul>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5">
+<h4 class="font-semibold text-emerald-400 mb-3 flex items-center"><span class="mr-2">🗓️</span> Planificación</h4>
+<ul class="space-y-1.5 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">•</span><span>Roadmap de 30/60/90/180/360 días</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">•</span><span>Lista de logros rápidos (quick wins)</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">•</span><span>Calculadora de ROI y análisis de costos</span></li>
+</ul>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5">
+<h4 class="font-semibold text-emerald-400 mb-3 flex items-center"><span class="mr-2">🛠️</span> Implementación</h4>
+<ul class="space-y-1.5 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">•</span><span>Comparación de proveedores · construir vs. comprar</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">•</span><span>Consolidación de licencias de software</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">•</span><span>Biblioteca de casos de uso por departamento</span></li>
+</ul>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5">
+<h4 class="font-semibold text-emerald-400 mb-3 flex items-center"><span class="mr-2">🛡️</span> Gobernanza + recursos</h4>
+<ul class="space-y-1.5 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">•</span><span>Política de IA y uso aceptable · gobernanza de datos</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">•</span><span>Manual de gestión del cambio y capacitación</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">•</span><span>Biblioteca de prompts + glosario de términos</span></li>
+</ul>
+</div>
+</div>
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">🎁</span> Los 4 entregables de presentación refinada</h3>
+<p class="text-neutral-300 text-sm mb-3">Los 15 Markdown son el conocimiento en bruto. A partir de ellos, la Fábrica genera los 4 archivos que el cliente realmente abre en la reunión:</p>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-0.5">•</span><span><strong>PPTX</strong> — Presentación estratégica de IA (presentación para el directorio)</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-0.5">•</span><span><strong>PPTX</strong> — Diagramas del estado actual vs. futuro (Mermaid renderizado como imagen)</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-0.5">•</span><span><strong>DOCX</strong> — Informe final de estrategia de IA</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-0.5">•</span><span><strong>DOCX</strong> — Declaración de trabajo (SOW), con alcance y propuesta</span></li>
+</ul>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">15 Markdown</div><p class="text-xs text-neutral-400">conocimiento interno</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">2 PPTX</div><p class="text-xs text-neutral-400">decks ejecutivos</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">2 DOCX</div><p class="text-xs text-neutral-400">informe + SOW</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">= 19</div><p class="text-xs text-neutral-400">paquete completo</p></div>
+</div>
+</section>
+<!-- SECAO 2 -->
+<section class="mb-16" id="topico-2">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">2</span>
+<h2 class="text-2xl font-bold">🔗 El pipeline de 3 fases</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Los 19 archivos no aparecen de una vez por arte de magia. Pasan por una línea de ensamblaje de tres fases: <strong class="text-emerald-400">Investigación → Síntesis → Generación</strong>. Cada fase tiene una herramienta dedicada y entrega el resultado a la siguiente, exactamente como la línea de producción de una fábrica.</p>
+<div class="rounded-2xl border border-emerald-500/30 bg-dark-900/40 p-3 sm:p-4 mb-6 overflow-hidden">
+<svg aria-label="Pipeline de tres fases: Investigación con Perplexity, Síntesis con Gemini y Generación de archivos, encadenadas de izquierda a derecha" class="w-full h-auto" role="img" viewbox="0 0 1000 280">
+<defs>
+<lineargradient id="m12-grad" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#34d399"></stop><stop offset="1" stop-color="#10b981"></stop></lineargradient>
+<filter height="180%" id="m12-glow" width="180%" x="-40%" y="-40%"><fegaussianblur result="b" stddeviation="1.8"></fegaussianblur><femerge><femergenode in="b"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter>
+<pattern height="32" id="m12-grid" patternunits="userSpaceOnUse" width="32"><circle cx="1.3" cy="1.3" fill="#10b981" opacity="0.12" r="1.3"></circle></pattern>
+<marker id="m12-arrow" markerheight="10" markerwidth="10" orient="auto" refx="6" refy="3"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#38bdf8" stroke-width="1.6"></path></marker>
+</defs>
+<rect fill="url(#m12-grid)" height="280" width="1000" x="0" y="0"></rect>
+<!-- entrada -->
+<rect fill="#0e1b26" height="48" rx="10" stroke="#38bdf8" stroke-width="2" width="130" x="40" y="116"></rect>
+<text fill="#bfe6ff" font-family="Inter,sans-serif" font-size="13" font-weight="600" text-anchor="middle" x="105" y="138">nombre +</text>
+<text fill="#bfe6ff" font-family="Inter,sans-serif" font-size="13" font-weight="600" text-anchor="middle" x="105" y="156">descripción</text>
+<line marker-end="url(#m12-arrow)" stroke="#38bdf8" stroke-width="2" x1="170" x2="208" y1="140" y2="140"></line>
+<!-- Fase 1 -->
+<rect fill="#0e2018" height="120" rx="12" stroke="url(#m12-grad)" stroke-width="2" width="180" x="214" y="80"></rect>
+<text fill="#34d399" font-family="Inter,sans-serif" font-size="15" font-weight="700" text-anchor="middle" x="304" y="112">1 · Investigación</text>
+<text fill="#8be0c0" font-family="Inter,sans-serif" font-size="12" text-anchor="middle" x="304" y="138">Perplexity AI</text>
+<text fill="#8be0c0" font-family="Inter,sans-serif" font-size="12" text-anchor="middle" x="304" y="160">9–18 consultas</text>
+<text fill="#6b7280" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="304" y="180">→ research.json</text>
+<line marker-end="url(#m12-arrow)" stroke="#38bdf8" stroke-width="2" x1="394" x2="432" y1="140" y2="140"></line>
+<!-- Fase 2 (foco) -->
+<g filter="url(#m12-glow)"><rect fill="#0e2018" height="120" rx="12" stroke="url(#m12-grad)" stroke-width="2.5" width="180" x="438" y="80"></rect></g>
+<text fill="#34d399" font-family="Inter,sans-serif" font-size="15" font-weight="700" text-anchor="middle" x="528" y="112">2 · Síntesis</text>
+<text fill="#8be0c0" font-family="Inter,sans-serif" font-size="12" text-anchor="middle" x="528" y="138">Gemini 2.5 Flash</text>
+<text fill="#8be0c0" font-family="Inter,sans-serif" font-size="12" text-anchor="middle" x="528" y="160">15 prompts</text>
+<text fill="#6b7280" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="528" y="180">→ 15 markdown</text>
+<line marker-end="url(#m12-arrow)" stroke="#38bdf8" stroke-width="2" x1="618" x2="656" y1="140" y2="140"></line>
+<!-- Fase 3 -->
+<rect fill="#0e2018" height="120" rx="12" stroke="url(#m12-grad)" stroke-width="2" width="180" x="662" y="80"></rect>
+<text fill="#34d399" font-family="Inter,sans-serif" font-size="15" font-weight="700" text-anchor="middle" x="752" y="112">3 · Generación</text>
+<text fill="#8be0c0" font-family="Inter,sans-serif" font-size="12" text-anchor="middle" x="752" y="138">python-pptx/docx</text>
+<text fill="#8be0c0" font-family="Inter,sans-serif" font-size="12" text-anchor="middle" x="752" y="160">Mermaid → PNG</text>
+<text fill="#6b7280" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="752" y="180">→ 4 archivos</text>
+<line marker-end="url(#m12-arrow)" stroke="#38bdf8" stroke-width="2" x1="842" x2="880" y1="140" y2="140"></line>
+<!-- saida -->
+<rect fill="#0e1b26" height="48" rx="10" stroke="#38bdf8" stroke-width="2" width="84" x="886" y="116"></rect>
+<text fill="#bfe6ff" font-family="Inter,sans-serif" font-size="16" font-weight="700" text-anchor="middle" x="928" y="138">19</text>
+<text fill="#bfe6ff" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="928" y="156">archivos</text>
+<!-- legenda fases -->
+<text fill="#6b7280" font-family="Inter,sans-serif" font-size="12" text-anchor="middle" x="105" y="232">entrada</text>
+<text fill="#fbbf24" font-family="Inter,sans-serif" font-size="12" font-weight="600" text-anchor="middle" x="528" y="232">cada fase alimenta la siguiente</text>
+<text fill="#6b7280" font-family="Inter,sans-serif" font-size="12" text-anchor="middle" x="928" y="232">descarga</text>
+</svg>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Por qué separar en fases</h3>
+<p class="text-neutral-300 text-sm">Cada fase usa la herramienta adecuada para el trabajo adecuado: Perplexity busca datos actuales, Gemini escribe a bajo costo en un contexto enorme y Python da formato. Separar las responsabilidades hace que el pipeline sea predecible y te muestra exactamente dónde intervenir cuando quieras mejorar una parte.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Investigación</div><p class="text-xs text-neutral-400">Perplexity</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Síntesis</div><p class="text-xs text-neutral-400">Gemini</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Generación</div><p class="text-xs text-neutral-400">Python local</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Encadenado</div><p class="text-xs text-neutral-400">salida → entrada</p></div>
+</div>
+</section>
+<!-- SECAO 3 -->
+<section class="mb-16" id="topico-3">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">3</span>
+<h2 class="text-2xl font-bold">🔍 Qué hace cada fase</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">No vas a usar la Fábrica como una caja negra. Entender el trabajo de cada fase es lo que te permite mantener el control: saber de dónde viene la calidad y dónde está la palanca para mejorar.</p>
+<div class="space-y-6 mb-6">
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">1</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2">Investigación — recopila datos actuales</h4><p class="text-neutral-300 text-sm">Perplexity realiza de 9 a 18 búsquedas en vivo sobre la empresa: visión de negocio, stack de tecnología, competencia, iniciativas de IA, problemas y prioridades. No inventa: presenta datos recientes y las fuentes. Resultado: un JSON de investigación.</p></div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">2</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2">Síntesis — transforma hechos en documentos</h4><p class="text-neutral-300 text-sm">Gemini 2.5 Flash recibe los datos y los frameworks de consultoría y ejecuta 15 prompts especializados, uno por entregable. Es el motor de escritura: barato y con un contexto enorme. Resultado: 15 documentos Markdown y el código de los diagramas Mermaid.</p></div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">3</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2">Generación — da formato para la entrega</h4><p class="text-neutral-300 text-sm">Al ejecutarse localmente (sin costo de API), Python toma los archivos Markdown y produce los 2 PPTX, los 2 DOCX y renderiza los diagramas Mermaid como PNG. Por último, empaqueta todo en carpetas listas para descargar.</p></div>
+</div>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-6">
+<p class="text-xs text-neutral-500 mb-2 font-mono">// las 3 fases se convierten en 3 modelos de datos encadenados</p>
+<pre class="font-mono text-sm text-neutral-300 whitespace-pre-wrap leading-relaxed">CompanyInput  (nome, descrição, modo)
+   → research()    → ResearchOutput   (fatos + fontes + custo)
+   → synthesize()  → SynthesisOutput  (15 entregáveis + diagramas)
+   → generate()    → GenerationResult (decks + relatórios + imagens)</pre>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Datos actuales</div><p class="text-xs text-neutral-400">busca, no adivines</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Síntesis guiada</div><p class="text-xs text-neutral-400">15 prompts</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Formato</div><p class="text-xs text-neutral-400">local, sin costo</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Sin caja negra</div><p class="text-xs text-neutral-400">tú intervienes</p></div>
+</div>
+</section>
+<!-- SECAO 4 -->
+<section class="mb-16" id="topico-4">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">4</span>
+<h2 class="text-2xl font-bold">🏆 Por qué parece una consultoría de élite</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">El secreto no es el modelo de IA, sino lo que se incluyó en los prompts. La Fábrica se alimentó con los playbooks reales que <strong class="text-emerald-400">McKinsey, BCG, KPMG, OpenAI y IBM</strong> publican, destilados en cheat sheets. El output hereda ese rigor.</p>
+<div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">🧠</span> Autoridad prestada</h3>
+<p class="text-neutral-300 mb-4 text-sm">Estos PDF son enormes (28, 46 páginas) y no caben en el contexto de una sola vez. La solución fue un RAG perezoso: Gemini procesó cada PDF en bloques, extrajo solo lo valioso y eliminó las palabras de moda. Quedó conocimiento puro, listo para guiar cada entregable.</p>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">•</span><span>Los frameworks de estas firmas se convierten en la base de los 15 prompts</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">•</span><span>Cada documento sale con la estructura que usaría un consultor sénior</span></li>
+</ul>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ Por qué el output convence</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Lenguaje y estructura de consultoría de primer nivel</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Datos actuales de Perplexity, no genéricos</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Frameworks reconocidos (madurez, quick wins, ROI)</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Lo que todavía requiere que estés tú</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Revisar las cifras antes de enviarlas al cliente</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Validar qué tiene sentido para ese negocio</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Adaptar el tono y eliminar lo que no aplica</span></li>
+</ul>
+</div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> La lección que vale oro</h3>
+<p class="text-neutral-300 text-sm">La calidad percibida proviene del conocimiento incorporado, no del botón. Por eso toda la Ruta 2 trata de construir esa base de cheat sheets: es el activo que transforma una IA común en un consultor que parece de élite.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Playbooks</div><p class="text-xs text-neutral-400">McKinsey, BCG…</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Destilado</div><p class="text-xs text-neutral-400">RAG perezoso</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Autoridad</div><p class="text-xs text-neutral-400">prestada</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Percepción</div><p class="text-xs text-neutral-400">calidad de élite</p></div>
+</div>
+</section>
+<!-- SECAO 5 -->
+<section class="mb-16" id="topico-5">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">5</span>
+<h2 class="text-2xl font-bold">🎬 Demostración: un paquete real</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Ver el destino antes del viaje te da una referencia de calidad. Imagina ejecutar la Fábrica para <strong class="text-emerald-400">"Stripe"</strong>. En pocos minutos, la carpeta de salida se llena, organizada por tipo de archivo. Mira qué aparece, pieza por pieza.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-6">
+<p class="text-xs text-neutral-500 mb-2 font-mono">// output/stripe/ — estructura generada</p>
+<pre class="font-mono text-sm text-neutral-300 whitespace-pre-wrap leading-relaxed">output/stripe/
+├── markdown/          # 15 .md (inventário, dores, roadmap, ROI…)
+├── presentations/     # 2 .pptx (resumo executivo + análise)
+├── documents/         # 2 .docx (relatório + SOW)
+├── mermaid_images/    # diagramas atual vs futuro (.png)
+├── research_cache.json
+└── state.json         # progresso + custo total (~US$0,08)</pre>
+</div>
+<div class="space-y-6 mb-6">
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">A</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2">Roadmap + ROI</h4><p class="text-neutral-300 text-sm">Abre el roadmap 30/60/90: cada período tiene iniciativas priorizadas. La calculadora de ROI proyecta el retorno, lo que justifica la inversión en una reunión directiva.</p></div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">B</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2">Política de IA + gobernanza</h4><p class="text-neutral-300 text-sm">La plantilla de uso aceptable y el framework de gobernanza de datos: el tipo de documento que las empresas pagan a abogados y consultores para que redacten desde cero.</p></div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">C</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2">Deck + SOW</h4><p class="text-neutral-300 text-sm">El PPTX que presentas y el SOW que cierra el contrato, con el alcance, el plazo y el precio listos. Es el par que transforma el análisis en un negocio cerrado.</p></div>
+</div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Usa esto como referencia</h3>
+<p class="text-neutral-300 text-sm">Guarda la sensación de abrir ese paquete. Cada módulo del curso construye una de estas piezas, y la referencia de calidad que acabas de ver es el estándar que debes alcanzar cuando ejecutes tu propia Fábrica.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Carpetas</div><p class="text-xs text-neutral-400">organizado por tipo</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">~US$0,08</div><p class="text-xs text-neutral-400">costo del paquete</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Minutos</div><p class="text-xs text-neutral-400">no semanas</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Escala</div><p class="text-xs text-neutral-400">referencia de calidad</p></div>
+</div>
+</section>
+<!-- SECAO 6 -->
+<section class="mb-16" id="topico-6">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">6</span>
+<h2 class="text-2xl font-bold">🧭 El mapa del curso</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Ahora ya viste toda la Fábrica. El curso te lleva desde aquí hasta construirla pieza por pieza. Cada ruta es una capa del pipeline: siempre sabes qué parte de la máquina estás armando.</p>
+<div class="space-y-3 mb-6">
+<div class="flex items-center space-x-3 bg-dark-800 rounded-lg p-4 border border-dark-600"><span class="text-lg">🥉</span><div><strong class="text-emerald-400">Ruta 1 · Fundamentos</strong><span class="text-neutral-400 text-sm"> — la visión, la anatomía y la configuración (estás aquí)</span></div></div>
+<div class="flex items-center space-x-3 bg-dark-800 rounded-lg p-4 border border-dark-600"><span class="text-lg">🥈</span><div><strong class="text-blue-400">Ruta 2 · Síntesis</strong><span class="text-neutral-400 text-sm"> — los frameworks y la base de conocimientos (Fase 1)</span></div></div>
+<div class="flex items-center space-x-3 bg-dark-800 rounded-lg p-4 border border-dark-600"><span class="text-lg">🥇</span><div><strong class="text-purple-400">Ruta 3 · Skills &amp; Agentes</strong><span class="text-neutral-400 text-sm"> — recursos reutilizables y generación de documentos (Fase 2)</span></div></div>
+<div class="flex items-center space-x-3 bg-dark-800 rounded-lg p-4 border border-dark-600"><span class="text-lg">💎</span><div><strong class="text-amber-400">Ruta 4 · La Fábrica</strong><span class="text-neutral-400 text-sm"> — investigación con Perplexity, los 15 prompts y la orquestación (Fases 3-4)</span></div></div>
+<div class="flex items-center space-x-3 bg-dark-800 rounded-lg p-4 border border-dark-600"><span class="text-lg">👑</span><div><strong class="text-teal-400">Ruta 5 · Consultor</strong><span class="text-neutral-400 text-sm"> — frontend, venta y el capstone con un cliente real (Fase 5)</span></div></div>
+</div>
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">🧱</span> Construcción incremental</h3>
+<p class="text-neutral-300 text-sm">La secuencia no es decorativa: conocimiento → skills/agentes → la fábrica → el cliente. Cada pieza que construyes se convierte en un insumo para la siguiente ruta. Al final, tienes en tus manos todo el pipeline de 3 fases que viste aquí y sabes corregir y mejorar cada parte.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Secuencia</div><p class="text-xs text-neutral-400">lógica, no suelta</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Capas</div><p class="text-xs text-neutral-400">1 recorrido = 1 pieza</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Incremental</div><p class="text-xs text-neutral-400">cada pieza suma</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Proyecto final</div><p class="text-xs text-neutral-400">cliente real</p></div>
+</div>
+</section>
+<!-- RESUMO + MISSAO -->
+<section class="mb-12">
+<div class="bg-gradient-to-br from-emerald-900/40 via-dark-800 to-dark-800 rounded-xl border border-emerald-500/30 p-8">
+<h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">✅</span> Resumen del módulo</h2>
+<div class="space-y-4 mb-8">
+<div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">19 entregables</strong><span class="text-neutral-400"> — 15 Markdown + 2 PPTX + 2 DOCX, desde el inventario hasta el SOW.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">Pipeline de 3 fases</strong><span class="text-neutral-400"> — Investigación (Perplexity) → Síntesis (Gemini) → Generación (Python).</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">Cada fase tiene un trabajo</strong><span class="text-neutral-400"> — recopilar datos, escribir, dar formato. Sin caja negra.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">Parece de élite porque lo es</strong><span class="text-neutral-400"> — playbooks de BCG/KPMG destilados dentro de los prompts.</span></div></div>
+</div>
+<div class="bg-dark-900/50 rounded-lg p-6 border border-primary/30 mb-8">
+<h3 class="font-bold text-primary mb-2 flex items-center"><span class="mr-2">🎯</span> Misión 1.2 — Los 3 entregables que más venden</h3>
+<p class="text-neutral-300 text-sm mb-3">Piensa en una empresa que conozcas bien (la tuya, la de un amigo o una marca local). De los 19 entregables, elige los <strong>Los 3 que más venderían</strong> para ella y escribe, en una frase cada uno, por qué:</p>
+<ol class="space-y-2 text-neutral-300 text-sm list-decimal list-inside">
+<li><strong>Entregable 1:</strong> ¿qué necesidad de esta empresa resuelve?</li>
+<li><strong>Entregable 2:</strong> ¿por qué pagaría por él quien toma la decisión?</li>
+<li><strong>Entregable 3:</strong> ¿qué lo hace urgente ahora?</li>
+</ol>
+<p class="text-neutral-400 text-xs mt-3"><strong>Éxito:</strong> 3 entregables elegidos con una justificación de 1 frase. <strong>Lo que obtuviste:</strong> claridad sobre qué parte del paquete es tu gancho de venta — y la base del pitch que vamos a crear en la Trilha 5.</p>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+<h3 class="font-semibold text-emerald-400 mb-2">Siguiente módulo:</h3>
+<p class="text-neutral-300">1.3 — Armando el arsenal (Claude Code, claves de API y ejecutar el primer paquete)</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors" href="modulo-1-1.html">← Módulo anterior</a>
+<a class="flex-1 text-center px-6 py-3 bg-emerald-600 text-white rounded-lg font-semibold hover:bg-emerald-500 transition-colors" href="modulo-1-3.html">Siguiente módulo →</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="border-t border-dark-600 py-8 mt-8">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+<p>Fábrica de Estrategia de IA · Módulo 1.2 · <a class="text-sky-400 hover:text-sky-300" href="https://inema.club" target="_blank">INEMA.CLUB</a></p>
+</div>
+</footer>
+<script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const darkIcon = document.getElementById('theme-toggle-dark-icon');
+    const lightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light') { html.classList.remove('dark'); darkIcon.classList.remove('hidden'); }
+    else { lightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      darkIcon.classList.toggle('hidden'); lightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

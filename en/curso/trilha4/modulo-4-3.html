@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Module 4.3 · Orchestration, Resumption, and Diagrams | AI Strategy Factory</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: {
+      primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' }
+    } } } }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    /* Light mode - base */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    /* Light mode - acento amber (T4) */
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .bg-amber-500\/20 { background-color: rgba(217,119,6,0.12); }
+    html:not(.dark) .bg-amber-500\/10 { background-color: rgba(217,119,6,0.08); }
+    html:not(.dark) .border-amber-500\/30 { border-color: rgba(217,119,6,0.25); }
+    html:not(.dark) .hover\:bg-amber-500\/30:hover { background-color: rgba(217,119,6,0.18); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,0.08); }
+    /* Light mode - cores auxiliares */
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37,99,235,0.12); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37,99,235,0.25); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,0.08); }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5,150,105,0.12); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5,150,105,0.25); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,0.08); }
+    html:not(.dark) .text-teal-400 { color: #0d9488; }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13,148,136,0.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-500\/20 { background-color: rgba(185,28,28,0.10); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185,28,28,0.25); }
+    /* Light mode - remove gradientes + especiais */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,0.22); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+    /* Dark - bordas suaves */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+  </style>
+<link href="https://inematds.github.io/aiestrategia/curso/trilha4/modulo-4-3.html" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/aiestrategia/en/curso/trilha4/modulo-4-3.html" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/aiestrategia/es/curso/trilha4/modulo-4-3.html" hreflang="es" rel="alternate"/></head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="../../../curso/trilha4/modulo-4-3.html" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">PT</a><a href="modulo-4-3.html" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">EN</a><a href="../../../es/curso/trilha4/modulo-4-3.html" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">ES</a></div>
+<!-- NAV -->
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4">
+<a class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300" href="../../index.html">
+<span class="text-2xl">🏭</span>
+<span class="font-bold text-lg hidden sm:inline">AI Strategy Factory</span>
+</a>
+<span class="text-neutral-600">|</span>
+<a class="text-sky-400 hover:text-sky-300 text-sm font-medium" href="https://inema.club" target="_blank">INEMA.CLUB</a>
+</div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors" href="../trilha1/index.html"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentals</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors" href="../trilha2/index.html"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Synthesis</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors" href="../trilha3/index.html"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Skills &amp; Agents</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-amber-400 bg-amber-500/10" href="index.html"><span class="sm:hidden">T4</span><span class="hidden sm:inline">The Factory</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors" href="../trilha5/index.html"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Consultant</span></a>
+<button class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2" id="theme-toggle">
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-dark-icon" viewbox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-light-icon" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- BREADCRUMB -->
+<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+<div class="flex items-center space-x-2 text-sm text-neutral-400">
+<a class="hover:text-amber-400" href="../../index.html">Start</a><span>/</span>
+<a class="hover:text-amber-400" href="index.html">Track 4</a><span>/</span>
+<span class="text-amber-400">Module 4.3</span>
+</div>
+</nav>
+<!-- HEADER -->
+<header class="bg-gradient-to-br from-amber-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full mb-4">MODULE 4.3</span>
+<h1 class="text-3xl sm:text-4xl font-bold mb-4">⚙️ Orchestration, resumption, and diagrams that sell</h1>
+<p class="text-lg text-neutral-400 max-w-3xl">The glue that connects the three phases. The orchestrator confirms each step, the <code class="text-amber-400">state.json</code> lets the Factory resume when the context fills up, and the Mermaid diagrams of the current vs. future state — rendered as PNG — are the slide that closes the sale. In the end, the Factory runs end to end.</p>
+<div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">6</div><div class="text-xs text-neutral-400">Topics</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">~60</div><div class="text-xs text-neutral-400">Minutes</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">Advanced</div><div class="text-xs text-neutral-400">Level</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">Phase 3</div><div class="text-xs text-neutral-400">Pipeline</div></div>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<!-- SECAO 1 -->
+<section class="mb-16" id="topico-1">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">1</span>
+<h2 class="text-2xl font-bold">🎛️ The pipeline orchestrator</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">The orchestrator is the conductor: it runs Research → Synthesis → Generation in order, and <strong class="text-amber-400">each stage confirms completion before the next one begins</strong>. Nothing moves forward in the dark—if Phase 1 isn’t complete, Phase 2 doesn’t run.</p>
+<div class="rounded-2xl border border-amber-500/30 bg-dark-900/40 p-3 sm:p-4 mb-6 overflow-hidden">
+<svg aria-label="Three-phase pipeline chained together: Research, Synthesis, and Generation, each confirming completion and writing a checkpoint to state.json" class="w-full h-auto" role="img" viewbox="0 0 1000 230">
+<defs>
+<lineargradient id="m43-grad" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#fbbf24"></stop><stop offset="1" stop-color="#f59e0b"></stop></lineargradient>
+<filter height="180%" id="m43-glow" width="180%" x="-40%" y="-40%"><fegaussianblur result="b" stddeviation="1.8"></fegaussianblur><femerge><femergenode in="b"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter>
+<pattern height="32" id="m43-grid" patternunits="userSpaceOnUse" width="32"><circle cx="1.3" cy="1.3" fill="#f59e0b" opacity="0.12" r="1.3"></circle></pattern>
+</defs>
+<rect fill="url(#m43-grid)" height="230" width="1000" x="0" y="0"></rect>
+<g font-family="Inter,sans-serif" font-size="14" font-weight="600">
+<g><rect fill="#0e1b26" height="70" rx="12" stroke="#38bdf8" stroke-width="2" width="220" x="40" y="80"></rect><text fill="#bfe6ff" text-anchor="middle" x="150" y="110">Phase 1 · Research</text><text fill="#9fcaf0" font-size="12" font-weight="400" text-anchor="middle" x="150" y="132">Perplexity</text></g>
+<g filter="url(#m43-glow)"><rect fill="#1f1604" height="70" rx="12" stroke="url(#m43-grad)" stroke-width="2.5" width="220" x="390" y="80"></rect><text fill="#fbbf24" text-anchor="middle" x="500" y="110">Phase 2 · Synthesis</text><text fill="#fcd9a0" font-size="12" font-weight="400" text-anchor="middle" x="500" y="132">Gemini · 15 prompts</text></g>
+<g><rect fill="#0e1b26" height="70" rx="12" stroke="#38bdf8" stroke-width="2" width="220" x="740" y="80"></rect><text fill="#bfe6ff" text-anchor="middle" x="850" y="110">Phase 3 · Generation</text><text fill="#9fcaf0" font-size="12" font-weight="400" text-anchor="middle" x="850" y="132">PPTX/DOCX/PNG</text></g>
+</g>
+<!-- setas com confirmação -->
+<path d="M260,115 H390" fill="none" marker-end="url(#m43-arrow)" stroke="#f59e0b" stroke-width="2.5"></path>
+<path d="M610,115 H740" fill="none" marker-end="url(#m43-arrow)" stroke="#f59e0b" stroke-width="2.5"></path>
+<defs><marker id="m43-arrow" markerheight="10" markerwidth="10" orient="auto" refx="8" refy="3"><path d="M0,0 L8,3 L0,6 Z" fill="#f59e0b"></path></marker></defs>
+<text fill="#fbbf24" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="325" y="104">✓ confirms</text>
+<text fill="#fbbf24" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="675" y="104">✓ confirms</text>
+<!-- checkpoints -->
+<g fill="#9ca3af" font-family="Inter,sans-serif" font-size="11">
+<path d="M150,150 V185" stroke="#374151" stroke-dasharray="4 4" stroke-width="1.5"></path>
+<path d="M500,150 V185" stroke="#374151" stroke-dasharray="4 4" stroke-width="1.5"></path>
+<path d="M850,150 V185" stroke="#374151" stroke-dasharray="4 4" stroke-width="1.5"></path>
+<rect fill="#1f1604" height="30" rx="8" stroke="#fbbf24" stroke-width="1.5" width="280" x="360" y="185"></rect>
+<text fill="#fcd9a0" text-anchor="middle" x="500" y="205">💾 state.json — checkpoint by phase</text>
+<text text-anchor="middle" x="150" y="205">✓</text><text text-anchor="middle" x="850" y="205">✓</text>
+</g>
+</svg>
+</div>
+<div class="space-y-3 mb-6">
+<div class="flex items-start space-x-3 bg-dark-800 rounded-lg p-4 border border-dark-600"><span class="text-amber-400 font-bold mt-0.5">1.</span><div><strong class="text-neutral-100">Receives inputs.</strong><span class="text-neutral-400 text-sm"> Name + company description (and research depth).</span></div></div>
+<div class="flex items-start space-x-3 bg-dark-800 rounded-lg p-4 border border-dark-600"><span class="text-amber-400 font-bold mt-0.5">2.</span><div><strong class="text-neutral-100">Research, synthesize, generate.</strong><span class="text-neutral-400 text-sm"> The three phases in sequence, each one feeding into the next.</span></div></div>
+<div class="flex items-start space-x-3 bg-dark-800 rounded-lg p-4 border border-dark-600"><span class="text-amber-400 font-bold mt-0.5">3.</span><div><strong class="text-neutral-100">Confirm and package.</strong><span class="text-neutral-400 text-sm"> Renders diagrams, organizes folders, and packages everything for download.</span></div></div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Confirming each step is what saves you</h3>
+<p class="text-neutral-300 text-sm">Phase-by-phase confirmation isn’t bureaucracy: it’s what makes the pipeline <em>resumable</em>. Since each stage is marked "complete," a crash midway doesn’t force you to redo (or pay for) what was already finished.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Conductor</div><p class="text-xs text-neutral-400">triggers the phases</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Sequence</div><p class="text-xs text-neutral-400">1 → 2 → 3</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Confirm</div><p class="text-xs text-neutral-400">before moving on</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Auditable</div><p class="text-xs text-neutral-400">each step recorded</p></div>
+</div>
+</section>
+<!-- SECAO 2 -->
+<section class="mb-16" id="topico-2">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">2</span>
+<h2 class="text-2xl font-bold">💾 Checkpoints and state.json</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <code class="text-amber-400">state.json</code> is the Factory’s memory. It lives in <code class="text-amber-400">output/{empresa}/</code> and stores the current phase, the status of each deliverable, and the <strong class="text-amber-400">total cumulative cost</strong> of the session.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-6">
+<p class="text-xs text-neutral-500 mb-2 font-mono">// output/stripe/state.json</p>
+<pre class="font-mono text-sm text-neutral-300 whitespace-pre-wrap leading-relaxed">{
+  "company_name": "Stripe",
+  "current_phase": "synthesis",
+  "phases": {
+    "research":   { "status": "complete" },
+    "synthesis":  { "status": "in_progress" },
+    "generation": { "status": "pending" }
+  },
+  "deliverables": {
+    "01_tech_inventory": { "status": "complete", "path": "..." },
+    "06_quick_wins":     { "status": "pending" }
+  },
+  "total_cost": 0.0773
+}</pre>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><h4 class="font-semibold text-amber-400 mb-2">📍 Current Phase</h4><p class="text-neutral-300 text-sm"><code>current_phase</code> says exactly where the Factory stopped.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><h4 class="font-semibold text-amber-400 mb-2">✅ Status by deliverable</h4><p class="text-neutral-300 text-sm">Each of the 15+ docs is marked complete / pending / failed.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><h4 class="font-semibold text-amber-400 mb-2">💵 Cumulative cost</h4><p class="text-neutral-300 text-sm"><code>total_cost</code> adds up every call — real-time budget tracking.</p></div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> No checkpoint, no resuming</h3>
+<p class="text-neutral-300 text-sm">O <code class="text-amber-400">state.json</code> is the foundation for everything that follows. It’s what turns “I hit an error and lost everything” into “I hit an error and can pick up where I left off.” Every deliverable it completes is saved immediately.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Memory</div><p class="text-xs text-neutral-400">on disk</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Phase</div><p class="text-xs text-neutral-400">where it stopped</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Cost</div><p class="text-xs text-neutral-400">accumulated</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Base</div><p class="text-xs text-neutral-400">of the resumption</p></div>
+</div>
+</section>
+<!-- SECAO 3 -->
+<section class="mb-16" id="topico-3">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">3</span>
+<h2 class="text-2xl font-bold">🔁 Resume When the Context Fills Up</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Long Claude Code sessions run out of context—it happened <strong class="text-amber-400">twice</strong> in the construction of the original Factory. The solution isn’t to hope it won’t happen; it’s to open a new session and resume from the task list stored in the <code class="text-amber-400">state.json</code>.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-6">
+<p class="text-xs text-neutral-500 mb-2 font-mono">// is the context full? new session, same command</p>
+<pre class="font-mono text-sm text-neutral-300 whitespace-pre-wrap leading-relaxed"># ver onde parou
+python -m strategy_factory.main status "Stripe"
+
+# retomar de onde o state.json marcou
+python -m strategy_factory.main resume "Stripe"
+# → pula research (complete), continua synthesis, depois generation</pre>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ With resumption</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>A new session reads the <code>state.json</code> and continues</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Skip phases already <code>complete</code> — doesn’t pay again</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Uses the <code>research_cache.json</code> instead of researching again</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ No resumption</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Context fills up → start everything from scratch</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Pay for the research again every time it fails</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Long sessions become dead ends</span></li>
+</ul>
+</div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Documentation is cheap in tokens</h3>
+<p class="text-neutral-300 text-sm">Even on Anthropic’s US$20 plan, you can do a lot—as long as you <strong>split up the requests</strong>. Building in public means showing the mess: context limits, API errors, the wrong model name in the docs. Picking back up from the task list is the skill that helps you finish even when things get stuck.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Is it full?</div><p class="text-xs text-neutral-400">new session</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">summary</div><p class="text-xs text-neutral-400">continues the state</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Divide</div><p class="text-xs text-neutral-400">smaller requests</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Finish</div><p class="text-xs text-neutral-400">without getting stuck</p></div>
+</div>
+</section>
+<!-- SECAO 4 -->
+<section class="mb-16" id="topico-4">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">4</span>
+<h2 class="text-2xl font-bold">🪢 Mermaid: current state vs. future state</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">The diagram prompt generates two flowcharts that tell the story of the transformation: the <strong class="text-amber-400">current state</strong> (today's stack, with bottlenecks marked) and the <strong class="text-amber-400">future state</strong> (the AI-enabled architecture). That’s the “before and after” that sells.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-6">
+<p class="text-xs text-neutral-500 mb-2 font-mono">// Mermaid example: current state vs. future state</p>
+<pre class="font-mono text-sm text-neutral-300 whitespace-pre-wrap leading-relaxed">flowchart TB
+  subgraph Atual["Estado Atual"]
+    DS1[Planilhas soltas] --&gt; CS1[CRM legado]
+    CS1 --&gt; U1[Vendas]
+    CS1 -. gargalo .-&gt; X[(Dados em silos)]
+  end
+
+  subgraph Futuro["Estado Futuro · IA"]
+    DL[Plataforma de Dados Unificada] --&gt; AI1[Copiloto de Vendas]
+    DL --&gt; AI2[Previsão de Churn]
+    AI1 --&gt; U2[Vendas]
+    AI2 --&gt; U3[Sucesso do Cliente]
+  end
+
+  Atual ==&gt;|transformação| Futuro</pre>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">📉 Current State</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">•</span><span>Data sources and legacy systems</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">•</span><span>Fragile integration points</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">•</span><span>Known bottlenecks marked in red</span></li>
+</ul>
+</div>
+<div class="bg-amber-900/20 rounded-xl border border-amber-500/30 p-6">
+<h4 class="font-bold text-amber-400 mb-4">📈 Future State (AI)</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-amber-400">•</span><span>Unified data platform</span></li>
+<li class="flex items-start space-x-2"><span class="text-amber-400">•</span><span>AI/ML services layer</span></li>
+<li class="flex items-start space-x-2"><span class="text-amber-400">•</span><span>Enhanced applications and automated workflows</span></li>
+</ul>
+</div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> The deciding slide</h3>
+<p class="text-neutral-300 text-sm">An executive won't read three pages of text, but will understand the "before and after" in five seconds. Marking the bottlenecks in the current state creates tension; showing the future state resolves it. This pair of diagrams is often the slide that gets the project approved.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Current</div><p class="text-xs text-neutral-400">with bottlenecks</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Future</div><p class="text-xs text-neutral-400">AI-enabled</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Contrast</div><p class="text-xs text-neutral-400">before and after</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Sell</div><p class="text-xs text-neutral-400">the board decides</p></div>
+</div>
+</section>
+<!-- SECAO 5 -->
+<section class="mb-16" id="topico-5">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">5</span>
+<h2 class="text-2xl font-bold">🖼️ Render Mermaid → PNG</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Client can't open a file <code class="text-amber-400">.mmd</code> — it opens an image on the slide. The <code class="text-amber-400">mermaid_renderer</code> converts the code into an actual PNG for insertion into the PPTX. And if rendering fails, graceful degradation kicks in: skips the image and keeps the markdown.</p>
+<div class="space-y-6 mb-6">
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">1</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2"><code class="text-amber-400">mermaid_renderer</code> (in the pipeline)</h4><p class="text-neutral-300 text-sm">Take the code generated by the diagram prompt and export a PNG to <code class="text-amber-400">mermaid_images/</code>. It’s the Factory’s automatic workflow.</p></div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">2</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2">Skill <code class="text-amber-400">beautiful-mermaid</code></h4><p class="text-neutral-300 text-sm">Renders Mermaid as polished SVG and PNG—ideal when you want a polished diagram outside the pipeline.</p></div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">3</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2"><code class="text-amber-400">eraser.io</code></h4><p class="text-neutral-300 text-sm">Online editor for manually adjusting the diagram and exporting it—good for a quick touch-up before the meeting.</p></div>
+</div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> PNG on the slide, source version-controlled</h3>
+<p class="text-neutral-300 text-sm">Save the <code class="text-amber-400">.mmd</code> in <code class="text-amber-400">recursos/diagramas/</code> (versionable) and deliver the PNG in the deck. That way, you can edit the diagram text when the project changes without rebuilding the image from scratch.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Renderer</div><p class="text-xs text-neutral-400">PNG in the pipeline</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">beautiful-mermaid</div><p class="text-xs text-neutral-400">finishing touches</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">eraser.io</div><p class="text-xs text-neutral-400">manual touch-up</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Failed?</div><p class="text-xs text-neutral-400">keep the md</p></div>
+</div>
+</section>
+<!-- SECAO 6 -->
+<section class="mb-16" id="topico-6">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">6</span>
+<h2 class="text-2xl font-bold">📦 Package for Download</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Phase 3 closes the loop: it organizes everything into folders and packages the complete download. Delivery is half the work—a package <strong class="text-amber-400">well organized</strong> is what makes the client feel they paid for something serious.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-6">
+<p class="text-xs text-neutral-500 mb-2 font-mono">// output/{empresa-slug}/ — the delivered structure</p>
+<pre class="font-mono text-sm text-neutral-300 whitespace-pre-wrap leading-relaxed">output/stripe/
+├── markdown/          # 15 .md (os entregáveis)
+├── presentations/     # 2 .pptx (resumo + achados)
+├── documents/         # 2 .docx (relatório + SOW)
+├── mermaid_images/    # PNGs dos diagramas
+├── research_cache.json
+└── state.json</pre>
+</div>
+<div class="space-y-3 mb-6">
+<div class="flex items-start space-x-3 bg-dark-800 rounded-lg p-4 border border-dark-600"><span class="text-amber-400 font-bold mt-0.5">1.</span><div><strong class="text-neutral-100">Save the Markdown files.</strong><span class="text-neutral-400 text-sm"> The 15 deliverables in <code class="text-amber-400">markdown/</code>, internal knowledge.</span></div></div>
+<div class="flex items-start space-x-3 bg-dark-800 rounded-lg p-4 border border-dark-600"><span class="text-amber-400 font-bold mt-0.5">2.</span><div><strong class="text-neutral-100">Generates PPTX and DOCX.</strong><span class="text-neutral-400 text-sm"> Executive deck, complete findings, final report, and SOW — the polished deliverable.</span></div></div>
+<div class="flex items-start space-x-3 bg-dark-800 rounded-lg p-4 border border-dark-600"><span class="text-amber-400 font-bold mt-0.5">3.</span><div><strong class="text-neutral-100">Packages everything.</strong><span class="text-neutral-400 text-sm"> Diagrams rendered together, ready for download in the web app.</span></div></div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Minimal input, maximum output—closed</h3>
+<p class="text-neutral-300 text-sm">Two text boxes went in at the beginning; now a folder with 19 professional deliverables comes out for less than US$1. This is the complete Factory cycle—and what you take to Track 5, where it becomes an offer and ends up in the client’s hands.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Folders</div><p class="text-xs text-neutral-400">organized</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">19 pieces</div><p class="text-xs text-neutral-400">md+pptx+docx</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Download</div><p class="text-xs text-neutral-400">one click</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">&lt; US$1</div><p class="text-xs text-neutral-400">the entire cycle</p></div>
+</div>
+</section>
+<!-- RESUMO + MISSAO -->
+<section class="mb-12">
+<div class="bg-gradient-to-br from-amber-900/40 via-dark-800 to-dark-800 rounded-xl border border-amber-500/30 p-8">
+<h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">✅</span> Module summary</h2>
+<div class="space-y-4 mb-8">
+<div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">The orchestrator confirms each step</strong><span class="text-neutral-400"> — Research → Synthesis → Generation; nothing moves forward in the dark.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">state.json is the memory</strong><span class="text-neutral-400"> — phase, status by deliverable, and cumulative cost.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">Context full? Summarize</strong><span class="text-neutral-400"> — the new session picks up where you left off, without paying again.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">Current vs. future Mermaid diagram sells</strong><span class="text-neutral-400"> — rendered as PNG, packaged in the final package.</span></div></div>
+</div>
+<div class="bg-dark-900/50 rounded-lg p-6 border border-primary/30 mb-8">
+<h3 class="font-bold text-primary mb-2 flex items-center"><span class="mr-2">🎯</span> Mission 4.3 — The end-to-end Factory + diagrams</h3>
+<p class="text-neutral-300 text-sm mb-3">Run the full pipeline for the company from the previous missions and generate the current-state vs. future-state diagrams.</p>
+<ol class="space-y-2 text-neutral-300 text-sm list-decimal list-inside">
+<li>Ask Claude Code to <strong>run the Factory end to end</strong> (Research → Synthesis → Generation).</li>
+<li>If the context fills up, start a new session and use <code class="text-amber-400">resume "Empresa"</code> — confirm that it skipped what was already done.</li>
+<li>Open the <code class="text-amber-400">state.json</code> and see all the phases in <code>complete</code> e o <code>total_cost</code>.</li>
+<li>Render the diagrams (renderer, <code class="text-amber-400">beautiful-mermaid</code> or eraser.io) and check the PNGs in <code class="text-amber-400">mermaid_images/</code>.</li>
+</ol>
+<p class="text-neutral-400 text-xs mt-3"><strong>Success:</strong> the folder <code class="text-amber-400">output/{empresa}/</code> with all 19 deliverables and rendered diagrams, for &lt; US$1. <strong>What you gained:</strong> the Factory running end to end — the engine Track 5 turns into an offering and takes to the client.</p>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+<h3 class="font-semibold text-amber-400 mb-2">Next track:</h3>
+<p class="text-neutral-300">Track 5 · From the Factory to the Client — package it with your brand, position it, price it, and close the sale (capstone).</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors" href="index.html">← Back to Track</a>
+<a class="flex-1 text-center px-6 py-3 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-500 transition-colors" href="../trilha5/index.html">Next track: Consultant →</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="border-t border-dark-600 py-8 mt-8">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+<p>AI Strategy Factory · Module 4.3 · <a class="text-sky-400 hover:text-sky-300" href="https://inema.club" target="_blank">INEMA.CLUB</a></p>
+</div>
+</footer>
+<script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const darkIcon = document.getElementById('theme-toggle-dark-icon');
+    const lightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light') { html.classList.remove('dark'); darkIcon.classList.remove('hidden'); }
+    else { lightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      darkIcon.classList.toggle('hidden'); lightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

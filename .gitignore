@@ -1,0 +1,16 @@
+# Fontes brutas e referência (não publicar)
+_reference/
+docs/fontes/
+
+# Python / ambientes
+venv/
+__pycache__/
+*.pyc
+.env
+
+# SO / editor
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/

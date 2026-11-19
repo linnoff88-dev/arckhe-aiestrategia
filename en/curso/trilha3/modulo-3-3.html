@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Module 3.3 · The Document Skill | AI Strategy Factory</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: {
+      primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' }
+    } } } }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    /* Light mode - base */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    /* Light mode - acento purple (T3) */
+    html:not(.dark) .text-purple-400 { color:#7c3aed; }
+    html:not(.dark) .bg-purple-500\/20 { background-color: rgba(124,58,237,0.12); }
+    html:not(.dark) .bg-purple-500\/10 { background-color: rgba(124,58,237,0.08); }
+    html:not(.dark) .border-purple-500\/30 { border-color: rgba(124,58,237,0.25); }
+    html:not(.dark) .hover\:bg-purple-500\/30:hover { background-color: rgba(124,58,237,0.18); }
+    html:not(.dark) .hover\:text-purple-400:hover { color:#7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,0.08); }
+    /* Light mode - cores auxiliares */
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37,99,235,0.12); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37,99,235,0.25); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .text-emerald-400 { color:#059669; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5,150,105,0.12); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5,150,105,0.25); }
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,0.08); }
+    html:not(.dark) .text-teal-400 { color: #0d9488; }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13,148,136,0.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-500\/20 { background-color: rgba(185,28,28,0.10); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185,28,28,0.25); }
+    /* Light mode - remove gradientes + especiais */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,0.22); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+    /* Dark - bordas suaves */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+  </style>
+<link href="https://inematds.github.io/aiestrategia/curso/trilha3/modulo-3-3.html" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/aiestrategia/en/curso/trilha3/modulo-3-3.html" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/aiestrategia/es/curso/trilha3/modulo-3-3.html" hreflang="es" rel="alternate"/></head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="../../../curso/trilha3/modulo-3-3.html" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">PT</a><a href="modulo-3-3.html" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">EN</a><a href="../../../es/curso/trilha3/modulo-3-3.html" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">ES</a></div>
+<!-- NAV -->
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4">
+<a class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300" href="../../index.html">
+<span class="text-2xl">🏭</span>
+<span class="font-bold text-lg hidden sm:inline">AI Strategy Factory</span>
+</a>
+<span class="text-neutral-600">|</span>
+<a class="text-sky-400 hover:text-sky-300 text-sm font-medium" href="https://inema.club" target="_blank">INEMA.CLUB</a>
+</div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors" href="../trilha1/index.html"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentals</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors" href="../trilha2/index.html"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Synthesis</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-purple-400 bg-purple-500/10" href="index.html"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Skills &amp; Agents</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors" href="../trilha4/index.html"><span class="sm:hidden">T4</span><span class="hidden sm:inline">The Factory</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors" href="../trilha5/index.html"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Consultant</span></a>
+<button class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2" id="theme-toggle">
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-dark-icon" viewbox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-light-icon" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- BREADCRUMB -->
+<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+<div class="flex items-center space-x-2 text-sm text-neutral-400">
+<a class="hover:text-purple-400" href="../../index.html">Start</a><span>/</span>
+<a class="hover:text-purple-400" href="index.html">Track 3</a><span>/</span>
+<span class="text-purple-400">Module 3.3</span>
+</div>
+</nav>
+<!-- HEADER -->
+<header class="bg-gradient-to-br from-purple-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<span class="inline-block px-3 py-1 bg-purple-500/20 text-purple-400 text-xs font-semibold rounded-full mb-4">MODULE 3.3</span>
+<h1 class="text-3xl sm:text-4xl font-bold mb-4">📄 The document skill (DocX/PPTX/Excel/PDF)</h1>
+<p class="text-lg text-neutral-400 max-w-3xl">The deliverables the client opens—Word, PowerPoint, Excel, PDF—are built with Python, not raw Markdown. Here you'll learn the four libraries and wrap them in a skill: gerar-entregavel.</p>
+<div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">6</div><div class="text-xs text-neutral-400">Topics</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">~45</div><div class="text-xs text-neutral-400">Minutes</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">Intermediate</div><div class="text-xs text-neutral-400">Level</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">Code</div><div class="text-xs text-neutral-400">Type</div></div>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<!-- SECAO 1 -->
+<section class="mb-16" id="topico-1">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">1</span>
+<h2 class="text-2xl font-bold">🎁 Why generate documents programmatically</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">The client doesn't open a <code class="text-purple-400">.md</code>. It opens a <strong class="text-purple-400">.docx</strong>, a <strong class="text-purple-400">.pptx</strong>, a spreadsheet <strong class="text-purple-400">.xlsx</strong> or one <strong class="text-purple-400">.pdf</strong>. Generating with code means formatted, repeatable output with your branding—that’s exactly what makes the package feel like elite consulting, not a chat draft.</p>
+<div class="rounded-2xl border border-purple-500/30 bg-dark-900/40 p-3 sm:p-4 mb-6 overflow-hidden">
+<svg aria-label="A source Markdown file opening as four file types (.docx, .pptx, .xlsx, .pdf) through the gerar-entregavel skill" class="w-full h-auto" role="img" viewbox="0 0 1000 250">
+<defs>
+<lineargradient id="m33-grad" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#c084fc"></stop><stop offset="1" stop-color="#a855f7"></stop></lineargradient>
+<filter height="180%" id="m33-glow" width="180%" x="-40%" y="-40%"><fegaussianblur result="b" stddeviation="1.8"></fegaussianblur><femerge><femergenode in="b"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter>
+<pattern height="32" id="m33-grid" patternunits="userSpaceOnUse" width="32"><circle cx="1.3" cy="1.3" fill="#a855f7" opacity="0.12" r="1.3"></circle></pattern>
+</defs>
+<rect fill="url(#m33-grid)" height="250" width="1000" x="0" y="0"></rect>
+<!-- Fonte: Markdown -->
+<g filter="url(#m33-glow)"><rect fill="#1a1230" height="66" rx="10" stroke="url(#m33-grad)" stroke-width="2.5" width="150" x="40" y="92"></rect></g>
+<text fill="#c084fc" font-family="Inter,sans-serif" font-size="17" font-weight="700" text-anchor="middle" x="115" y="122">Markdown</text>
+<text fill="#cbb6e6" font-family="Inter,sans-serif" font-size="12" text-anchor="middle" x="115" y="143">raw deliverable</text>
+<!-- Skill box no centro -->
+<g filter="url(#m33-glow)"><rect fill="#1a1230" height="78" rx="12" stroke="#a855f7" stroke-width="2.5" width="200" x="380" y="86"></rect></g>
+<text fill="#c084fc" font-family="Inter,sans-serif" font-size="16" font-weight="700" text-anchor="middle" x="480" y="118">gerar-entregavel</text>
+<text fill="#cbb6e6" font-family="Inter,sans-serif" font-size="12" text-anchor="middle" x="480" y="140">the docs skill</text>
+<!-- conexão fonte -> skill -->
+<path d="M190,125 L380,125" stroke="url(#m33-grad)" stroke-dasharray="6 6" stroke-width="2.5"></path>
+<!-- 4 saídas -->
+<rect fill="#0e1b26" height="44" rx="9" stroke="#38bdf8" stroke-width="2" width="150" x="700" y="22"></rect>
+<text fill="#bfe6ff" font-family="Inter,sans-serif" font-size="15" font-weight="700" text-anchor="middle" x="775" y="50">.docx</text>
+<rect fill="#1a1230" height="44" rx="9" stroke="url(#m33-grad)" stroke-width="2" width="150" x="700" y="80"></rect>
+<text fill="#c084fc" font-family="Inter,sans-serif" font-size="15" font-weight="700" text-anchor="middle" x="775" y="108">.pptx</text>
+<rect fill="#1a1230" height="44" rx="9" stroke="url(#m33-grad)" stroke-width="2" width="150" x="700" y="138"></rect>
+<text fill="#c084fc" font-family="Inter,sans-serif" font-size="15" font-weight="700" text-anchor="middle" x="775" y="166">.xlsx</text>
+<rect fill="#0e1b26" height="44" rx="9" stroke="#38bdf8" stroke-width="2" width="150" x="700" y="196"></rect>
+<text fill="#bfe6ff" font-family="Inter,sans-serif" font-size="15" font-weight="700" text-anchor="middle" x="775" y="224">.pdf</text>
+<!-- conexões skill -> saídas -->
+<path d="M580,118 L700,44" opacity="0.7" stroke="#a855f7" stroke-width="2"></path>
+<path d="M580,122 L700,102" opacity="0.7" stroke="#a855f7" stroke-width="2"></path>
+<path d="M580,128 L700,160" opacity="0.7" stroke="#a855f7" stroke-width="2"></path>
+<path d="M580,132 L700,218" opacity="0.7" stroke="#a855f7" stroke-width="2"></path>
+</svg>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">The foundation is simple: a virtual environment with the four libraries installed. Claude Code sets it up for you once—then all you have to do is generate.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-6">
+<p class="text-xs text-neutral-500 mb-2 font-mono">// setup: venv + the 4 libraries</p>
+<pre class="font-mono text-sm text-neutral-300 whitespace-pre-wrap leading-relaxed">python3 -m venv venv
+source venv/bin/activate
+pip install python-docx reportlab openpyxl python-pptx</pre>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Raw Markdown</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Client sees chat text, not a deliverable</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>No branding, no formatted table, no formula</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Doesn’t open directly in Word/PowerPoint/Excel</span></li>
+</ul>
+</div>
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ Generated document</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Formatted with your visual identity</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Repeatable: same code, new client</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Opens right away—it feels like an elite consulting firm</span></li>
+</ul>
+</div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Practical tip</h3>
+<p class="text-neutral-300 text-sm">You don’t type this code by hand. Ask Claude Code “create the venv and install the 4 document libraries” — it runs everything, resolves system Python conflicts, and gets you ready to generate. Your job is to direct the output format, not memorize the API.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">Formatted</div><p class="text-xs text-neutral-400">brand + style</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">Repeatable</div><p class="text-xs text-neutral-400">1 codebase, N clients</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">4 formats</div><p class="text-xs text-neutral-400">docx/pptx/xlsx/pdf</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">Professional</div><p class="text-xs text-neutral-400">what the client opens</p></div>
+</div>
+</section>
+<!-- SECAO 2 -->
+<section class="mb-16" id="topico-2">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">2</span>
+<h2 class="text-2xl font-bold">📘 <code>python-docx</code> — Word reports</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">This is the report library. You create a <code class="text-purple-400">Document()</code>, stacks <strong class="text-purple-400">headings</strong> (level 0 = title, 1-9 = sections), paragraphs, tables, and <em>runs</em> formatted (bold, color). At the end, <code class="text-purple-400">doc.save()</code>. It’s what generates the Factory’s final Report and SOW.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-6">
+<p class="text-xs text-neutral-500 mb-2 font-mono">// python-docx: title, section, table, and formatted run</p>
+<pre class="font-mono text-sm text-neutral-300 whitespace-pre-wrap leading-relaxed">from docx import Document
+from docx.shared import Pt, RGBColor
+
+doc = Document()
+doc.add_heading('Relatório de Estratégia de IA', level=0)
+doc.add_heading('Sumário Executivo', level=1)
+doc.add_paragraph('Texto do relatório aqui.')
+
+table = doc.add_table(rows=4, cols=3)
+table.style = 'Table Grid'
+
+p = doc.add_paragraph()
+run = p.add_run('Destaque')
+run.bold = True
+run.font.color.rgb = RGBColor(0x00, 0x00, 0xFF)
+
+doc.save('relatorio.docx')</pre>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Notice three things: the <code class="text-purple-400">level</code> controls the hierarchy, <code class="text-purple-400">table.style = 'Table Grid'</code> sets the boundaries, and the <em>run</em> is the smallest unit where you apply bold and color. That same structure becomes the final Report and the proposal document (SOW).</p>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Note</h3>
+<p class="text-neutral-300 text-sm">Ready-made styles save work: <code class="text-purple-400">'List Bullet'</code> e <code class="text-purple-400">'List Number'</code> for lists, <code class="text-purple-400">'Heading 1'</code> / <code class="text-purple-400">'Heading 2'</code> for sections. You describe the report structure; Claude Code chooses the styles.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">Document()</div><p class="text-xs text-neutral-400">creates the doc</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">Headings</div><p class="text-xs text-neutral-400">level 0–9</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">Tables</div><p class="text-xs text-neutral-400">Table Grid</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">Output</div><p class="text-xs text-neutral-400">Report + SOW</p></div>
+</div>
+</section>
+<!-- SECAO 3 -->
+<section class="mb-16" id="topico-3">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">3</span>
+<h2 class="text-2xl font-bold">📙 <code>python-pptx</code> — presentations (RGBColor, layouts)</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">The presentation library. You create a <code class="text-purple-400">Presentation()</code>, adds slides by choosing a <strong class="text-purple-400">layout</strong> (0 = Title, 6 = Blank, the most flexible), and draws <em>text boxes</em> with bullets and colors via <code class="text-purple-400">RGBColor</code>. It’s what generates the executive deck—the material that closes the sale in Track 5.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-6">
+<p class="text-xs text-neutral-500 mb-2 font-mono">// python-pptx: blank slide with centered title</p>
+<pre class="font-mono text-sm text-neutral-300 whitespace-pre-wrap leading-relaxed">from pptx import Presentation
+from pptx.util import Inches, Pt
+from pptx.dml.color import RGBColor   # NÃO RgbColor
+from pptx.enum.text import PP_ALIGN
+
+prs = Presentation()
+slide = prs.slides.add_slide(prs.slide_layouts[6])  # branco
+
+box = slide.shapes.add_textbox(Inches(0.5), Inches(2), Inches(9), Inches(1.5))
+p = box.text_frame.paragraphs[0]
+p.text = "Estratégia de IA"
+p.font.size = Pt(44)
+p.font.bold = True
+p.font.color.rgb = RGBColor(31, 78, 121)  # azul escuro
+p.alignment = PP_ALIGN.CENTER
+
+prs.save('deck.pptx')</pre>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">The layout <code class="text-purple-400">6</code> (Blank) is the most commonly used because it gives you full control: you position each box in inches. The first paragraph already exists in <code class="text-purple-400">paragraphs[0]</code>; for the following bullets, use <code class="text-purple-400">add_paragraph()</code>.</p>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> The gotcha that trips everyone up</h3>
+<p class="text-neutral-300 text-sm">É <strong class="text-purple-400">RGBColor</strong> (uppercase RGB), not <code class="text-red-400">RgbColor</code>. Getting this capitalization wrong causes an <code>ImportError</code> that seems mysterious. Color is specified with RGB integers: <code class="text-purple-400">RGBColor(31, 78, 121)</code> = professional dark blue.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">Presentation()</div><p class="text-xs text-neutral-400">creates the deck</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">Layout 6</div><p class="text-xs text-neutral-400">white, flexible</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">RGBColor</div><p class="text-xs text-neutral-400">not RgbColor</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">Output</div><p class="text-xs text-neutral-400">executive deck</p></div>
+</div>
+</section>
+<!-- SECAO 4 -->
+<section class="mb-16" id="topico-4">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">4</span>
+<h2 class="text-2xl font-bold">📊 <code>openpyxl</code> — Excel with a color convention</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">The spreadsheet library—and this is where the ROI calculator lives. Three golden rules: indexing <strong class="text-purple-400">1-based</strong> (A1 = row 1, column 1), <strong class="text-purple-400">formulas</strong> instead of fixed values, and the <strong class="text-purple-400">color convention</strong> financial. Anyone who delivers Excel without formulas delivers a screenshot, not a model.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-6">
+<p class="text-xs text-neutral-500 mb-2 font-mono">// openpyxl: formula + input/formula colors</p>
+<pre class="font-mono text-sm text-neutral-300 whitespace-pre-wrap leading-relaxed">from openpyxl import Workbook
+from openpyxl.styles import Font, PatternFill
+
+wb = Workbook(); ws = wb.active
+ws.title = "ROI"
+
+ws['A1'] = 'Premissa'           # 1-based: A1
+ws['B5'] = '=SUM(B1:B4)'        # fórmula, nunca valor fixo
+
+input_font   = Font(color='0000FF')  # azul = input do usuário
+formula_font = Font(color='000000')  # preto = fórmula
+ws['B1'].font = input_font
+ws['B5'].font = formula_font
+
+wb.save('roi.xlsx')</pre>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">The color convention below is standard in financial modeling—any analyst who opens the spreadsheet will immediately understand what’s an input, what’s a calculation, and what comes from outside. Always apply it in the ROI calculator:</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-6">
+<h4 class="font-semibold text-purple-400 mb-4 flex items-center"><span class="mr-2">🎨</span> Color convention (required)</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-3"><span class="inline-block w-4 h-4 rounded-sm mt-0.5 flex-shrink-0" style="background:#0000FF"></span><span><strong class="text-purple-400">Blue <code>0000FF</code></strong> — user inputs (adjustable assumptions)</span></li>
+<li class="flex items-start space-x-3"><span class="inline-block w-4 h-4 rounded-sm mt-0.5 flex-shrink-0 border border-neutral-500" style="background:#000000"></span><span><strong class="text-purple-400">Black <code>000000</code></strong> — formulas and calculations</span></li>
+<li class="flex items-start space-x-3"><span class="inline-block w-4 h-4 rounded-sm mt-0.5 flex-shrink-0" style="background:#008000"></span><span><strong class="text-purple-400">Green <code>008000</code></strong> — links between tabs (other worksheets)</span></li>
+<li class="flex items-start space-x-3"><span class="inline-block w-4 h-4 rounded-sm mt-0.5 flex-shrink-0" style="background:#FF0000"></span><span><strong class="text-purple-400">Red <code>FF0000</code></strong> — references to external files</span></li>
+<li class="flex items-start space-x-3"><span class="inline-block w-4 h-4 rounded-sm mt-0.5 flex-shrink-0" style="background:#FFFF00"></span><span><strong class="text-purple-400">Yellow (background) <code>FFFF00</code></strong> — key assumptions highlighted</span></li>
+</ul>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Practical tip</h3>
+<p class="text-neutral-300 text-sm">Never calculate in Python and paste in the number. Put assumptions in their own cells (blue) and reference them with formulas (black). That way, the client can change an assumption and the entire spreadsheet recalculates—that’s what separates a model from a dead report.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">Workbook()</div><p class="text-xs text-neutral-400">creates the spreadsheet</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">1-based</div><p class="text-xs text-neutral-400">A1 = (1,1)</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">Formulas</div><p class="text-xs text-neutral-400">never a fixed value</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">Colors</div><p class="text-xs text-neutral-400">ROI calculator</p></div>
+</div>
+</section>
+<!-- SECAO 5 -->
+<section class="mb-16" id="topico-5">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">5</span>
+<h2 class="text-2xl font-bold">📕 <code>reportlab</code> — PDF (Platypus)</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">The PDF library. The recommended method is <strong class="text-purple-400">Platypus</strong>: you build a <code class="text-purple-400">story</code> (list of elements—paragraphs, spacers, tables) and calls <code class="text-purple-400">doc.build(story)</code> at the end. The PDF only exists after the build.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-6">
+<p class="text-xs text-neutral-500 mb-2 font-mono">// reportlab: assembles the story and builds at the end</p>
+<pre class="font-mono text-sm text-neutral-300 whitespace-pre-wrap leading-relaxed">from reportlab.lib.pagesizes import letter
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
+from reportlab.lib.units import inch
+
+doc = SimpleDocTemplate('saida.pdf', pagesize=letter)
+styles = getSampleStyleSheet()
+story = []
+story.append(Paragraph('Estratégia de IA', styles['Heading1']))
+story.append(Spacer(1, 0.5 * inch))
+story.append(Paragraph('Corpo do documento.', styles['Normal']))
+doc.build(story)   # constrói no fim</pre>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Practical tip</h3>
+<p class="text-neutral-300 text-sm">O <code class="text-purple-400">build</code> comes in the <strong class="text-purple-400">END</strong>. Everything you want in the PDF needs to be in the <code class="text-purple-400">story</code> <em>before</em> of calling <code class="text-purple-400">doc.build()</code>. Forgot to append something? It won’t show up in the file.</p>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Notice that the pattern is always the same across the four libs—and you can diagram the skill flow <code class="text-purple-400">gerar-entregavel</code> as four linear steps:</p>
+<div class="space-y-6 mb-6">
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">1</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2">Input Markdown</h4><p class="text-neutral-300 text-sm">The skill receives the deliverable in Markdown and the desired target format.</p></div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">2</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2">Choose the format</h4><p class="text-neutral-300 text-sm">docx / pptx / xlsx / pdf → selects the right library.</p></div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">3</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2">Build the elements</h4><p class="text-neutral-300 text-sm">Headings, tables, formulas, colors—according to each format's conventions.</p></div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">4</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2">Save the file</h4><p class="text-neutral-300 text-sm"><code class="text-purple-400">.save()</code> in all three; <code class="text-purple-400">.build(story)</code> in the PDF. It goes in the client’s folder.</p></div>
+</div>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">Platypus</div><p class="text-xs text-neutral-400">element story</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">append</div><p class="text-xs text-neutral-400">move it into the story</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">build()</div><p class="text-xs text-neutral-400">at the end, always</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">Output</div><p class="text-xs text-neutral-400">Client PDF</p></div>
+</div>
+</section>
+<!-- SECAO 6 -->
+<section class="mb-16" id="topico-6">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">6</span>
+<h2 class="text-2xl font-bold">📦 Package as a Skill <code>gerar-entregavel</code></h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">You don’t want to remember four APIs every time. Wrap the four libraries in a single skill: <strong class="text-purple-400">"given a Markdown file, generate the .docx/.pptx/.xlsx/.pdf"</strong>. The skill provides the knowledge; you just specify the format. It's the Factory's output engine.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-6">
+<p class="text-xs text-neutral-500 mb-2 font-mono">// SKILL.md — gerar-entregavel</p>
+<pre class="font-mono text-sm text-neutral-300 whitespace-pre-wrap leading-relaxed">---
+name: gerar-entregavel
+description: Use para transformar um entregável em Markdown
+  num arquivo final — .docx, .pptx, .xlsx ou .pdf — usando
+  python-docx, python-pptx, openpyxl ou reportlab.
+---
+
+# Gerar Entregável
+
+## Passos
+1. Ler o Markdown e o formato-alvo.
+2. Escolher a biblioteca (docx / pptx / xlsx / pdf).
+3. Montar o documento (headings, tabelas, cores).
+4. Salvar na pasta de saída do cliente.</pre>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">A <code class="text-purple-400">description</code> well-written is what makes Claude Code <em>trigger</em> the skill at the right time. The steps are the playbook it follows. From now on, “turn this diagnosis into a PowerPoint” is a command—not a project.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ Good docs skill</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Choose the right format for the deliverable</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Uses formulas in Excel, with a color-coding convention</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Import <code>RGBColor</code> correct in the pptx</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Common mistakes</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Deliver raw Markdown without generating a file</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Fixed values in Excel instead of formulas</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Write <code>RgbColor</code> and breaks the import</span></li>
+</ul>
+</div>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">1 skill</div><p class="text-xs text-neutral-400">4 libraries</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">description</div><p class="text-xs text-neutral-400">triggers right away</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">Steps</div><p class="text-xs text-neutral-400">fixed script</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">Reuse</div><p class="text-xs text-neutral-400">output engine</p></div>
+</div>
+</section>
+<!-- RESUMO + MISSAO -->
+<section class="mb-12">
+<div class="bg-gradient-to-br from-purple-900/40 via-dark-800 to-dark-800 rounded-xl border border-purple-500/30 p-8">
+<h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">✅</span> Module summary</h2>
+<div class="space-y-4 mb-8">
+<div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Documents are generated with Python</strong><span class="text-neutral-400"> — formatted and repeatable, not raw Markdown.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Each library covers one format</strong><span class="text-neutral-400"> — docx (Word), pptx (deck), xlsx (Excel), pdf (reportlab).</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Excel uses formulas + color conventions</strong><span class="text-neutral-400"> — blue for input, black for formulas, and the rest of the palette.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Everything wrapped in gerar-entregavel</strong><span class="text-neutral-400"> — one skill, any output format.</span></div></div>
+</div>
+<div class="bg-dark-900/50 rounded-lg p-6 border border-primary/30 mb-8">
+<h3 class="font-bold text-primary mb-2 flex items-center"><span class="mr-2">🎯</span> Mission 3.3 — Markdown becomes a package</h3>
+<p class="text-neutral-300 text-sm mb-3">Turn a single Markdown file into two client files:</p>
+<ol class="space-y-2 text-neutral-300 text-sm list-decimal list-inside">
+<li>Get 1 deliverable in Markdown (e.g., a mini-diagnosis from 3.2).</li>
+<li>Generate 1 <code class="text-purple-400">.docx</code> with python-docx.</li>
+<li>Generate 1 <code class="text-purple-400">.pptx</code> with python-pptx (watch out: RGBColor).</li>
+<li>Wrap it in the gerar-entregavel skill.</li>
+</ol>
+<p class="text-neutral-400 text-xs mt-3"><strong>Success:</strong> 1 <code class="text-purple-400">.docx</code> + 1 <code class="text-purple-400">.pptx</code> generated from the same Markdown. <strong>What you gained:</strong> the Factory's output engine—any prompt becomes a client file.</p>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+<h3 class="font-semibold text-purple-400 mb-2">Next module:</h3>
+<p class="text-neutral-300">3.4 — Build your subagent (researcher &amp; writer)</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors" href="index.html">← Back to Track</a>
+<a class="flex-1 text-center px-6 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-500 transition-colors" href="modulo-3-4.html">Next Module →</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="border-t border-dark-600 py-8 mt-8">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+<p>AI Strategy Factory · Module 3.3 · <a class="text-sky-400 hover:text-sky-300" href="https://inema.club" target="_blank">INEMA.CLUB</a></p>
+</div>
+</footer>
+<script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const darkIcon = document.getElementById('theme-toggle-dark-icon');
+    const lightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light') { html.classList.remove('dark'); darkIcon.classList.remove('hidden'); }
+    else { lightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      darkIcon.classList.toggle('hidden'); lightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Module 1.1 · The Opportunity | AI Strategy Factory</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: {
+      primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' }
+    } } } }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    /* Light mode - base */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    /* Light mode - emerald (T1) */
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5,150,105,0.12); }
+    html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5,150,105,0.08); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5,150,105,0.25); }
+    html:not(.dark) .hover\:bg-emerald-500\/30:hover { background-color: rgba(5,150,105,0.18); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,0.08); }
+    /* Light mode - cores auxiliares */
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37,99,235,0.12); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37,99,235,0.25); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,0.08); }
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,0.08); }
+    html:not(.dark) .text-teal-400 { color: #0d9488; }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13,148,136,0.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-500\/20 { background-color: rgba(185,28,28,0.10); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185,28,28,0.25); }
+    /* Light mode - remove gradientes + especiais */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,0.22); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+    /* Dark - bordas suaves */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+  </style>
+<link href="https://inematds.github.io/aiestrategia/curso/trilha1/modulo-1-1.html" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/aiestrategia/en/curso/trilha1/modulo-1-1.html" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/aiestrategia/es/curso/trilha1/modulo-1-1.html" hreflang="es" rel="alternate"/></head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="../../../curso/trilha1/modulo-1-1.html" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">PT</a><a href="modulo-1-1.html" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">EN</a><a href="../../../es/curso/trilha1/modulo-1-1.html" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">ES</a></div>
+<!-- NAV -->
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4">
+<a class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300" href="../../index.html">
+<span class="text-2xl">🏭</span>
+<span class="font-bold text-lg hidden sm:inline">AI Strategy Factory</span>
+</a>
+<span class="text-neutral-600">|</span>
+<a class="text-sky-400 hover:text-sky-300 text-sm font-medium" href="https://inema.club" target="_blank">INEMA.CLUB</a>
+</div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10" href="index.html"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentals</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors" href="../trilha2/index.html"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Synthesis</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors" href="../trilha3/index.html"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Skills &amp; Agents</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors" href="../trilha4/index.html"><span class="sm:hidden">T4</span><span class="hidden sm:inline">The Factory</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors" href="../trilha5/index.html"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Consultant</span></a>
+<button class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2" id="theme-toggle">
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-dark-icon" viewbox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-light-icon" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- BREADCRUMB -->
+<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+<div class="flex items-center space-x-2 text-sm text-neutral-400">
+<a class="hover:text-emerald-400" href="../../index.html">Start</a><span>/</span>
+<a class="hover:text-emerald-400" href="index.html">Track 1</a><span>/</span>
+<span class="text-emerald-400">Module 1.1</span>
+</div>
+</nav>
+<!-- HEADER -->
+<header class="bg-gradient-to-br from-emerald-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<span class="inline-block px-3 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-semibold rounded-full mb-4">MODULE 1.1</span>
+<h1 class="text-3xl sm:text-4xl font-bold mb-4">📈 The Opportunity: AI + Consulting Now</h1>
+<p class="text-lg text-neutral-400 max-w-3xl">Every company wants an AI strategy. Almost none know how to execute it. That gap is your entry point — and the thesis “minimum input, maximum output” is how you fill it.</p>
+<div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">6</div><div class="text-xs text-neutral-400">Topics</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">~40</div><div class="text-xs text-neutral-400">Minutes</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Basic</div><div class="text-xs text-neutral-400">Level</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Vision</div><div class="text-xs text-neutral-400">Type</div></div>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<!-- SECAO 1 -->
+<section class="mb-16" id="topico-1">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">1</span>
+<h2 class="text-2xl font-bold">📅 Why 2026 Is the Right Time</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">There is a <strong class="text-emerald-400">void</strong> huge gap between wanting AI and knowing how to implement AI. Boards expect AI strategy from their teams; the teams don't know where to start. Whoever brings clarity at this moment wins the market—and demand proves the size of the wave.</p>
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📊</span> The demand numbers</h3>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-0.5">•</span><span><strong>28.974</strong> enrolled only in Wharton's "AI Strategy &amp; Governance" course (Coursera).</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-0.5">•</span><span><strong>2.5 million</strong> people in Andrew Ng's "AI For Everyone" — hunger for AI on a global scale.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-0.5">•</span><span>Executive AI strategy programs cost from <strong>US$1.000 a US$28.000</strong>.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-0.5">•</span><span><strong>88%</strong> of companies already use AI, but only <strong>6%</strong> extract real value (McKinsey, 2025) — the gap you fill.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-0.5">•</span><span>AI consulting market: <strong>~US$22 bi → US$72,8 bi até 2030</strong> (+31.6%/year). And there aren’t enough people: 44% of executives are held back by a lack of expertise.</span></li>
+</ul>
+</div>
+<div class="rounded-2xl border border-emerald-500/30 bg-dark-900/40 p-3 sm:p-4 mb-6 overflow-hidden">
+<svg aria-label="Comparison of two bars: many companies want AI, few know how to execute; the difference is your opportunity" class="w-full h-auto" role="img" viewbox="0 0 1000 270">
+<defs>
+<lineargradient id="m11-grad" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#34d399"></stop><stop offset="1" stop-color="#10b981"></stop></lineargradient>
+<filter height="180%" id="m11-glow" width="180%" x="-40%" y="-40%"><fegaussianblur result="b" stddeviation="1.8"></fegaussianblur><femerge><femergenode in="b"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter>
+<pattern height="32" id="m11-grid" patternunits="userSpaceOnUse" width="32"><circle cx="1.3" cy="1.3" fill="#10b981" opacity="0.12" r="1.3"></circle></pattern>
+</defs>
+<rect fill="url(#m11-grid)" height="270" width="1000" x="0" y="0"></rect>
+<line stroke="#374151" stroke-width="2" x1="80" x2="940" y1="220" y2="220"></line>
+<!-- Barra 1: querem IA (alta) -->
+<g filter="url(#m11-glow)"><rect fill="#0e2018" height="160" rx="10" stroke="url(#m11-grad)" stroke-width="2.5" width="180" x="200" y="60"></rect></g>
+<text fill="#34d399" font-family="Inter,sans-serif" font-size="30" font-weight="700" text-anchor="middle" x="290" y="120">~85%</text>
+<text fill="#8be0c0" font-family="Inter,sans-serif" font-size="13" text-anchor="middle" x="290" y="148">want to use AI</text>
+<text fill="#e5e7eb" font-family="Inter,sans-serif" font-size="14" font-weight="600" text-anchor="middle" x="290" y="244">Intent</text>
+<!-- Barra 2: sabem executar (baixa) -->
+<rect fill="#0e1b26" height="60" rx="10" stroke="#38bdf8" stroke-width="2" width="180" x="620" y="160"></rect>
+<text fill="#bfe6ff" font-family="Inter,sans-serif" font-size="22" font-weight="700" text-anchor="middle" x="710" y="198">few</text>
+<text fill="#e5e7eb" font-family="Inter,sans-serif" font-size="14" font-weight="600" text-anchor="middle" x="710" y="244">Execution</text>
+<!-- gap -->
+<path d="M410,90 L590,150" opacity="0.8" stroke="#fbbf24" stroke-dasharray="7 7" stroke-width="2"></path>
+<text fill="#fbbf24" font-family="Inter,sans-serif" font-size="14" font-weight="600" text-anchor="middle" x="500" y="100">your opportunity</text>
+</svg>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Vacuum</div><p class="text-xs text-neutral-400">intent &gt; execution</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Demand</div><p class="text-xs text-neutral-400">millions studying</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Urgency</div><p class="text-xs text-neutral-400">strategy "for 2026"</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Advantage</div><p class="text-xs text-neutral-400">of who delivers</p></div>
+</div>
+</section>
+<!-- SECAO 2 -->
+<section class="mb-16" id="topico-2">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">2</span>
+<h2 class="text-2xl font-bold">🧩 What AI consulting looks like in practice</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Forget the glamour. AI consulting is a simple, repeatable process: discover where the company is, find where AI creates real value, and deliver a plan the client can execute. That's exactly what your Factory will automate.</p>
+<div class="space-y-6 mb-6">
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">1</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2">Diagnosis</h4><p class="text-neutral-300 text-sm">Maps the stack, department pain points, and AI maturity (scale of 1–5). Where the company really is.</p></div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">2</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2">Opportunity</h4><p class="text-neutral-300 text-sm">Identifies quick wins (low effort, high impact) and use cases by department. Where AI pays off.</p></div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">3</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2">Plan + delivery</h4><p class="text-neutral-300 text-sm">30/60/90 roadmap, ROI, governance, and the deck/SOW. Something the client can open on Monday and start executing.</p></div>
+</div>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Diagnosis</div><p class="text-xs text-neutral-400">where it stands</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Value</div><p class="text-xs text-neutral-400">where AI pays off</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Plan</div><p class="text-xs text-neutral-400">actionable roadmap</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Delivery</div><p class="text-xs text-neutral-400">deck + SOW</p></div>
+</div>
+</section>
+<!-- SECAO 3 -->
+<section class="mb-16" id="topico-3">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">3</span>
+<h2 class="text-2xl font-bold">⚡ The thesis: minimal input, maximum output</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">This is the idea that guides the entire course. You won't sell hours. You'll build a machine once and deliver packages endlessly—with almost zero effort per delivery.</p>
+<div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">🎯</span> The leverage principle</h3>
+<p class="text-neutral-300 mb-4">Two text boxes (name + description) go in. Nineteen deliverables come out. The intellectual work is already built into the machine; each new deliverable just takes the push of a button.</p>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">•</span><span>Freelancers trade time for money—a low ceiling.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">•</span><span>A product replaces one-off work with endless deliveries — high ceiling.</span></li>
+</ul>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Practical tip</h3>
+<p class="text-neutral-300 text-sm">Whenever you come across a repetitive task in the course, ask: “Could this become part of the machine?” If so, turn it into a reusable skill or prompt—you’re building your asset, not doing a side gig.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Leverage</div><p class="text-xs text-neutral-400">1 build, N deliverables</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Marginal cost</div><p class="text-xs text-neutral-400">almost zero</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Productize</div><p class="text-xs text-neutral-400">machine &gt; hour</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Scale</div><p class="text-xs text-neutral-400">high ceiling</p></div>
+</div>
+</section>
+<!-- SECAO 4 -->
+<section class="mb-16" id="topico-4">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">4</span>
+<h2 class="text-2xl font-bold">💰 From tool to income</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">The same engine opens three monetization paths. You choose — and can combine them. The important thing is to understand what to promise (and what <em>no</em> promise) in each one.</p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><h4 class="font-semibold text-emerald-400 mb-2">🏢 At your company</h4><p class="text-neutral-300 text-sm">Internal diagnosis that prioritizes AI projects and justifies investment. Immediate value, zero risk.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><h4 class="font-semibold text-emerald-400 mb-2">🤝 As a project</h4><p class="text-neutral-300 text-sm">Sell the package to a client. Deliver in days what would take weeks to do manually.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><h4 class="font-semibold text-emerald-400 mb-2">🔁 Productized</h4><p class="text-neutral-300 text-sm">A recurring offer: diagnosis + follow-up. Predictable revenue, high margins.</p></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ What to promise</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>A professional, fast package based on real frameworks</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Clear priorities and an actionable roadmap</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>A solid starting point for the AI strategy</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ What NOT to promise</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Absolute truth — AI researches, but you review and validate</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Execution-ready—the plan needs people to run it</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Replace the client’s judgment about their business</span></li>
+</ul>
+</div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Proof that it makes money</h3>
+<p class="text-neutral-300 text-sm">Jason Liu (AI consultant) scaled from <strong>US$170/hora para US$100.000/mês em um ano</strong> — by no longer charging for time and productizing the offer. The engine you’re going to build is exactly this kind of lever.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Internal</div><p class="text-xs text-neutral-400">zero risk</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Project</div><p class="text-xs text-neutral-400">high-ticket</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Retainer</div><p class="text-xs text-neutral-400">predictable</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Honesty</div><p class="text-xs text-neutral-400">always review</p></div>
+</div>
+</section>
+<!-- SECAO 5 -->
+<section class="mb-16" id="topico-5">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">5</span>
+<h2 class="text-2xl font-bold">🚫 The myth of "I need to be a programmer"</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">This is the belief that holds most people back—and it's wrong. Claude Code writes, installs, and runs the code. Your role is to <strong class="text-emerald-400">direct</strong>: describe the goal, review the result, and request adjustments.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ What YOU do</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Describe what you want in Portuguese</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Reviews, tests, and gives feedback</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Decides what goes into the package</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ What CLAUDE CODE does</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">→</span><span>Write and fix the Python code</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">→</span><span>Install dependencies and configure .env</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">→</span><span>Runs the Factory and fixes the errors</span></li>
+</ul>
+</div>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-6">
+<p class="text-xs text-neutral-500 mb-2 font-mono">// example: what you type to Claude Code</p>
+<pre class="font-mono text-sm text-neutral-300 whitespace-pre-wrap leading-relaxed">Clone the repo https://github.com/inematds/ai-strategy-factory,
+help me configure the API keys and run a quick
+analysis of the company "Stripe".</pre>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Orchestrate</div><p class="text-xs text-neutral-400">direct &gt; type</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Review</div><p class="text-xs text-neutral-400">you in control</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Iterate</div><p class="text-xs text-neutral-400">by conversation</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">No fear</div><p class="text-xs text-neutral-400">errors are part of it</p></div>
+</div>
+</section>
+<!-- SECAO 6 -->
+<section class="mb-16" id="topico-6">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">6</span>
+<h2 class="text-2xl font-bold">🗺️ How the course works</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Five tracks, five levels. You move up one at a time and never get lost: each module wraps up with a <strong class="text-emerald-400">Mission</strong> a hands-on exercise that gives you a reusable resource.</p>
+<div class="space-y-3 mb-6">
+<div class="flex items-center space-x-3 bg-dark-800 rounded-lg p-4 border border-dark-600"><span class="text-lg">🥉</span><div><strong class="text-emerald-400">Level 1 · Apprentice</strong><span class="text-neutral-400 text-sm"> — fundamentals and setup (you’re here)</span></div></div>
+<div class="flex items-center space-x-3 bg-dark-800 rounded-lg p-4 border border-dark-600"><span class="text-lg">🥈</span><div><strong class="text-blue-400">Level 2 · Synthesizer</strong><span class="text-neutral-400 text-sm"> — frameworks + knowledge base</span></div></div>
+<div class="flex items-center space-x-3 bg-dark-800 rounded-lg p-4 border border-dark-600"><span class="text-lg">🥇</span><div><strong class="text-purple-400">Level 3 · Builder</strong><span class="text-neutral-400 text-sm"> — reusable skills and agents</span></div></div>
+<div class="flex items-center space-x-3 bg-dark-800 rounded-lg p-4 border border-dark-600"><span class="text-lg">💎</span><div><strong class="text-amber-400">Level 4 · Engineer</strong><span class="text-neutral-400 text-sm"> — the end-to-end Factory</span></div></div>
+<div class="flex items-center space-x-3 bg-dark-800 rounded-lg p-4 border border-dark-600"><span class="text-lg">👑</span><div><strong class="text-teal-400">Level 5 · Consultant</strong><span class="text-neutral-400 text-sm"> — delivery, sales, and capstone</span></div></div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> How to make the most of it</h3>
+<p class="text-neutral-300 text-sm">Complete each Mission before moving on. The course builds on itself: the resource you create in one module becomes an input for the next. By the end, the entire arsenal is yours.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Levels</div><p class="text-xs text-neutral-400">clear progression</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Missions</div><p class="text-xs text-neutral-400">concrete payoff</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Resources</div><p class="text-xs text-neutral-400">accumulated arsenal</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-semibold text-sm mb-1">Capstone</div><p class="text-xs text-neutral-400">real client</p></div>
+</div>
+</section>
+<!-- RESUMO + MISSAO -->
+<section class="mb-12">
+<div class="bg-gradient-to-br from-emerald-900/40 via-dark-800 to-dark-800 rounded-xl border border-emerald-500/30 p-8">
+<h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">✅</span> Module summary</h2>
+<div class="space-y-4 mb-8">
+<div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">The gap is the opportunity</strong><span class="text-neutral-400"> — everyone wants AI; few know how to implement it.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">Consulting = diagnosis → value → plan → delivery</strong><span class="text-neutral-400"> — and the Factory automates that.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">Minimal input, maximum output</strong><span class="text-neutral-400"> — build the machine once, deliver infinitely.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-neutral-100">You don’t need to program</strong><span class="text-neutral-400"> — orchestrated through Claude Code.</span></div></div>
+</div>
+<div class="bg-dark-900/50 rounded-lg p-6 border border-primary/30 mb-8">
+<h3 class="font-bold text-primary mb-2 flex items-center"><span class="mr-2">🎯</span> Mission 1.1 — Your consultant thesis</h3>
+<p class="text-neutral-300 text-sm mb-3">Write 3 sentences (the foundation of your positioning, which we'll refine in Track 5):</p>
+<ol class="space-y-2 text-neutral-300 text-sm list-decimal list-inside">
+<li><strong>Niche:</strong> what kind of company do you want to serve?</li>
+<li><strong>Pain point:</strong> what AI problem do they have today?</li>
+<li><strong>Offer:</strong> what package will you deliver to solve it?</li>
+</ol>
+<p class="text-neutral-400 text-xs mt-3"><strong>Success:</strong> 3 sentences written. <strong>What you gained:</strong> the seed of your offer—and clarity on who you’re building the Factory for.</p>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+<h3 class="font-semibold text-emerald-400 mb-2">Next module:</h3>
+<p class="text-neutral-300">1.2 — Anatomy of the Factory (the 19 deliverables and the 3-phase pipeline)</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors" href="index.html">← Back to Track</a>
+<a class="flex-1 text-center px-6 py-3 bg-emerald-600 text-white rounded-lg font-semibold hover:bg-emerald-500 transition-colors" href="modulo-1-2.html">Next Module →</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="border-t border-dark-600 py-8 mt-8">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+<p>AI Strategy Factory · Module 1.1 · <a class="text-sky-400 hover:text-sky-300" href="https://inema.club" target="_blank">INEMA.CLUB</a></p>
+</div>
+</footer>
+<script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const darkIcon = document.getElementById('theme-toggle-dark-icon');
+    const lightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light') { html.classList.remove('dark'); darkIcon.classList.remove('hidden'); }
+    else { lightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      darkIcon.classList.toggle('hidden'); lightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

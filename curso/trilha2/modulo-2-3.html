@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Módulo 2.3 · Seu cérebro de consultor | Fábrica de Estratégia de IA</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: {
+      primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' }
+    } } } }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    /* Light mode - base */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    /* Light mode - acento blue (T2) */
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37,99,235,0.12); }
+    html:not(.dark) .bg-blue-500\/10 { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37,99,235,0.25); }
+    html:not(.dark) .hover\:bg-blue-500\/30:hover { background-color: rgba(37,99,235,0.18); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,0.08); }
+    /* Light mode - cores auxiliares */
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5,150,105,0.12); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5,150,105,0.25); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,0.08); }
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,0.08); }
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,0.08); }
+    html:not(.dark) .text-teal-400 { color: #0d9488; }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13,148,136,0.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-500\/20 { background-color: rgba(185,28,28,0.10); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185,28,28,0.25); }
+    /* Light mode - remove gradientes + especiais */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,0.22); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+    /* Dark - bordas suaves */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+  </style>
+<link href="https://inematds.github.io/aiestrategia/curso/trilha2/modulo-2-3.html" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/aiestrategia/en/curso/trilha2/modulo-2-3.html" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/aiestrategia/es/curso/trilha2/modulo-2-3.html" hreflang="es" rel="alternate"/></head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="modulo-2-3.html" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">PT</a><a href="../../en/curso/trilha2/modulo-2-3.html" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">EN</a><a href="../../es/curso/trilha2/modulo-2-3.html" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">ES</a></div>
+<!-- NAV -->
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4">
+<a class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300" href="../../index.html">
+<span class="text-2xl">🏭</span>
+<span class="font-bold text-lg hidden sm:inline">Fábrica de Estratégia de IA</span>
+</a>
+<span class="text-neutral-600">|</span>
+<a class="text-sky-400 hover:text-sky-300 text-sm font-medium" href="https://inema.club" target="_blank">INEMA.CLUB</a>
+</div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors" href="../trilha1/index.html"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentos</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10" href="index.html"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Síntese</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors" href="../trilha3/index.html"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Skills &amp; Agentes</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors" href="../trilha4/index.html"><span class="sm:hidden">T4</span><span class="hidden sm:inline">A Fábrica</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors" href="../trilha5/index.html"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Consultor</span></a>
+<button class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2" id="theme-toggle">
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-dark-icon" viewbox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-light-icon" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- BREADCRUMB -->
+<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+<div class="flex items-center space-x-2 text-sm text-neutral-400">
+<a class="hover:text-blue-400" href="../../index.html">Início</a><span>/</span>
+<a class="hover:text-blue-400" href="index.html">Trilha 2</a><span>/</span>
+<span class="text-blue-400">Módulo 2.3</span>
+</div>
+</nav>
+<!-- HEADER -->
+<header class="bg-gradient-to-br from-blue-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-4">MÓDULO 2.3</span>
+<h1 class="text-3xl sm:text-4xl font-bold mb-4">🧠 Seu cérebro de consultor</h1>
+<p class="text-lg text-neutral-400 max-w-3xl">Cheat sheets soltos não bastam. Eles viram poder quando organizados numa base que o Claude Code consulta sob demanda. Aqui você monta sua biblioteca pessoal de consultor: curada, versionada e injetável sem estourar tokens.</p>
+<div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">~40</div><div class="text-xs text-neutral-400">Minutos</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Interm.</div><div class="text-xs text-neutral-400">Nível</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Ativo</div><div class="text-xs text-neutral-400">Tipo</div></div>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<!-- SECAO 1 -->
+<section class="mb-16" id="topico-1">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span>
+<h2 class="text-2xl font-bold">💎 Por que destilar conhecimento</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">A regra que guia tudo: <strong class="text-blue-400">gerar texto é barato; espaço na janela de contexto é caro.</strong> Destilar é trocar volume por densidade. Cada token que entra precisa pagar imposto de relevância — ou está roubando lugar de algo melhor.</p>
+<div class="rounded-2xl border border-blue-500/30 bg-dark-900/40 p-3 sm:p-4 mb-6 overflow-hidden">
+<svg aria-label="Comparação de duas barras: contexto enchido de volume com pouco sinal versus contexto destilado com alta densidade de valor" class="w-full h-auto" role="img" viewbox="0 0 1000 220">
+<defs>
+<lineargradient id="m23-grad" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#60a5fa"></stop><stop offset="1" stop-color="#3b82f6"></stop></lineargradient>
+<filter height="180%" id="m23-glow" width="180%" x="-40%" y="-40%"><fegaussianblur result="b" stddeviation="1.8"></fegaussianblur><femerge><femergenode in="b"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter>
+<pattern height="32" id="m23-grid" patternunits="userSpaceOnUse" width="32"><circle cx="1.3" cy="1.3" fill="#3b82f6" opacity="0.12" r="1.3"></circle></pattern>
+</defs>
+<rect fill="url(#m23-grid)" height="220" width="1000" x="0" y="0"></rect>
+<line stroke="#374151" stroke-width="2" x1="80" x2="940" y1="180" y2="180"></line>
+<!-- barra volume -->
+<rect fill="#1b1014" height="130" rx="10" stroke="#7f1d1d" stroke-width="2" width="180" x="200" y="50"></rect>
+<text fill="#fca5a5" font-family="Inter,sans-serif" font-size="20" font-weight="700" text-anchor="middle" x="290" y="100">volume</text>
+<text fill="#f87171" font-family="Inter,sans-serif" font-size="12" text-anchor="middle" x="290" y="124">muito token,</text>
+<text fill="#f87171" font-family="Inter,sans-serif" font-size="12" text-anchor="middle" x="290" y="142">pouco sinal</text>
+<text fill="#e5e7eb" font-family="Inter,sans-serif" font-size="13" font-weight="600" text-anchor="middle" x="290" y="204">PDF cru</text>
+<!-- barra densidade -->
+<g filter="url(#m23-glow)"><rect fill="#0e1622" height="94" rx="10" stroke="url(#m23-grad)" stroke-width="2.5" width="180" x="620" y="86"></rect></g>
+<text fill="#93c5fd" font-family="Inter,sans-serif" font-size="20" font-weight="700" text-anchor="middle" x="710" y="126">densidade</text>
+<text fill="#7dd3fc" font-family="Inter,sans-serif" font-size="12" text-anchor="middle" x="710" y="150">poucos tokens, só ouro</text>
+<text fill="#e5e7eb" font-family="Inter,sans-serif" font-size="13" font-weight="600" text-anchor="middle" x="710" y="204">cheat sheet</text>
+<!-- seta destilar -->
+<path d="M390,110 L600,128" opacity="0.8" stroke="#fbbf24" stroke-dasharray="7 7" stroke-width="2"></path>
+<text fill="#fbbf24" font-family="Inter,sans-serif" font-size="13" font-weight="600" text-anchor="middle" x="500" y="96">destilar</text>
+</svg>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> A troca que muda tudo</h3>
+<p class="text-neutral-300 text-sm">Não é sobre ter <em>menos</em> conhecimento — é sobre ter o mesmo conhecimento ocupando menos espaço. Um cheat sheet de 1 página pode carregar o essencial de um PDF de 46. A diferença entra direto na qualidade da resposta do Claude Code.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Token</div><p class="text-xs text-neutral-400">é barato</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Contexto</div><p class="text-xs text-neutral-400">é caro</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Densidade</div><p class="text-xs text-neutral-400">&gt; volume</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Relevância</div><p class="text-xs text-neutral-400">paga o lugar</p></div>
+</div>
+</section>
+<!-- SECAO 2 -->
+<section class="mb-16" id="topico-2">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span>
+<h2 class="text-2xl font-bold">🔎 Curar fontes</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Lixo entra, lixo sai. A qualidade da sua base depende da qualidade da fonte — então mire em <strong class="text-blue-400">autoridade</strong>. McKinsey, BCG, KPMG, OpenAI e IBM publicam guias gratuitos para mostrar expertise. Você pega o conhecimento de elite de graça.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><h4 class="font-semibold text-blue-400 mb-2">🏛️ BCG &amp; McKinsey</h4><p class="text-neutral-300 text-sm">Curva de maturidade, "where's the value in AI", casos de uso por setor. Frameworks que viram entregável.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><h4 class="font-semibold text-blue-400 mb-2">📋 KPMG</h4><p class="text-neutral-300 text-sm">"Agentic AI advantage" — a virada para agentes, governança e gestão de mudança.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><h4 class="font-semibold text-blue-400 mb-2">🤖 OpenAI</h4><p class="text-neutral-300 text-sm">Guia do CEO para IA generativa, identificar e escalar casos de uso. Visão prática de implementação.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><h4 class="font-semibold text-blue-400 mb-2">📊 Google Cloud &amp; IBM</h4><p class="text-neutral-300 text-sm">ROI de IA com números reais, state of gen AI. Munição de estatística para o ROI.</p></div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Onde achar de graça</h3>
+<p class="text-neutral-300 text-sm">Busque por "[consultoria] AI report PDF" ou vá direto na seção de <em>insights / research</em> do site delas. São relatórios feitos para gerar leads — ou seja, publicados de propósito. Baixe, destile (módulo 2.2) e arquive na sua base.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Autoridade</div><p class="text-xs text-neutral-400">fonte de elite</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Gratuito</div><p class="text-xs text-neutral-400">guias públicos</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Curadoria</div><p class="text-xs text-neutral-400">você escolhe</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Emprestada</div><p class="text-xs text-neutral-400">rigor herdado</p></div>
+</div>
+</section>
+<!-- SECAO 3 -->
+<section class="mb-16" id="topico-3">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span>
+<h2 class="text-2xl font-bold">🧬 Anatomia de um cheat sheet reutilizável</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Estrutura consistente é o que torna a base <strong class="text-blue-400">buscável e injetável</strong>. Quando toda folha segue o mesmo molde, cada uma vira uma peça encaixável — e você (ou o Claude Code) acha o que precisa num relance.</p>
+<div class="space-y-6 mb-6">
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">1</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2">Conceitos &amp; Frameworks</h4><p class="text-neutral-300 text-sm">Os modelos centrais, cada um em 1-2 frases. O esqueleto do que a fonte ensina.</p></div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">2</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2">Estatísticas críticas</h4><p class="text-neutral-300 text-sm">Números, percentuais e achados — com a fonte. É a munição que dá peso ao entregável.</p></div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">3</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2">Insights + Citações + Termos</h4><p class="text-neutral-300 text-sm">Recomendações acionáveis, 2-3 citações de impacto e um mini-glossário de siglas. Sempre escaneável, com negrito no termo.</p></div>
+</div>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Seções fixas</div><p class="text-xs text-neutral-400">mesmo molde</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Escaneável</div><p class="text-xs text-neutral-400">bullets</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Negrito</div><p class="text-xs text-neutral-400">no termo</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">1 página</div><p class="text-xs text-neutral-400">por fonte</p></div>
+</div>
+</section>
+<!-- SECAO 4 -->
+<section class="mb-16" id="topico-4">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span>
+<h2 class="text-2xl font-bold">🗂️ Versionar e organizar a base</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Conhecimento curado é ativo que valoriza com o tempo — <strong class="text-blue-400">se você não perder o controle dele.</strong> Organize a pasta por tema, date cada folha, registre a fonte e versione com git. A base evolui sem virar bagunça.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-6">
+<p class="text-xs text-neutral-500 mb-2 font-mono">// uma estrutura que escala</p>
+<pre class="font-mono text-sm text-neutral-300 whitespace-pre-wrap leading-relaxed">conhecimento/
+├── maturidade/
+│   └── bcg-maturity-curve_TLDR.md
+├── roi/
+│   ├── google-cloud-roi-2025_TLDR.md
+│   └── ibm-state-of-genai_TLDR.md
+├── governanca/
+│   └── kpmg-agentic-advantage_TLDR.md
+└── README.md          # índice: o que é cada folha + fonte + data
+
+# versionar:  git add . &amp;&amp; git commit -m "add ROI cheat sheets"</pre>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ Base sob controle</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Pastas por tema</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Cada folha tem fonte e data</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>README como índice</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Versionada com git</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Base virando bagunça</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>50 arquivos soltos numa pasta</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Sem saber de onde veio cada um</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Versões duplicadas e desatualizadas</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Nomes tipo "doc final v3 FINAL"</span></li>
+</ul>
+</div>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Por tema</div><p class="text-xs text-neutral-400">pastas claras</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Fonte + data</div><p class="text-xs text-neutral-400">rastreável</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">README</div><p class="text-xs text-neutral-400">índice</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">git</div><p class="text-xs text-neutral-400">versiona</p></div>
+</div>
+</section>
+<!-- SECAO 5 -->
+<section class="mb-16" id="topico-5">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span>
+<h2 class="text-2xl font-bold">💉 Injetar contexto sem estourar tokens</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">É o RAG preguiçoso aplicado ao dia a dia. Em vez de despejar a base inteira, você puxa <strong class="text-blue-400">só o cheat sheet relevante</strong> para a tarefa do momento. O humano faz o retrieval — sob demanda, com a cabeça.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Despejar tudo</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"Leia toda a pasta conhecimento/"</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Janela lota, resposta fica lenta</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>O relevante se perde no meio</span></li>
+</ul>
+</div>
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ Puxar o que importa</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>"Use o cheat sheet de ROI do Google Cloud"</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Janela enxuta, resposta afiada</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Contexto certo &gt; contexto grande</span></li>
+</ul>
+</div>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-6">
+<p class="text-xs text-neutral-500 mb-2 font-mono">// o que você digita ao Claude Code</p>
+<pre class="font-mono text-sm text-neutral-300 whitespace-pre-wrap leading-relaxed">Gere o roadmap 30/60/90 para a "Clínica Vida".
+Use como referência só estes dois cheat sheets:
+  conhecimento/maturidade/bcg-maturity-curve_TLDR.md
+  conhecimento/governanca/kpmg-agentic-advantage_TLDR.md</pre>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">RAG preguiçoso</div><p class="text-xs text-neutral-400">aplicado</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Retrieval</div><p class="text-xs text-neutral-400">manual</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Sob demanda</div><p class="text-xs text-neutral-400">só o relevante</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Enxuta</div><p class="text-xs text-neutral-400">janela leve</p></div>
+</div>
+</section>
+<!-- SECAO 6 -->
+<section class="mb-16" id="topico-6">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span>
+<h2 class="text-2xl font-bold">📖 Sua biblioteca pessoal de consultor</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Tudo junto forma o ativo final: a pasta <strong class="text-blue-400">conhecimento/</strong> consolidada. Vários cheat sheets curados que alimentam toda a Fábrica e te acompanham de projeto em projeto. Construída uma vez, usada em todo cliente.</p>
+<div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">🧠</span> É isso que faz a Fábrica soar como elite</h3>
+<p class="text-neutral-300 mb-4 text-sm">Lembra do módulo 1.2? O output parece consultoria de BCG/KPMG porque os prompts foram alimentados com este conhecimento destilado. A sua base <em>é</em> o cérebro da máquina.</p>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-0.5">•</span><span>Alimenta os 15 prompts de entregáveis (Trilha 4)</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-0.5">•</span><span>Vira referência anexada às suas skills (Trilha 3)</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-0.5">•</span><span>Cresce a cada projeto — vantagem composta</span></li>
+</ul>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Comece pequeno, componha sempre</h3>
+<p class="text-neutral-300 text-sm">Não precisa de 50 cheat sheets para começar — 3 bem curados já mudam o jogo. A cada cliente novo, destile mais uma fonte relevante. Em um ano, você tem uma biblioteca que nenhum concorrente improvisa.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Reutilizável</div><p class="text-xs text-neutral-400">todo projeto</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Alimenta</div><p class="text-xs text-neutral-400">a Fábrica</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Portátil</div><p class="text-xs text-neutral-400">te acompanha</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-semibold text-sm mb-1">Composta</div><p class="text-xs text-neutral-400">cresce sempre</p></div>
+</div>
+</section>
+<!-- RESUMO + MISSAO -->
+<section class="mb-12">
+<div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-xl border border-blue-500/30 p-8">
+<h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">✅</span> Resumo do módulo</h2>
+<div class="space-y-4 mb-8">
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Token é barato, contexto é caro</strong><span class="text-neutral-400"> — destilar troca volume por densidade.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Cure fontes de autoridade</strong><span class="text-neutral-400"> — BCG, McKinsey, KPMG, OpenAI, IBM, de graça.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Estrutura fixa + organização versionada</strong><span class="text-neutral-400"> — base buscável que não vira bagunça.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-neutral-100">Injete sob demanda</strong><span class="text-neutral-400"> — só o cheat sheet relevante; é o cérebro da Fábrica.</span></div></div>
+</div>
+<div class="bg-dark-900/50 rounded-lg p-6 border border-primary/30 mb-8">
+<h3 class="font-bold text-primary mb-2 flex items-center"><span class="mr-2">🎯</span> Missão 2.3 — Sua pasta conhecimento/</h3>
+<p class="text-neutral-300 text-sm mb-3">Monte o embrião da sua biblioteca de consultor:</p>
+<ol class="space-y-2 text-neutral-300 text-sm list-decimal list-inside">
+<li>Crie a pasta <code>conhecimento/</code> com subpastas por tema.</li>
+<li>Coloque <strong>3 cheat sheets curados</strong> (use os já destilados ou gere novos com o módulo 2.2).</li>
+<li>Escreva um <code>README.md</code> índice: nome, fonte e data de cada folha. Versione com git.</li>
+</ol>
+<p class="text-neutral-400 text-xs mt-3"><strong>Sucesso:</strong> pasta com 3 cheat sheets + README versionado. <strong>O que você ganhou:</strong> o cérebro de consultor que vai alimentar toda a sua Fábrica — e cresce a cada projeto.</p>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+<h3 class="font-semibold text-blue-400 mb-2">Próxima trilha:</h3>
+<p class="text-neutral-300">Trilha 3 — Skills &amp; Agentes: transforme este conhecimento em recursos reutilizáveis que o Claude Code dispara sob demanda.</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors" href="index.html">← Voltar para Trilha</a>
+<a class="flex-1 text-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition-colors" href="../trilha3/index.html">Próxima trilha: Skills &amp; Agentes →</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="border-t border-dark-600 py-8 mt-8">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+<p>Fábrica de Estratégia de IA · Módulo 2.3 · <a class="text-sky-400 hover:text-sky-300" href="https://inema.club" target="_blank">INEMA.CLUB</a></p>
+</div>
+</footer>
+<script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const darkIcon = document.getElementById('theme-toggle-dark-icon');
+    const lightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light') { html.classList.remove('dark'); darkIcon.classList.remove('hidden'); }
+    else { lightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      darkIcon.classList.toggle('hidden'); lightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Módulo 4.1 · Investigación en vivo con Perplexity | Fábrica de Estrategia de IA</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: {
+      primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' }
+    } } } }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    /* Light mode - base */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    /* Light mode - acento amber (T4) */
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .bg-amber-500\/20 { background-color: rgba(217,119,6,0.12); }
+    html:not(.dark) .bg-amber-500\/10 { background-color: rgba(217,119,6,0.08); }
+    html:not(.dark) .border-amber-500\/30 { border-color: rgba(217,119,6,0.25); }
+    html:not(.dark) .hover\:bg-amber-500\/30:hover { background-color: rgba(217,119,6,0.18); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,0.08); }
+    /* Light mode - cores auxiliares */
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37,99,235,0.12); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37,99,235,0.25); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,0.08); }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5,150,105,0.12); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5,150,105,0.25); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,0.08); }
+    html:not(.dark) .text-teal-400 { color: #0d9488; }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13,148,136,0.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-500\/20 { background-color: rgba(185,28,28,0.10); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185,28,28,0.25); }
+    /* Light mode - remove gradientes + especiais */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,0.22); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+    /* Dark - bordas suaves */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+  </style>
+<link href="https://inematds.github.io/aiestrategia/curso/trilha4/modulo-4-1.html" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/aiestrategia/en/curso/trilha4/modulo-4-1.html" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/aiestrategia/es/curso/trilha4/modulo-4-1.html" hreflang="es" rel="alternate"/></head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="../../../curso/trilha4/modulo-4-1.html" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">PT</a><a href="../../../en/curso/trilha4/modulo-4-1.html" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">EN</a><a href="modulo-4-1.html" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">ES</a></div>
+<!-- NAV -->
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4">
+<a class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300" href="../../index.html">
+<span class="text-2xl">🏭</span>
+<span class="font-bold text-lg hidden sm:inline">Fábrica de Estrategia de IA</span>
+</a>
+<span class="text-neutral-600">|</span>
+<a class="text-sky-400 hover:text-sky-300 text-sm font-medium" href="https://inema.club" target="_blank">INEMA.CLUB</a>
+</div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors" href="../trilha1/index.html"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentos</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors" href="../trilha2/index.html"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Síntesis</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors" href="../trilha3/index.html"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Skills y agentes</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-amber-400 bg-amber-500/10" href="index.html"><span class="sm:hidden">T4</span><span class="hidden sm:inline">La Fábrica</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors" href="../trilha5/index.html"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Consultor</span></a>
+<button class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2" id="theme-toggle">
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-dark-icon" viewbox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-light-icon" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- BREADCRUMB -->
+<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+<div class="flex items-center space-x-2 text-sm text-neutral-400">
+<a class="hover:text-amber-400" href="../../index.html">Inicio</a><span>/</span>
+<a class="hover:text-amber-400" href="index.html">Ruta 4</a><span>/</span>
+<span class="text-amber-400">Módulo 4.1</span>
+</div>
+</nav>
+<!-- HEADER -->
+<header class="bg-gradient-to-br from-amber-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full mb-4">MÓDULO 4.1</span>
+<h1 class="text-3xl sm:text-4xl font-bold mb-4">🔎 Investigación en vivo con Perplexity</h1>
+<p class="text-lg text-neutral-400 max-w-3xl">La Fase 1 de la Fábrica. Es lo que mantiene el paquete actualizado en lugar de estático: Perplexity busca la empresa en el momento, en nueve categorías, y devuelve datos con fuentes. Aunque falle una búsqueda, el pipeline sigue.</p>
+<div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">6</div><div class="text-xs text-neutral-400">Temas</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">~60</div><div class="text-xs text-neutral-400">Minutos</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">Avanzado</div><div class="text-xs text-neutral-400">Nivel</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">Fase 1</div><div class="text-xs text-neutral-400">Pipeline</div></div>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<!-- SECAO 1 -->
+<section class="mb-16" id="topico-1">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">1</span>
+<h2 class="text-2xl font-bold">📡 Por qué investigar en tiempo real</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Un LLM por sí solo responde con lo que aprendió durante el entrenamiento, y ese entrenamiento tiene una fecha de corte. Pregúntale por la empresa del cliente y <strong class="text-amber-400">inventa o usa datos antiguos</strong>. La investigación en vivo lo resuelve: Perplexity busca la empresa en internet en el momento en que ejecutas la Fábrica.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Solo el LLM (estático)</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Conocimiento congelado en la fecha de corte</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Inventa números y hechos plausibles (alucina)</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>No ve la noticia de ayer ni la ronda de financiación de ayer</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Recomienda una herramienta que ya fue reemplazada</span></li>
+</ul>
+</div>
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ Con investigación en vivo</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Se ejecutó en junio/2026 → llega hasta junio/2026</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Datos con fuentes citables, no suposiciones</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Si se reemplaza n8n, lo sabe</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Las recomendaciones se actualizan solas</span></li>
+</ul>
+</div>
+</div>
+<div class="rounded-2xl border border-amber-500/30 bg-dark-900/40 p-3 sm:p-4 mb-6 overflow-hidden">
+<svg aria-label="Comparación: conocimiento estático limitado a la fecha de corte frente a investigación en vivo que llega al presente" class="w-full h-auto" role="img" viewbox="0 0 1000 250">
+<defs>
+<lineargradient id="m41-grad" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#fbbf24"></stop><stop offset="1" stop-color="#f59e0b"></stop></lineargradient>
+<filter height="180%" id="m41-glow" width="180%" x="-40%" y="-40%"><fegaussianblur result="b" stddeviation="1.8"></fegaussianblur><femerge><femergenode in="b"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter>
+<pattern height="32" id="m41-grid" patternunits="userSpaceOnUse" width="32"><circle cx="1.3" cy="1.3" fill="#f59e0b" opacity="0.12" r="1.3"></circle></pattern>
+</defs>
+<rect fill="url(#m41-grid)" height="250" width="1000" x="0" y="0"></rect>
+<!-- linha do tempo -->
+<line stroke="#374151" stroke-width="2" x1="70" x2="930" y1="125" y2="125"></line>
+<text fill="#9ca3af" font-family="Inter,sans-serif" font-size="12" x="70" y="150">pasado</text>
+<text fill="#9ca3af" font-family="Inter,sans-serif" font-size="12" text-anchor="end" x="900" y="150">hoy</text>
+<!-- estático: para na data de corte -->
+<rect fill="#1b0e0e" height="44" rx="11" stroke="#ef4444" stroke-width="2" width="280" x="120" y="58"></rect>
+<text fill="#fca5a5" font-family="Inter,sans-serif" font-size="13" font-weight="600" text-anchor="middle" x="260" y="85">LLM estático: se detiene en la fecha de corte</text>
+<line stroke="#ef4444" stroke-dasharray="5 5" stroke-width="2" x1="400" x2="430" y1="80" y2="80"></line>
+<text fill="#ef4444" font-family="Inter,sans-serif" font-size="12" x="470" y="84">⛔ agujero</text>
+<!-- ao vivo: alcança hoje -->
+<g filter="url(#m41-glow)"><rect fill="#1f1604" height="44" rx="11" stroke="url(#m41-grad)" stroke-width="2.5" width="730" x="120" y="150"></rect></g>
+<text fill="#fbbf24" font-family="Inter,sans-serif" font-size="13" font-weight="600" text-anchor="middle" x="485" y="177">Investigación en vivo — llega al presente</text>
+<circle cx="850" cy="172" fill="#fbbf24" r="9"></circle>
+<circle cx="850" cy="125" fill="#f59e0b" r="6"></circle>
+<path d="M850,134 V163" stroke="#f59e0b" stroke-width="2"></path>
+</svg>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> La frase que define la Fase 1</h3>
+<p class="text-neutral-300 text-sm">"Esto es lo que hace que todo esté actualizado y no sea estático." La investigación en vivo es lo que distingue un paquete genérico de un diagnóstico que habla de <em>presente</em> de esa empresa. Sin ella, entregas una plantilla; con ella, entregas consultoría.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Frescura</div><p class="text-xs text-neutral-400">hechos de hoy</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Fuentes</div><p class="text-xs text-neutral-400">citable</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Sin adivinar</div><p class="text-xs text-neutral-400">menos alucinación</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Actualización automática</div><p class="text-xs text-neutral-400">sigue el mercado</p></div>
+</div>
+</section>
+<!-- SECAO 2 -->
+<section class="mb-16" id="topico-2">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">2</span>
+<h2 class="text-2xl font-bold">⚖️ Quick vs Deep y costo</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">La Fábrica tiene dos modos de investigación, y tú eliges en tiempo real para controlar el costo. El modo <strong class="text-amber-400">quick</strong> hace una evaluación rápida con las queries esenciales; el <strong class="text-amber-400">comprehensive</strong> investiga a fondo, usando modelos más caros.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 overflow-hidden mb-6">
+<table class="w-full text-sm">
+<thead class="bg-dark-700/50 text-neutral-400">
+<tr><th class="text-left px-4 py-3 font-semibold">Modo</th><th class="text-left px-4 py-3 font-semibold">Queries</th><th class="text-left px-4 py-3 font-semibold">Modelos</th><th class="text-left px-4 py-3 font-semibold">Costo</th><th class="text-left px-4 py-3 font-semibold">Cuándo usar</th></tr>
+</thead>
+<tbody class="divide-y divide-dark-600 text-neutral-300">
+<tr><td class="px-4 py-3 font-semibold text-amber-400">Quick</td><td class="px-4 py-3">~9</td><td class="px-4 py-3"><code>sonar</code></td><td class="px-4 py-3">~US$0,05</td><td class="px-4 py-3">evaluación rápida, lead, demo</td></tr>
+<tr><td class="px-4 py-3 font-semibold text-amber-400">Comprehensive</td><td class="px-4 py-3">~18</td><td class="px-4 py-3"><code>sonar</code>, <code>sonar-pro</code>, <code>deep-research</code></td><td class="px-4 py-3">~US$0,50</td><td class="px-4 py-3">estrategia completa, cliente que paga</td></tr>
+</tbody>
+</table>
+</div>
+<div class="space-y-6 mb-6">
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">S</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2"><code class="text-amber-400">sonar</code> — el caballo de batalla</h4><p class="text-neutral-300 text-sm">Barato y rápido. Hace las queries de prioridad alta del quick mode. Es suficiente para entender lo esencial de la empresa.</p></div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">P</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2"><code class="text-amber-400">sonar-pro</code> — más profundo</h4><p class="text-neutral-300 text-sm">Respuestas más completas y más caras (US$0,015/1K de salida). Se usa en comprehensive para las categorías que requieren detalle.</p></div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">D</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2"><code class="text-amber-400">deep-research</code> — la investigación</h4><p class="text-neutral-300 text-sm">Para los temas que merecen profundizar —competencia e iniciativas de IA. Solo en el comprehensive, donde el costo se justifica.</p></div>
+</div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Regla práctica de costos</h3>
+<p class="text-neutral-300 text-sm">Empieza siempre en quick para calificar al lead. Pasa a comprehensive solo cuando el cliente ya esté cerrado: la diferencia de 10× en el costo (US$0,05 → US$0,50) sigue siendo apenas unos centavos frente a lo que cobras por el paquete.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Quick</div><p class="text-xs text-neutral-400">9 consultas · sonar</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Deep</div><p class="text-xs text-neutral-400">18 consultas · pro/deep</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Elección</div><p class="text-xs text-neutral-400">en tiempo real</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Margen</div><p class="text-xs text-neutral-400">costo &lt; US$1</p></div>
+</div>
+</section>
+<!-- SECAO 3 -->
+<section class="mb-16" id="topico-3">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">3</span>
+<h2 class="text-2xl font-bold">🗓️ Contexto temporal en las queries</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Una query sin fecha devuelve resultados de cualquier época. La Fábrica inserta la fecha actual en cada template mediante el <code class="text-amber-400">TemporalContext</code> — y define un <strong class="text-amber-400">filtro de actualidad</strong> (day, week, month o year) por categoría.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-6">
+<p class="text-xs text-neutral-500 mb-2 font-mono">// template antes y después de la inyección temporal</p>
+<pre class="font-mono text-sm text-neutral-300 whitespace-pre-wrap leading-relaxed"># template cru (placeholders)
+"{company_name} latest news announcements {current_month_year}"
+
+# renderizado para junho de 2026
+"Stripe latest news announcements June 2026"
+recency_filter = "month"   # só notícias do último mês</pre>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ Con contexto temporal</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span><code>{current_year}</code> e <code>{current_month_year}</code> se convierten en la fecha real</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Noticias filtradas por <code>month</code>; sector por <code>year</code></span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>"de este mes" significa este mes, de verdad</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Sin contexto temporal</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Mezcla un artículo de 2022 con el de ayer</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>"últimas noticias" se convierte en un montón sin fecha</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>El diagnóstico nace desactualizado</span></li>
+</ul>
+</div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Vigencia por categoría</h3>
+<p class="text-neutral-300 text-sm">Las noticias e iniciativas de IA requieren <code class="text-amber-400">month</code> (cambian rápido). El perfil de la empresa, el sector y la regulación se mantienen <code class="text-amber-400">year</code>. Ajustar la actualidad a la volatilidad del tema es lo que evita el ruido.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Inyección</div><p class="text-xs text-neutral-400">fecha en las queries</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Vigencia</div><p class="text-xs text-neutral-400">day/week/month/year</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Marcadores de posición</div><p class="text-xs text-neutral-400">{current_year}</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Frescura</div><p class="text-xs text-neutral-400">en presente</p></div>
+</div>
+</section>
+<!-- SECAO 4 -->
+<section class="mb-16" id="topico-4">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">4</span>
+<h2 class="text-2xl font-bold">🗂️ Las 9 categorías de query</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">La investigación cubre la empresa desde nueve perspectivas. Cada plantilla incluye una <strong class="text-amber-400">categoría</strong>, una <strong class="text-amber-400">prioridad</strong> (1 = más alta) y una bandera <code class="text-amber-400">required_for_quick_mode</code> — es ella quien decide si la consulta entra directamente en modo rápido.</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><h4 class="font-semibold text-amber-400 mb-2">🏢 Empresa</h4><p class="text-neutral-300 text-sm">Modelo de negocio, productos, tamaño, sede. La base del perfil.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><h4 class="font-semibold text-amber-400 mb-2">📈 Sector</h4><p class="text-neutral-300 text-sm">Tamaño del mercado, tendencias, desafíos y oportunidades.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><h4 class="font-semibold text-amber-400 mb-2">⚔️ Competencia</h4><p class="text-neutral-300 text-sm">Quiénes son los rivales y cómo adoptan la IA.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><h4 class="font-semibold text-amber-400 mb-2">🧰 Tecnología</h4><p class="text-neutral-300 text-sm">Stack, plataformas e infraestructura de la empresa.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><h4 class="font-semibold text-amber-400 mb-2">🤖 Iniciativas de IA</h4><p class="text-neutral-300 text-sm">Proyectos de IA de la empresa, adopción y casos de uso del sector.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><h4 class="font-semibold text-amber-400 mb-2">⚖️ Regulatorio</h4><p class="text-neutral-300 text-sm">Reglas del sector, cumplimiento de IA y privacidad de datos.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><h4 class="font-semibold text-amber-400 mb-2">📰 Noticias</h4><p class="text-neutral-300 text-sm">Anuncios y desarrollos recientes (recencia month).</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><h4 class="font-semibold text-amber-400 mb-2">👔 Liderazgo</h4><p class="text-neutral-300 text-sm">CEO, ejecutivos y equipo de gestión.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><h4 class="font-semibold text-amber-400 mb-2">💵 Inversión</h4><p class="text-neutral-300 text-sm">Rondas, valoración e inversionistas.</p></div>
+</div>
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📊</span> Quien entra en quick mode</h3>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-0.5">•</span><span><strong>Siempre (quick):</strong> empresa, sector, competencia, IA y noticias — los enfoques que responden «lo esencial».</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-0.5">•</span><span><strong>Solo en el comprehensive:</strong> liderazgo, inversión, stack tecnológico detallado y regulatorio — la profundización.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-0.5">•</span><span>A <strong>prioridad</strong> ordena la ejecución: lo que es priority 1 se ejecuta primero.</span></li>
+</ul>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">9 lentes</div><p class="text-xs text-neutral-400">empresa→noticias</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Prioridad</div><p class="text-xs text-neutral-400">1 = primero</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Indicador de Quick</div><p class="text-xs text-neutral-400">¿entra en lo rápido?</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Cobertura</div><p class="text-xs text-neutral-400">empresa entera</p></div>
+</div>
+</section>
+<!-- SECAO 5 -->
+<section class="mb-16" id="topico-5">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">5</span>
+<h2 class="text-2xl font-bold">🛟 Agregar y procesar (degradación gradual)</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Las APIs fallan. Una query se excede, otra alcanza el rate limit. Por eso la Fábrica no se bloquea: el cliente de Perplexity tiene <strong class="text-amber-400">reintento con backoff exponencial</strong> y, si aun así falla la búsqueda, el pipeline <strong class="text-amber-400">continúa con los datos parciales</strong>.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-6">
+<p class="text-xs text-neutral-500 mb-2 font-mono">// política de resiliencia del cliente</p>
+<pre class="font-mono text-sm text-neutral-300 whitespace-pre-wrap leading-relaxed">max_retries        = 3
+initial_delay      = 1.0   # segundos
+max_delay          = 30.0
+backoff_multiplier = 2.0   # 1s → 2s → 4s ...
+rate_limit         = 2.0   # pausa entre chamadas Perplexity</pre>
+</div>
+<div class="space-y-3 mb-6">
+<div class="flex items-start space-x-3 bg-dark-800 rounded-lg p-4 border border-dark-600"><span class="text-amber-400 font-bold mt-0.5">1.</span><div><strong class="text-neutral-100">Prueba la query.</strong><span class="text-neutral-400 text-sm"> Si falla, espera (1s, 2s, 4s) y vuelve a intentarlo, hasta 3 veces.</span></div></div>
+<div class="flex items-start space-x-3 bg-dark-800 rounded-lg p-4 border border-dark-600"><span class="text-amber-400 font-bold mt-0.5">2.</span><div><strong class="text-neutral-100">¿Se agotaron los intentos?</strong><span class="text-neutral-400 text-sm"> Marca esa categoría como fallida — pero no derriba las demás.</span></div></div>
+<div class="flex items-start space-x-3 bg-dark-800 rounded-lg p-4 border border-dark-600"><span class="text-amber-400 font-bold mt-0.5">3.</span><div><strong class="text-neutral-100">Continúa con lo que tienes.</strong><span class="text-neutral-400 text-sm"> ResearchOutput nace con los datos que funcionaron. Síntesis trabaja con lo parcial.</span></div></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ Degradación gradual</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Falla una query → continúa con datos parciales</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Si falla un entregable → márcalo y continúa con los demás</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Si el diagrama falla → omite la imagen y conserva el markdown</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Sin degradación</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Un fallo derriba toda la sesión</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Rehaz todo (y paga de nuevo) por un solo error</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>El rate limit se convierte en un muro en vez de una pausa</span></li>
+</ul>
+</div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Parcial &gt; nada</h3>
+<p class="text-neutral-300 text-sm">Un paquete con 8 de las 9 categorías sigue siendo un paquete entregable: anotas la brecha y continúas. La resiliencia no consiste en no fallar, sino en fallar sin derrumbarse.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Retry</div><p class="text-xs text-neutral-400">3× con backoff</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Rate limit</div><p class="text-xs text-neutral-400">pausa de 2s</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Parcial</div><p class="text-xs text-neutral-400">continúa de todos modos</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Robusto</div><p class="text-xs text-neutral-400">no se desmorona</p></div>
+</div>
+</section>
+<!-- SECAO 6 -->
+<section class="mb-16" id="topico-6">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">6</span>
+<h2 class="text-2xl font-bold">📥 Armar el ResearchOutput</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">El resultado de la Fase 1 es un objeto estructurado: el <code class="text-amber-400">ResearchOutput</code>. Reúne todo lo que encontró la investigación y lo convierte en el <strong class="text-amber-400">contrato</strong> que la Síntesis consume, además de guardarse en <code class="text-amber-400">research_cache.json</code> para no investigar (ni pagar) dos veces.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-6">
+<p class="text-xs text-neutral-500 mb-2 font-mono">// el objeto que cierra la Fase 1</p>
+<pre class="font-mono text-sm text-neutral-300 whitespace-pre-wrap leading-relaxed">class ResearchOutput:
+    company_name: str          # "Stripe"
+    raw_research:  dict         # categoria → achados
+    sources:       list         # URLs citáveis
+    cost:          float        # quanto custou a pesquisa</pre>
+</div>
+<div class="space-y-6 mb-6">
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">1</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2">Agrupa por categoría</h4><p class="text-neutral-300 text-sm">Cada respuesta de Perplexity se guarda bajo su categoría en <code class="text-amber-400">raw_research</code>. La Síntesis sabe dónde encontrar «competencia» o «problemas».</p></div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">2</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2">Guarda las fuentes</h4><p class="text-neutral-300 text-sm">Las URL van a <code class="text-amber-400">sources</code>. Es lo que permite citar y da credibilidad al paquete final.</p></div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">3</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2">Guarda en caché en disco</h4><p class="text-neutral-300 text-sm">Todo va a <code class="text-amber-400">research_cache.json</code>. Volver a ejecutar la Síntesis no inicia una nueva investigación: ahorro directo.</p></div>
+</div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> La salida estructurada es un contrato</h3>
+<p class="text-neutral-300 text-sm">Cuando la Fase 1 entrega un objeto predecible, la Fase 2 se vuelve confiable. El <code class="text-amber-400">ResearchOutput</code> es la frontera clara entre investigar y escribir, y el caché convierte centavos en cero en la segunda ronda.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Estructurado</div><p class="text-xs text-neutral-400">objeto predecible</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Fuentes</div><p class="text-xs text-neutral-400">citable</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Caché</div><p class="text-xs text-neutral-400">no paga 2×</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Contrato</div><p class="text-xs text-neutral-400">alimenta la Fase 2</p></div>
+</div>
+</section>
+<!-- RESUMO + MISSAO -->
+<section class="mb-12">
+<div class="bg-gradient-to-br from-amber-900/40 via-dark-800 to-dark-800 rounded-xl border border-amber-500/30 p-8">
+<h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">✅</span> Resumen del módulo</h2>
+<div class="space-y-4 mb-8">
+<div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">Investigación en vivo &gt; estática</strong><span class="text-neutral-400"> — Perplexity busca información actual de la empresa, con fuentes.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">Quick vs Deep controla el costo</strong><span class="text-neutral-400"> — sonar (~US$0,05) o sonar-pro/deep-research (~US$0,50).</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">Contexto temporal y 9 categorías</strong><span class="text-neutral-400"> — fecha inyectada, actualidad por tema, empresa cubierta por completo.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">Degradación gradual → ResearchOutput</strong><span class="text-neutral-400"> — falla sin desmoronarse y termina en un objeto que se puede guardar en caché.</span></div></div>
+</div>
+<div class="bg-dark-900/50 rounded-lg p-6 border border-primary/30 mb-8">
+<h3 class="font-bold text-primary mb-2 flex items-center"><span class="mr-2">🎯</span> Misión 4.1 — Investigación rápida de 1 empresa</h3>
+<p class="text-neutral-300 text-sm mb-3">Ejecuta la Fase 1 en modo quick para una empresa que conozcas y revisa el resultado de las 9 categorías.</p>
+<ol class="space-y-2 text-neutral-300 text-sm list-decimal list-inside">
+<li>Pídele a Claude Code: «ejecuta la investigación <strong>quick</strong> de la Fábrica para la empresa X".</li>
+<li>Verifica que las consultas hayan salido con la <strong>fecha actual</strong> inyectada.</li>
+<li>Abre el <code class="text-amber-400">research_cache.json</code> y consulta las 9 categorías y las fuentes.</li>
+<li>Anota qué categoría quedó más débil: ahí ayudaría el deep mode.</li>
+</ol>
+<p class="text-neutral-400 text-xs mt-3"><strong>Éxito:</strong> uno <code class="text-amber-400">ResearchOutput</code> estructurado, con fuentes, por ~US$0,05. <strong>Lo que obtuviste:</strong> la materia prima factual que alimenta los 15 prompts del siguiente módulo.</p>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+<h3 class="font-semibold text-amber-400 mb-2">Siguiente módulo:</h3>
+<p class="text-neutral-300">4.2 — Los 15 prompts de entregables (la Fase 2: Evaluación, Planificación, Implementación, Gobernanza y Recursos)</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors" href="index.html">← Volver a la ruta</a>
+<a class="flex-1 text-center px-6 py-3 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-500 transition-colors" href="modulo-4-2.html">Siguiente módulo →</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="border-t border-dark-600 py-8 mt-8">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+<p>Fábrica de Estratégia de IA · Módulo 4.1 · <a class="text-sky-400 hover:text-sky-300" href="https://inema.club" target="_blank">INEMA.CLUB</a></p>
+</div>
+</footer>
+<script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const darkIcon = document.getElementById('theme-toggle-dark-icon');
+    const lightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light') { html.classList.remove('dark'); darkIcon.classList.remove('hidden'); }
+    else { lightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      darkIcon.classList.toggle('hidden'); lightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

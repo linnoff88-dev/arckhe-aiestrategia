@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Módulo 4.2 · Os 15 prompts de entregáveis | Fábrica de Estratégia de IA</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: {
+      primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' }
+    } } } }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    /* Light mode - base */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    /* Light mode - acento amber (T4) */
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .bg-amber-500\/20 { background-color: rgba(217,119,6,0.12); }
+    html:not(.dark) .bg-amber-500\/10 { background-color: rgba(217,119,6,0.08); }
+    html:not(.dark) .border-amber-500\/30 { border-color: rgba(217,119,6,0.25); }
+    html:not(.dark) .hover\:bg-amber-500\/30:hover { background-color: rgba(217,119,6,0.18); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,0.08); }
+    /* Light mode - cores auxiliares */
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37,99,235,0.12); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37,99,235,0.25); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,0.08); }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5,150,105,0.12); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5,150,105,0.25); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,0.08); }
+    html:not(.dark) .text-teal-400 { color: #0d9488; }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13,148,136,0.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-500\/20 { background-color: rgba(185,28,28,0.10); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185,28,28,0.25); }
+    /* Light mode - remove gradientes + especiais */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,0.22); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+    /* Dark - bordas suaves */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+  </style>
+<link href="https://inematds.github.io/aiestrategia/curso/trilha4/modulo-4-2.html" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/aiestrategia/en/curso/trilha4/modulo-4-2.html" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/aiestrategia/es/curso/trilha4/modulo-4-2.html" hreflang="es" rel="alternate"/></head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="modulo-4-2.html" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">PT</a><a href="../../en/curso/trilha4/modulo-4-2.html" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">EN</a><a href="../../es/curso/trilha4/modulo-4-2.html" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">ES</a></div>
+<!-- NAV -->
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4">
+<a class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300" href="../../index.html">
+<span class="text-2xl">🏭</span>
+<span class="font-bold text-lg hidden sm:inline">Fábrica de Estratégia de IA</span>
+</a>
+<span class="text-neutral-600">|</span>
+<a class="text-sky-400 hover:text-sky-300 text-sm font-medium" href="https://inema.club" target="_blank">INEMA.CLUB</a>
+</div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors" href="../trilha1/index.html"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentos</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors" href="../trilha2/index.html"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Síntese</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors" href="../trilha3/index.html"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Skills &amp; Agentes</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-amber-400 bg-amber-500/10" href="index.html"><span class="sm:hidden">T4</span><span class="hidden sm:inline">A Fábrica</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors" href="../trilha5/index.html"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Consultor</span></a>
+<button class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2" id="theme-toggle">
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-dark-icon" viewbox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-light-icon" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- BREADCRUMB -->
+<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+<div class="flex items-center space-x-2 text-sm text-neutral-400">
+<a class="hover:text-amber-400" href="../../index.html">Início</a><span>/</span>
+<a class="hover:text-amber-400" href="index.html">Trilha 4</a><span>/</span>
+<span class="text-amber-400">Módulo 4.2</span>
+</div>
+</nav>
+<!-- HEADER -->
+<header class="bg-gradient-to-br from-amber-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full mb-4">MÓDULO 4.2</span>
+<h1 class="text-3xl sm:text-4xl font-bold mb-4">📝 Os 15 prompts de entregáveis</h1>
+<p class="text-lg text-neutral-400 max-w-3xl">A Fase 2 da Fábrica. Quinze prompts, todos com a mesma anatomia, organizados em cinco grupos — Avaliação, Planejamento, Implementação, Governança e Recursos. Aqui você aprende o molde, conhece cada peça e descobre como adaptar tudo ao PT-BR.</p>
+<div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">~60</div><div class="text-xs text-neutral-400">Minutos</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">Avançado</div><div class="text-xs text-neutral-400">Nível</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">Fase 2</div><div class="text-xs text-neutral-400">Pipeline</div></div>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<!-- SECAO 1 -->
+<section class="mb-16" id="topico-1">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">1</span>
+<h2 class="text-2xl font-bold">🧬 Anatomia de um prompt de entregável</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Os 15 prompts não são improvisados — todos seguem o mesmo esqueleto. Conhecer esse molde é o que te permite <strong class="text-amber-400">editar qualquer um</strong> e até criar novos entregáveis sem quebrar o pipeline. O Gemini recebe o contexto (pesquisa + cheat sheets) e depois o prompt com esta estrutura.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-6">
+<p class="text-xs text-neutral-500 mb-2 font-mono">// estrutura de um prompt de entregável (ex.: tech_inventory)</p>
+<pre class="font-mono text-sm text-neutral-300 whitespace-pre-wrap leading-relaxed"># Task: Generate Technology Inventory &amp; Data Infrastructure Assessment
+
+Based on the company research and context provided above, create a
+comprehensive technology inventory document.
+
+## Required Sections
+
+### 1. Executive Summary
+- Current landscape, key gaps, AI-readiness (high-level)
+
+### 2. Current Technology Stack
+| Category | Tool/Platform | Purpose | AI-Ready | Data Integration |
+|----------|--------------|---------|----------|------------------|
+
+### 3. Data Infrastructure Assessment
+...
+### 5. AI Readiness Assessment   (tabela 1-5 por dimensão)
+### 6. Recommendations           (0-30 / 30-90 / 90+ dias)
+
+## Output Format
+- Use markdown; include tables; note assumptions; keep it actionable</pre>
+</div>
+<div class="space-y-3 mb-6">
+<div class="flex items-start space-x-3 bg-dark-800 rounded-lg p-4 border border-dark-600"><span class="text-amber-400 font-bold mt-0.5">1.</span><div><strong class="text-neutral-100">Task</strong><span class="text-neutral-400 text-sm"> — uma frase que diz o que gerar e que se apoia no "research and context above".</span></div></div>
+<div class="flex items-start space-x-3 bg-dark-800 rounded-lg p-4 border border-dark-600"><span class="text-amber-400 font-bold mt-0.5">2.</span><div><strong class="text-neutral-100">Required Sections</strong><span class="text-neutral-400 text-sm"> — a espinha do documento, com tabelas Markdown prontas para o Gemini preencher.</span></div></div>
+<div class="flex items-start space-x-3 bg-dark-800 rounded-lg p-4 border border-dark-600"><span class="text-amber-400 font-bold mt-0.5">3.</span><div><strong class="text-neutral-100">Output Format</strong><span class="text-neutral-400 text-sm"> — as regras finais: markdown, tabelas, deixar suposições explícitas, ser acionável.</span></div></div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Por que tabela e por que "above"</h3>
+<p class="text-neutral-300 text-sm">As tabelas forçam o modelo a estruturar — e estrutura é o que faz o documento parecer consultoria. O "research and context above" é o gancho: a Fase 1 e os cheat sheets da Trilha 2 entram <em>antes</em> do prompt, então o modelo escreve sobre fatos reais, não no vácuo.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Task</div><p class="text-xs text-neutral-400">o objetivo</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Sections</div><p class="text-xs text-neutral-400">a estrutura</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Format</div><p class="text-xs text-neutral-400">as regras</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Contexto</div><p class="text-xs text-neutral-400">vem "above"</p></div>
+</div>
+</section>
+<!-- SECAO 2 -->
+<section class="mb-16" id="topico-2">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">2</span>
+<h2 class="text-2xl font-bold">🔬 Avaliação: onde a empresa está</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O primeiro grupo diagnostica. São três prompts que estabelecem a <strong class="text-amber-400">base factual</strong> de todo o pacote: sem uma avaliação honesta, o roadmap vira chute e o ROI vira ficção.</p>
+<div class="rounded-2xl border border-amber-500/30 bg-dark-900/40 p-3 sm:p-4 mb-6 overflow-hidden">
+<svg aria-label="Os 15 prompts organizados em cinco grupos: Avaliação, Planejamento, Implementação, Governança e Recursos, cada um com três entregáveis" class="w-full h-auto" role="img" viewbox="0 0 1000 230">
+<defs>
+<lineargradient id="m42-grad" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#fbbf24"></stop><stop offset="1" stop-color="#f59e0b"></stop></lineargradient>
+<filter height="180%" id="m42-glow" width="180%" x="-40%" y="-40%"><fegaussianblur result="b" stddeviation="1.6"></fegaussianblur><femerge><femergenode in="b"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter>
+<pattern height="32" id="m42-grid" patternunits="userSpaceOnUse" width="32"><circle cx="1.3" cy="1.3" fill="#f59e0b" opacity="0.12" r="1.3"></circle></pattern>
+</defs>
+<rect fill="url(#m42-grid)" height="230" width="1000" x="0" y="0"></rect>
+<g font-family="Inter,sans-serif" font-size="14" font-weight="700">
+<g filter="url(#m42-glow)"><rect fill="#1f1604" height="150" rx="12" stroke="url(#m42-grad)" stroke-width="2.5" width="178" x="24" y="40"></rect></g>
+<text fill="#fbbf24" text-anchor="middle" x="113" y="66">🔬 Avaliação</text>
+<g fill="#fcd9a0" font-size="12" font-weight="400"><text text-anchor="middle" x="113" y="96">tech inventory</text><text text-anchor="middle" x="113" y="120">pain points</text><text text-anchor="middle" x="113" y="144">maturity</text></g>
+<g><rect fill="#0e1b26" height="150" rx="12" stroke="#38bdf8" stroke-width="2" width="178" x="218" y="40"></rect></g>
+<text fill="#bfe6ff" text-anchor="middle" x="307" y="66">🧭 Planejamento</text>
+<g fill="#bfe6ff" font-size="12" font-weight="400"><text text-anchor="middle" x="307" y="96">roadmap</text><text text-anchor="middle" x="307" y="120">quick wins</text><text text-anchor="middle" x="307" y="144">ROI</text></g>
+<g><rect fill="#1f1604" height="150" rx="12" stroke="#fbbf24" stroke-width="2" width="178" x="412" y="40"></rect></g>
+<text fill="#fbbf24" text-anchor="middle" x="501" y="66">🔩 Implementação</text>
+<g fill="#fcd9a0" font-size="12" font-weight="400"><text text-anchor="middle" x="501" y="96">build vs buy</text><text text-anchor="middle" x="501" y="120">licenças</text><text text-anchor="middle" x="501" y="144">casos de uso</text></g>
+<g><rect fill="#0e1b26" height="150" rx="12" stroke="#38bdf8" stroke-width="2" width="178" x="606" y="40"></rect></g>
+<text fill="#bfe6ff" text-anchor="middle" x="695" y="66">🛡️ Governança</text>
+<g fill="#bfe6ff" font-size="12" font-weight="400"><text text-anchor="middle" x="695" y="96">política IA</text><text text-anchor="middle" x="695" y="120">dados</text><text text-anchor="middle" x="695" y="144">mudança</text></g>
+<g filter="url(#m42-glow)"><rect fill="#1f1604" height="150" rx="12" stroke="url(#m42-grad)" stroke-width="2.5" width="178" x="800" y="40"></rect></g>
+<text fill="#fbbf24" text-anchor="middle" x="889" y="66">🇧🇷 Recursos</text>
+<g fill="#fcd9a0" font-size="12" font-weight="400"><text text-anchor="middle" x="889" y="96">prompt library</text><text text-anchor="middle" x="889" y="120">glossário</text><text text-anchor="middle" x="889" y="144">diagramas</text></g>
+</g>
+<path d="M202,115 H218 M396,115 H412 M590,115 H606 M784,115 H800" stroke="#f59e0b" stroke-width="2"></path>
+</svg>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><h4 class="font-semibold text-amber-400 mb-2">📦 Tech Inventory</h4><p class="text-neutral-300 text-sm">Stack atual em tabela (AI-Ready, integração) + assessment de prontidão por dimensão.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><h4 class="font-semibold text-amber-400 mb-2">😣 Pain Points</h4><p class="text-neutral-300 text-sm">Matriz de dores por departamento — onde dói e quanto custa hoje.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><h4 class="font-semibold text-amber-400 mb-2">📊 Maturity</h4><p class="text-neutral-300 text-sm">Modelo de maturidade e prontidão de IA na escala 1-5.</p></div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Avaliação alimenta o resto</h3>
+<p class="text-neutral-300 text-sm">Repare na cadeia: a maturity e os pain points entram como contexto dos prompts de planejamento. Os prompts não são ilhas — cada um se apoia no que veio antes ("based on the ... above").</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Inventário</div><p class="text-xs text-neutral-400">o stack</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Dores</div><p class="text-xs text-neutral-400">por depto</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Maturidade</div><p class="text-xs text-neutral-400">escala 1-5</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Base</div><p class="text-xs text-neutral-400">factual</p></div>
+</div>
+</section>
+<!-- SECAO 3 -->
+<section class="mb-16" id="topico-3">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">3</span>
+<h2 class="text-2xl font-bold">🧭 Planejamento: o que fazer e quanto rende</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O segundo grupo transforma o diagnóstico em plano. É a parte que o cliente <strong class="text-amber-400">abre na segunda e executa</strong> — roadmap faseado, vitórias rápidas e a conta do retorno.</p>
+<div class="space-y-6 mb-6">
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">🗺️</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2">Roadmap 30/60/90/180/360</h4><p class="text-neutral-300 text-sm">Fases com marcos e dependências. O caminho do piloto à escala, datado.</p></div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">⚡</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2">Quick Wins (esforço × impacto)</h4><p class="text-neutral-300 text-sm">Top 10 iniciativas de &lt;60 dias, &lt;US$50K, risco baixo — com passos semana a semana e KPIs.</p></div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">💰</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2">ROI Calculator</h4><p class="text-neutral-300 text-sm">Investimento × ganhos (eficiência, receita, risco), payback, NPV de 3 anos e cenários (base/conservador/otimista).</p></div>
+</div>
+</div>
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📊</span> O que o ROI Calculator entrega</h3>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-0.5">•</span><span><strong>ROI simples</strong> ano 1 + <strong>payback</strong> em meses.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-0.5">•</span><span><strong>NPV de 3 anos</strong> com taxa de desconto de 10%.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-0.5">•</span><span><strong>Benchmarks do setor</strong> (média vs top quartil) para dar referência.</span></li>
+</ul>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Roadmap</div><p class="text-xs text-neutral-400">faseado</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Quick wins</div><p class="text-xs text-neutral-400">&lt;60 dias</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">ROI</div><p class="text-xs text-neutral-400">payback + NPV</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Acionável</div><p class="text-xs text-neutral-400">com números</p></div>
+</div>
+</section>
+<!-- SECAO 4 -->
+<section class="mb-16" id="topico-4">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">4</span>
+<h2 class="text-2xl font-bold">🔩 Implementação: as decisões concretas</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O terceiro grupo encosta o plano na realidade operacional. É onde a estratégia vira <strong class="text-amber-400">decisão de compra e de uso</strong>: o que construir, o que comprar, onde cortar licença e quais casos rodar em cada departamento.</p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><h4 class="font-semibold text-amber-400 mb-2">🏗️ Build vs Buy</h4><p class="text-neutral-300 text-sm">Comparação de fornecedores e frameworks para decidir construir ou comprar.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><h4 class="font-semibold text-amber-400 mb-2">🧾 Consolidar Licenças</h4><p class="text-neutral-300 text-sm">Onde há sobreposição de ferramentas e quanto dá para economizar juntando.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><h4 class="font-semibold text-amber-400 mb-2">🧩 Casos de Uso</h4><p class="text-neutral-300 text-sm">Biblioteca de casos de IA específicos por departamento, prontos para priorizar.</p></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ Quando comprar (buy)</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Problema comum, já resolvido por um SaaS maduro</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Time pequeno, time-to-value curto importa</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Não é diferencial competitivo da empresa</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Quando construir (build)</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">→</span><span>É o core do negócio, vira vantagem</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">→</span><span>Nenhum fornecedor atende o caso específico</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">→</span><span>Dados sensíveis pedem controle total</span></li>
+</ul>
+</div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Licença consolidada = quick win de caixa</h3>
+<p class="text-neutral-300 text-sm">A consolidação de licenças costuma pagar o projeto inteiro: muitas empresas têm três ferramentas fazendo a mesma coisa. Cortar redundância é economia imediata — e um argumento forte de venda.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Build vs buy</div><p class="text-xs text-neutral-400">a decisão</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Licenças</div><p class="text-xs text-neutral-400">cortar custo</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Casos</div><p class="text-xs text-neutral-400">por depto</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Operacional</div><p class="text-xs text-neutral-400">pé no chão</p></div>
+</div>
+</section>
+<!-- SECAO 5 -->
+<section class="mb-16" id="topico-5">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">5</span>
+<h2 class="text-2xl font-bold">🛡️ Governança: o que segura o programa</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O quarto grupo é o que separa um piloto solto de um programa sério. Governança é a parte que <strong class="text-amber-400">o jurídico e o RH cobram</strong> — e que dá ao cliente segurança para escalar IA sem se machucar.</p>
+<div class="space-y-6 mb-6">
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">📜</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2">Política de IA (uso aceitável)</h4><p class="text-neutral-300 text-sm">O que pode e o que não pode: ferramentas aprovadas, dados permitidos, supervisão humana.</p></div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">🔐</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2">Governança de Dados</h4><p class="text-neutral-300 text-sm">Privacidade, classificação de dados e conformidade (GDPR/LGPD) — a base de confiança para usar IA.</p></div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">🔄</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2">Gestão de Mudança</h4><p class="text-neutral-300 text-sm">Manual de treinamento e adoção: a tecnologia falha quando as pessoas não embarcam.</p></div>
+</div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Governança vende confiança</h3>
+<p class="text-neutral-300 text-sm">Muita gente entrega só o "o quê" (roadmap) e esquece o "como segurar". Incluir política, dados e mudança no pacote sinaliza maturidade — e é o que faz o comitê executivo aprovar o investimento.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Política</div><p class="text-xs text-neutral-400">uso aceitável</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Dados</div><p class="text-xs text-neutral-400">LGPD/GDPR</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Mudança</div><p class="text-xs text-neutral-400">adoção</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Maturidade</div><p class="text-xs text-neutral-400">programa sério</p></div>
+</div>
+</section>
+<!-- SECAO 6 -->
+<section class="mb-16" id="topico-6">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">6</span>
+<h2 class="text-2xl font-bold">🇧🇷 Recursos + adaptar ao PT-BR</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O quinto grupo deixa o cliente <strong class="text-amber-400">autônomo depois da entrega</strong>: uma biblioteca de prompts para ele usar no dia a dia e um glossário de termos. E aqui entra o detalhe que vende no Brasil — adaptar o output ao português.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><h4 class="font-semibold text-amber-400 mb-2">📚 Prompt Library</h4><p class="text-neutral-300 text-sm">Kit inicial de prompts prontos por área — o cliente continua extraindo valor sem você.</p></div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5"><h4 class="font-semibold text-amber-400 mb-2">📖 Glossário</h4><p class="text-neutral-300 text-sm">Termos de IA explicados em linguagem de negócio — nivela a conversa com o board.</p></div>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-6">
+<p class="text-xs text-neutral-500 mb-2 font-mono">// adaptar ao PT-BR: instrução de idioma no contexto do Gemini</p>
+<pre class="font-mono text-sm text-neutral-300 whitespace-pre-wrap leading-relaxed"># INSTRUÇÃO DE IDIOMA (entra antes das Required Sections)
+Escreva TODO o documento em português do Brasil (PT-BR).
+Mantenha termos técnicos consagrados em inglês entre parênteses
+na primeira menção, ex.: "vitórias rápidas (quick wins)".
+Use R$ e formato de data DD/MM/AAAA. Tom direto e sóbrio.</pre>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ Adaptação que funciona</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Instrução de idioma no topo, não no fim</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Termos técnicos preservados entre parênteses</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>R$, LGPD e contexto Brasil nos exemplos</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Tradução crua</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Traduzir tudo ao pé da letra ("janelas rápidas")</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Manter GDPR/US$ num pacote brasileiro</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Misturar idiomas no mesmo parágrafo</span></li>
+</ul>
+</div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Editar o prompt &gt; pós-traduzir</h3>
+<p class="text-neutral-300 text-sm">Como todos os prompts compartilham a mesma anatomia, basta colar a instrução de idioma uma vez no <code class="text-amber-400">context_builder</code> e os 15 saem em PT-BR. Adaptar na origem é mais limpo do que traduzir o documento depois de pronto.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Prompts</div><p class="text-xs text-neutral-400">cliente usa</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Glossário</div><p class="text-xs text-neutral-400">nivela o board</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">PT-BR</div><p class="text-xs text-neutral-400">na origem</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-semibold text-sm mb-1">Autonomia</div><p class="text-xs text-neutral-400">pós-entrega</p></div>
+</div>
+</section>
+<!-- RESUMO + MISSAO -->
+<section class="mb-12">
+<div class="bg-gradient-to-br from-amber-900/40 via-dark-800 to-dark-800 rounded-xl border border-amber-500/30 p-8">
+<h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">✅</span> Resumo do módulo</h2>
+<div class="space-y-4 mb-8">
+<div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">Todo prompt tem a mesma anatomia</strong><span class="text-neutral-400"> — Task → Required Sections (tabelas) → Output Format, com contexto "above".</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">Cinco grupos cobrem o pacote</strong><span class="text-neutral-400"> — Avaliação, Planejamento, Implementação, Governança e Recursos.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">Os prompts se encadeiam</strong><span class="text-neutral-400"> — avaliação vira contexto do planejamento; nada é ilha.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-neutral-100">Adaptar ao PT-BR é na origem</strong><span class="text-neutral-400"> — instrução de idioma no contexto, não tradução crua no fim.</span></div></div>
+</div>
+<div class="bg-dark-900/50 rounded-lg p-6 border border-primary/30 mb-8">
+<h3 class="font-bold text-primary mb-2 flex items-center"><span class="mr-2">🎯</span> Missão 4.2 — Adaptar 1 prompt e gerar o markdown</h3>
+<p class="text-neutral-300 text-sm mb-3">Escolha um entregável (ex.: <code class="text-amber-400">quick_wins</code>), adapte-o ao PT-BR e gere o documento para a empresa do módulo 4.1.</p>
+<ol class="space-y-2 text-neutral-300 text-sm list-decimal list-inside">
+<li>Abra o prompt original em <code class="text-amber-400">synthesis/prompts/</code> e identifique Task / Sections / Format.</li>
+<li>Acrescente a <strong>instrução de idioma PT-BR</strong> no topo do contexto.</li>
+<li>Peça ao Claude Code para gerar esse entregável usando o <code class="text-amber-400">research_cache.json</code> da Missão 4.1.</li>
+<li>Confira o markdown: tabelas preenchidas, termos técnicos entre parênteses, R$ no lugar de US$.</li>
+</ol>
+<p class="text-neutral-400 text-xs mt-3"><strong>Sucesso:</strong> um <code class="text-amber-400">.md</code> de entregável em português, estruturado e baseado na pesquisa. <strong>O que você ganhou:</strong> um prompt seu, em PT-BR, pronto para entrar no pipeline da Fábrica.</p>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+<h3 class="font-semibold text-amber-400 mb-2">Próximo módulo:</h3>
+<p class="text-neutral-300">4.3 — Orquestração, retomada e diagramas que vendem (state.json, resume e Mermaid → PNG)</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors" href="index.html">← Voltar para Trilha</a>
+<a class="flex-1 text-center px-6 py-3 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-500 transition-colors" href="modulo-4-3.html">Próximo Módulo →</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="border-t border-dark-600 py-8 mt-8">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+<p>Fábrica de Estratégia de IA · Módulo 4.2 · <a class="text-sky-400 hover:text-sky-300" href="https://inema.club" target="_blank">INEMA.CLUB</a></p>
+</div>
+</footer>
+<script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const darkIcon = document.getElementById('theme-toggle-dark-icon');
+    const lightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light') { html.classList.remove('dark'); darkIcon.classList.remove('hidden'); }
+    else { lightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      darkIcon.classList.toggle('hidden'); lightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

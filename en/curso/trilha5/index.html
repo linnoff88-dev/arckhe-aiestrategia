@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Track 5 · From the Factory to the Client | AI Strategy Factory</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: {
+      primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' }
+    } } } }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    .topic-explanation { display: none; }
+    .topic-explanation.active { display: block; }
+
+    /* Light mode - base */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    /* Light mode - acento teal (T5) */
+    html:not(.dark) .text-teal-400 { color: #0d9488; }
+    html:not(.dark) .bg-teal-500\/20 { background-color: rgba(13,148,136,0.12); }
+    html:not(.dark) .bg-teal-500\/10 { background-color: rgba(13,148,136,0.08); }
+    html:not(.dark) .border-teal-500\/30 { border-color: rgba(13,148,136,0.25); }
+    html:not(.dark) .hover\:bg-teal-500\/30:hover { background-color: rgba(13,148,136,0.18); }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13,148,136,0.08); }
+    html:not(.dark) .group:hover .group-hover\:text-teal-400 { color: #0d9488; }
+    /* Light mode - blue (box de dados) */
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37,99,235,0.12); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37,99,235,0.25); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,0.08); }
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,0.08); }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,0.08); }
+    /* Light mode - remove gradientes + especiais */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,0.22); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+    /* Dark - bordas suaves */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+    @keyframes wf-pulse { 0%,100% { opacity:.5 } 50% { opacity:1 } }
+    @media (prefers-reduced-motion: no-preference) {
+      .wf-a { animation: wf-pulse 2.6s ease-in-out infinite; }
+      .wf-a:nth-child(2){animation-delay:.3s} .wf-a:nth-child(3){animation-delay:.6s}
+      .wf-a:nth-child(4){animation-delay:.9s} .wf-a:nth-child(5){animation-delay:1.2s}
+    }
+    .modal.hidden { display: none; }
+  </style>
+<link href="https://inematds.github.io/aiestrategia/curso/trilha5/" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/aiestrategia/en/curso/trilha5/" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/aiestrategia/es/curso/trilha5/" hreflang="es" rel="alternate"/></head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="../../../curso/trilha5/" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">PT</a><a href="./" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">EN</a><a href="../../../es/curso/trilha5/" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">ES</a></div>
+<!-- NAV -->
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4">
+<a class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300" href="../../index.html">
+<span class="text-2xl">🏭</span>
+<span class="font-bold text-lg hidden sm:inline">AI Strategy Factory</span>
+</a>
+<span class="text-neutral-600">|</span>
+<a class="text-sky-400 hover:text-sky-300 text-sm font-medium" href="https://inema.club" target="_blank">INEMA.CLUB</a>
+</div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors" href="../trilha1/index.html"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentals</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors" href="../trilha2/index.html"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Synthesis</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors" href="../trilha3/index.html"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Skills &amp; Agents</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors" href="../trilha4/index.html"><span class="sm:hidden">T4</span><span class="hidden sm:inline">The Factory</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-teal-400 bg-teal-500/10" href="index.html"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Consultant</span></a>
+<button class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2" id="theme-toggle">
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-dark-icon" viewbox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-light-icon" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- HEADER -->
+<header class="bg-gradient-to-br from-teal-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<span class="inline-block px-3 py-1 bg-teal-500/20 text-teal-400 text-xs font-semibold rounded-full mb-4">TRACK 5 · 👑 CONSULTANT LEVEL</span>
+<h1 class="text-3xl sm:text-4xl font-bold mb-4">🤝 From the Factory to the Client</h1>
+<p class="text-lg text-neutral-400 max-w-3xl">The machine is ready. Now it becomes a business. Package the package to fit your style, define your niche, offer, and price, and learn the pitch that closes. The capstone: run the Factory for a real company and deliver a deck + SOW.</p>
+<div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-teal-400">3</div><div class="text-xs text-neutral-400">Modules</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-teal-400">18</div><div class="text-xs text-neutral-400">Topics</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-teal-400">~3h</div><div class="text-xs text-neutral-400">Duration</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-teal-400">Capstone</div><div class="text-xs text-neutral-400">Final</div></div>
+</div>
+</div>
+</header>
+<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<!-- HERO SVG -->
+<div class="rounded-2xl border border-teal-500/30 bg-dark-900/40 p-3 sm:p-4 mb-12 overflow-hidden">
+<svg aria-label="Delivery funnel: the Factory generates the package, which becomes an offer, which becomes a client, and closes with a contract" class="w-full h-auto" role="img" viewbox="0 0 1000 240">
+<defs>
+<lineargradient id="t5-grad" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#2dd4bf"></stop><stop offset="1" stop-color="#14b8a6"></stop></lineargradient>
+<filter height="180%" id="t5-glow" width="180%" x="-40%" y="-40%"><fegaussianblur result="b" stddeviation="1.8"></fegaussianblur><femerge><femergenode in="b"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter>
+<pattern height="32" id="t5-grid" patternunits="userSpaceOnUse" width="32"><circle cx="1.3" cy="1.3" fill="#14b8a6" opacity="0.12" r="1.3"></circle></pattern>
+</defs>
+<rect fill="url(#t5-grid)" height="240" width="1000" x="0" y="0"></rect>
+<path d="M150,120 L300,120 L500,120 L700,120 L850,120" fill="none" opacity="0.45" stroke="#2dd4bf" stroke-dasharray="8 8" stroke-width="2"></path>
+<g font-family="Inter,sans-serif" font-size="13" font-weight="600">
+<!-- Fábrica -->
+<g><rect fill="#0c1f1c" height="68" rx="12" stroke="#2dd4bf" stroke-width="2" width="150" x="40" y="86"></rect><text font-size="24" text-anchor="middle" x="115" y="116">🏭</text><text fill="#2dd4bf" text-anchor="middle" x="115" y="140">Factory</text></g>
+<!-- seta -->
+<path d="M196,120 L246,120" marker-end="url(#t5-arrow)" stroke="#38bdf8" stroke-width="2.5"></path>
+<!-- Pacote -->
+<g><rect fill="#0c1f1c" height="60" rx="12" stroke="#14b8a6" stroke-width="2" width="146" x="252" y="90"></rect><text font-size="20" text-anchor="middle" x="325" y="116">📦</text><text fill="#5eead4" font-size="12" font-weight="400" text-anchor="middle" x="325" y="138">19 deliverables</text></g>
+<path d="M404,120 L454,120" marker-end="url(#t5-arrow)" stroke="#38bdf8" stroke-width="2.5"></path>
+<!-- Cliente -->
+<g><rect fill="#0e1b26" height="60" rx="12" stroke="#38bdf8" stroke-width="2" width="146" x="460" y="90"></rect><text font-size="20" text-anchor="middle" x="533" y="116">👤</text><text fill="#bfe6ff" font-size="12" font-weight="400" text-anchor="middle" x="533" y="138">real client</text></g>
+<path d="M612,120 L662,120" marker-end="url(#t5-arrow)" stroke="#38bdf8" stroke-width="2.5"></path>
+<!-- Contrato -->
+<g filter="url(#t5-glow)"><rect fill="#0c1f1c" height="72" rx="12" stroke="url(#t5-grad)" stroke-width="2.5" width="170" x="668" y="84"></rect><text font-size="22" text-anchor="middle" x="753" y="114">🤝</text><text fill="#2dd4bf" text-anchor="middle" x="753" y="140">contract</text></g>
+<text fill="#5eead4" font-size="12" font-weight="400" text-anchor="middle" x="753" y="180">closed</text>
+</g>
+<defs>
+<marker id="t5-arrow" markerheight="7" markerwidth="7" orient="auto-start-reverse" refx="8" refy="5" viewbox="0 0 10 10"><path d="M0,0 L10,5 L0,10 z" fill="#38bdf8"></path></marker>
+</defs>
+</svg>
+</div>
+<!-- MAPA DA TRILHA -->
+<section class="mb-12">
+<h2 class="text-2xl font-bold mb-6">Learning path map</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+<a class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-teal-500/30 p-5 transition-all" href="#modulo-5-1">
+<div class="flex items-center justify-between mb-2"><span class="text-teal-400 font-bold text-sm">5.1</span><span class="text-xs text-neutral-500">~50 min</span></div>
+<h3 class="font-semibold mb-1 group-hover:text-teal-400 transition-colors">🖥️ Frontend and packaging</h3>
+<p class="text-xs text-neutral-400">The web app and the package tailored to you</p>
+</a>
+<a class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-teal-500/30 p-5 transition-all" href="#modulo-5-2">
+<div class="flex items-center justify-between mb-2"><span class="text-teal-400 font-bold text-sm">5.2</span><span class="text-xs text-neutral-500">~55 min</span></div>
+<h3 class="font-semibold mb-1 group-hover:text-teal-400 transition-colors">💼 Positioning, offer, and pricing</h3>
+<p class="text-xs text-neutral-400">Cost &lt; US$1, value worth thousands</p>
+</a>
+<a class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-teal-500/30 p-5 transition-all" href="#modulo-5-3">
+<div class="flex items-center justify-between mb-2"><span class="text-teal-400 font-bold text-sm">5.3</span><span class="text-xs text-neutral-500">~60 min</span></div>
+<h3 class="font-semibold mb-1 group-hover:text-teal-400 transition-colors">🎤 The presentation that seals the deal + Capstone</h3>
+<p class="text-xs text-neutral-400">Deck, SOW, and the real client</p>
+</a>
+</div>
+</section>
+<h2 class="text-2xl font-bold mb-6">Detailed content</h2>
+<!-- MODULO 5.1 -->
+<div class="bg-dark-800 rounded-xl border border-dark-600 mb-6" id="modulo-5-1">
+<div class="p-6 border-b border-dark-600">
+<div class="flex items-center justify-between mb-2"><span class="text-teal-400 font-bold">5.1</span><span class="text-xs text-neutral-500">~50 min</span></div>
+<h3 class="text-2xl font-bold mb-2">🖥️ Frontend and packaging</h3>
+<p class="text-neutral-400 text-sm">The minimal interface, running the web app at localhost:8888, tracking progress in real time (SSE), downloading and organizing assets, and adding your brand to the package before delivery.</p>
+</div>
+<div class="divide-y divide-dark-600">
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+<span class="text-lg">🧾</span>
+<div><span class="font-medium">The minimal interface</span><span class="text-neutral-500 text-sm ml-2">- name + description + depth</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-teal-400 font-semibold">What it is:</span><p class="text-neutral-300 text-sm">Four elements: a name field, a description field, a depth toggle (quick/deep), and a submit button. Nothing else.</p></div>
+<div><span class="text-teal-400 font-semibold">Why learn:</span><p class="text-neutral-300 text-sm">Simplicity is the selling point. "Minimum input, maximum output" needs to feel easy for the client—two boxes and one click.</p></div>
+<div><span class="text-teal-400 font-semibold">Key concepts:</span><p class="text-neutral-300 text-sm">Lean form · depth as a toggle · UX that sells.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+<span class="text-lg">🚀</span>
+<div><span class="font-medium">Run the local web app</span><span class="text-neutral-500 text-sm ml-2">- localhost:8888</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-teal-400 font-semibold">What it is:</span><p class="text-neutral-300 text-sm"><code class="text-teal-400">python -m strategy_factory.webapp</code> starts a Flask server and opens the browser at localhost:8888. The Factory becomes a screen.</p></div>
+<div><span class="text-teal-400 font-semibold">Why learn:</span><p class="text-neutral-300 text-sm">It’s the way to demonstrate it live. In a meeting, running it on your machine is worth more than a thousand slides.</p></div>
+<div><span class="text-teal-400 font-semibold">Key concepts:</span><p class="text-neutral-300 text-sm">Flask · port 8888 (auto-fallback) · live demo.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+<span class="text-lg">📡</span>
+<div><span class="font-medium">Real-time progress + download</span><span class="text-neutral-500 text-sm ml-2">- SSE and assets</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-teal-400 font-semibold">What it is:</span><p class="text-neutral-300 text-sm">Server-Sent Events (route <code class="text-teal-400">/progress/{job_id}</code>) send each pipeline step to the browser. At the end, all assets are available to download.</p></div>
+<div><span class="text-teal-400 font-semibold">Why learn:</span><p class="text-neutral-300 text-sm">Watching the bar advance builds confidence and proves that something real is happening — it’s not black-box magic.</p></div>
+<div><span class="text-teal-400 font-semibold">Key concepts:</span><p class="text-neutral-300 text-sm">SSE · job_id · automatic download.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+<span class="text-lg">🗂️</span>
+<div><span class="font-medium">Organize the package into folders</span><span class="text-neutral-500 text-sm ml-2">- markdown, decks, docs</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-teal-400 font-semibold">What it is:</span><p class="text-neutral-300 text-sm">The output comes in <code class="text-teal-400">output/{empresa}/</code> with subfolders: markdown, presentations, documents, mermaid_images.</p></div>
+<div><span class="text-teal-400 font-semibold">Why learn:</span><p class="text-neutral-300 text-sm">An organized package conveys attention to detail. A messy folder undermines the feeling of elite consulting.</p></div>
+<div><span class="text-teal-400 font-semibold">Key concepts:</span><p class="text-neutral-300 text-sm">Folder structure · clear naming · state.json.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+<span class="text-lg">🎨</span>
+<div><span class="font-medium">Branding: make it your own</span><span class="text-neutral-500 text-sm ml-2">- logo, colors, cover</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-teal-400 font-semibold">What it is:</span><p class="text-neutral-300 text-sm">Swap the logo, color palette in the decks (RGBColor in python-pptx), and document covers for your consulting brand.</p></div>
+<div><span class="text-teal-400 font-semibold">Why learn:</span><p class="text-neutral-300 text-sm">The package is your product. The brand is what makes the client remember you, not the open-source tool.</p></div>
+<div><span class="text-teal-400 font-semibold">Key concepts:</span><p class="text-neutral-300 text-sm">Visual identity · branded template · professional cover.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+<span class="text-lg">📬</span>
+<div><span class="font-medium">Host / deliver the package</span><span class="text-neutral-500 text-sm ml-2">- zip, drive, link</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-teal-400 font-semibold">What it is:</span><p class="text-neutral-300 text-sm">Compress the package, upload it to Drive/Notion or a link, and deliver it with a short guided-reading note.</p></div>
+<div><span class="text-teal-400 font-semibold">Why learn:</span><p class="text-neutral-300 text-sm">Delivery is the final touch. How the client receives it determines whether they feel "I bought a service" or "I got some files."</p></div>
+<div><span class="text-teal-400 font-semibold">Key concepts:</span><p class="text-neutral-300 text-sm">Package · host · delivery note.</p></div>
+</div></div>
+</div>
+</div>
+<div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+<button class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors" onclick="openModal('modal-5-1')">View in Modal</button>
+<a class="px-4 py-2 text-sm bg-teal-600 hover:bg-teal-500 text-white rounded-lg transition-colors" href="modulo-5-1.html">View Full</a>
+</div>
+</div>
+<!-- MODULO 5.2 -->
+<div class="bg-dark-800 rounded-xl border border-dark-600 mb-6" id="modulo-5-2">
+<div class="p-6 border-b border-dark-600">
+<div class="flex items-center justify-between mb-2"><span class="text-teal-400 font-bold">5.2</span><span class="text-xs text-neutral-500">~55 min</span></div>
+<h3 class="text-2xl font-bold mb-2">💼 Positioning, offer, and pricing</h3>
+<p class="text-neutral-400 text-sm">Find your niche, turn the diagnosis into a productized offer, price by value (not cost), choose the format, land your first clients, and be honest about what the Factory is and isn’t.</p>
+</div>
+<div class="divide-y divide-dark-600">
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+<span class="text-lg">🎯</span>
+<div><span class="font-medium">Find your niche</span><span class="text-neutral-500 text-sm ml-2">- industry + specific pain point</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-teal-400 font-semibold">What it is:</span><p class="text-neutral-300 text-sm">Choose a narrow industry (e.g., clinics, law firms, e-commerce) and a specific pain point AI can solve. "For everyone" doesn't sell.</p></div>
+<div><span class="text-teal-400 font-semibold">Why learn:</span><p class="text-neutral-300 text-sm">Jason Liu’s lesson: position yourself by niche + pain point. A narrow niche makes it easier to find clients and justify a high price.</p></div>
+<div><span class="text-teal-400 font-semibold">Key concepts:</span><p class="text-neutral-300 text-sm">Narrow niche · specific pain point · specialist &gt; generalist.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+<span class="text-lg">📦</span>
+<div><span class="font-medium">The productized offer</span><span class="text-neutral-500 text-sm ml-2">- diagnostics as a product</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-teal-400 font-semibold">What it is:</span><p class="text-neutral-300 text-sm">Package the AI diagnosis as a fixed product: defined scope, defined deliverable, defined price. No "it depends".</p></div>
+<div><span class="text-teal-400 font-semibold">Why learn:</span><p class="text-neutral-300 text-sm">Products scale; hours don't. That's what took Jason Liu from US$170/h to US$100k/month — selling a package, not time.</p></div>
+<div><span class="text-teal-400 font-semibold">Key concepts:</span><p class="text-neutral-300 text-sm">Productize · fixed scope · list price.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+<span class="text-lg">💵</span>
+<div><span class="font-medium">Pricing</span><span class="text-neutral-500 text-sm ml-2">- cost &lt; US$1 vs. value</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-teal-400 font-semibold">What it is:</span><p class="text-neutral-300 text-sm">The package costs &lt; US$1 in API fees. The client compares it with programs priced from US$149 to US$28,000. Price based on value, never cost.</p></div>
+<div><span class="text-teal-400 font-semibold">Why learn:</span><p class="text-neutral-300 text-sm">Those who price by cost leave almost all the value on the table. Margin is the heart of the model.</p></div>
+<div><span class="text-teal-400 font-semibold">Key concepts:</span><p class="text-neutral-300 text-sm">Value &gt; cost · anchoring · market ranges.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+<span class="text-lg">🔁</span>
+<div><span class="font-medium">Sales formats</span><span class="text-neutral-500 text-sm ml-2">- project, retainer, productized</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-teal-400 font-semibold">What it is:</span><p class="text-neutral-300 text-sm">One-off project (fixed price), retainer (monthly support fee), or productized (standard, repeatable offer). You can combine them.</p></div>
+<div><span class="text-teal-400 font-semibold">Why learn:</span><p class="text-neutral-300 text-sm">Each format has a different cash flow and effort profile. Knowing which one to offer each client determines your revenue.</p></div>
+<div><span class="text-teal-400 font-semibold">Key concepts:</span><p class="text-neutral-300 text-sm">Project · retainer · recurring product.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+<span class="text-lg">🧲</span>
+<div><span class="font-medium">Get your first customers</span><span class="text-neutral-500 text-sm ml-2">- channels and evidence</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-teal-400 font-semibold">What it is:</span><p class="text-neutral-300 text-sm">Close network, LinkedIn, build in public, and a free sample (a diagnosis of a familiar company) as proof of capability.</p></div>
+<div><span class="text-teal-400 font-semibold">Why learn:</span><p class="text-neutral-300 text-sm">Building in public builds authority and attracts customers. The first case opens the door to the next ones.</p></div>
+<div><span class="text-teal-400 font-semibold">Key concepts:</span><p class="text-neutral-300 text-sm">Build in public · social proof · free sample.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+<span class="text-lg">⚖️</span>
+<div><span class="font-medium">Ethics and expectations</span><span class="text-neutral-500 text-sm ml-2">- what the Factory is and isn't</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-teal-400 font-semibold">What it is:</span><p class="text-neutral-300 text-sm">Be clear: the Factory generates a strong, research-based starting point, but you review, validate, and adapt it before delivering.</p></div>
+<div><span class="text-teal-400 font-semibold">Why learn:</span><p class="text-neutral-300 text-sm">Setting expectations well protects your reputation. Promising "absolute truth" is the fast track to losing the client.</p></div>
+<div><span class="text-teal-400 font-semibold">Key concepts:</span><p class="text-neutral-300 text-sm">Transparency · human review · honest expectations.</p></div>
+</div></div>
+</div>
+</div>
+<div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+<button class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors" onclick="openModal('modal-5-2')">View in Modal</button>
+<a class="px-4 py-2 text-sm bg-teal-600 hover:bg-teal-500 text-white rounded-lg transition-colors" href="modulo-5-2.html">View Full</a>
+</div>
+</div>
+<!-- MODULO 5.3 -->
+<div class="bg-dark-800 rounded-xl border border-dark-600 mb-6" id="modulo-5-3">
+<div class="p-6 border-b border-dark-600">
+<div class="flex items-center justify-between mb-2"><span class="text-teal-400 font-bold">5.3</span><span class="text-xs text-neutral-500">~60 min</span></div>
+<h3 class="text-2xl font-bold mb-2">🎤 The presentation that seals the deal + Capstone</h3>
+<p class="text-neutral-400 text-sm">The executive deck, the SOW (scope, price, timeline), how to lead the meeting, respond to objections, and the capstone: run the Factory for a real client and deliver the package + deck + SOW.</p>
+</div>
+<div class="divide-y divide-dark-600">
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+<span class="text-lg">📊</span>
+<div><span class="font-medium">The executive deck</span><span class="text-neutral-500 text-sm ml-2">- the structure that decides</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-teal-400 font-semibold">What it is:</span><p class="text-neutral-300 text-sm">The Executive Summary (PPTX) the Factory generates: context, diagnosis, opportunities, roadmap, and next step—ready for leadership.</p></div>
+<div><span class="text-teal-400 font-semibold">Why learn:</span><p class="text-neutral-300 text-sm">The deck is what decides the purchase. Knowing the slide order means knowing how to lead the decision.</p></div>
+<div><span class="text-teal-400 font-semibold">Key concepts:</span><p class="text-neutral-300 text-sm">Executive Summary · decision narrative · next-step slide.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+<span class="text-lg">📜</span>
+<div><span class="font-medium">The SOW</span><span class="text-neutral-500 text-sm ml-2">- scope, price, timeline</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-teal-400 font-semibold">What it is:</span><p class="text-neutral-300 text-sm">The Statement of Work (DOCX) generated by the Factory: what’s included, what isn’t, price, timeline, and terms. The document that becomes the contract.</p></div>
+<div><span class="text-teal-400 font-semibold">Why learn:</span><p class="text-neutral-300 text-sm">A clear scope prevents conflict and protects your margin. A well-written SOW is half the close.</p></div>
+<div><span class="text-teal-400 font-semibold">Key concepts:</span><p class="text-neutral-300 text-sm">Statement of Work · scope &amp; out of scope · terms.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+<span class="text-lg">🗣️</span>
+<div><span class="font-medium">Lead the meeting</span><span class="text-neutral-500 text-sm ml-2">- from diagnosis to the next step</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-teal-400 font-semibold">What it is:</span><p class="text-neutral-300 text-sm">A simple script: hear the pain point, present the diagnosis, connect it to the opportunity, and propose a clear next step.</p></div>
+<div><span class="text-teal-400 font-semibold">Why learn:</span><p class="text-neutral-300 text-sm">The meeting is where the package becomes a contract. Using a method keeps the conversation from turning into aimless small talk.</p></div>
+<div><span class="text-teal-400 font-semibold">Key concepts:</span><p class="text-neutral-300 text-sm">Meeting script · active listening · clear ask.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+<span class="text-lg">🛡️</span>
+<div><span class="font-medium">Common objections and responses</span><span class="text-neutral-500 text-sm ml-2">- price, AI, trust</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-teal-400 font-semibold">What it is:</span><p class="text-neutral-300 text-sm">The three usual objections: “it’s expensive,” “is this just AI?” and “how do I know it’s reliable?”—and honest answers to each one.</p></div>
+<div><span class="text-teal-400 font-semibold">Why learn:</span><p class="text-neutral-300 text-sm">Those who anticipate objections close more deals. A prepared response conveys confidence and keeps the conversation under control.</p></div>
+<div><span class="text-teal-400 font-semibold">Key concepts:</span><p class="text-neutral-300 text-sm">Anchor in value · transparency · human review.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+<span class="text-lg">🏁</span>
+<div><span class="font-medium">Capstone: Factory for a real client</span><span class="text-neutral-500 text-sm ml-2">- the final project</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-teal-400 font-semibold">What it is:</span><p class="text-neutral-300 text-sm">Choose a real company, run the Factory from start to finish, review the deliverables, and put together the deck + SOW to present.</p></div>
+<div><span class="text-teal-400 font-semibold">Why learn:</span><p class="text-neutral-300 text-sm">It’s proof that everything works together. You finish the course with a real case in your portfolio, not just theory.</p></div>
+<div><span class="text-teal-400 font-semibold">Key concepts:</span><p class="text-neutral-300 text-sm">End-to-end project · review · portfolio.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-teal-500/20 text-teal-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+<span class="text-lg">🧭</span>
+<div><span class="font-medium">Next steps</span><span class="text-neutral-500 text-sm ml-2">- evolve the factory</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-teal-400 font-semibold">What it is:</span><p class="text-neutral-300 text-sm">Add new deliverables, create skills by sector, improve prompts, and expand the offering with what you learn from each client.</p></div>
+<div><span class="text-teal-400 font-semibold">Why learn:</span><p class="text-neutral-300 text-sm">The Factory is a living asset. Every project you deliver feeds into the next, sharper version.</p></div>
+<div><span class="text-teal-400 font-semibold">Key concepts:</span><p class="text-neutral-300 text-sm">Continuous iteration · new deliverables · a growing asset.</p></div>
+</div></div>
+</div>
+</div>
+<div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+<button class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors" onclick="openModal('modal-5-3')">View in Modal</button>
+<a class="px-4 py-2 text-sm bg-teal-600 hover:bg-teal-500 text-white rounded-lg transition-colors" href="modulo-5-3.html">View Full</a>
+</div>
+</div>
+<!-- NAV INFERIOR -->
+<div class="flex flex-col sm:flex-row gap-4 mt-10">
+<a class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors" href="../trilha4/index.html">← Track 4</a>
+<a class="flex-1 text-center px-6 py-3 bg-teal-600 text-white rounded-lg font-semibold hover:bg-teal-500 transition-colors" href="../../index.html">Back to the beginning →</a>
+</div>
+</main>
+<!-- MODAIS -->
+<div class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" id="modal-5-1" onclick="if(event.target === this) closeModal()">
+<div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+<div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+<div class="flex items-center space-x-3"><span class="text-teal-400 font-bold">5.1</span><span class="font-semibold">Frontend and packaging</span></div>
+<button class="text-neutral-400 hover:text-white text-2xl leading-none" onclick="closeModal()">×</button>
+</div>
+<iframe class="flex-1 w-full rounded-b-xl" src="modulo-5-1.html"></iframe>
+</div>
+</div>
+<div class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" id="modal-5-2" onclick="if(event.target === this) closeModal()">
+<div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+<div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+<div class="flex items-center space-x-3"><span class="text-teal-400 font-bold">5.2</span><span class="font-semibold">Positioning, offer, and pricing</span></div>
+<button class="text-neutral-400 hover:text-white text-2xl leading-none" onclick="closeModal()">×</button>
+</div>
+<iframe class="flex-1 w-full rounded-b-xl" src="modulo-5-2.html"></iframe>
+</div>
+</div>
+<div class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" id="modal-5-3" onclick="if(event.target === this) closeModal()">
+<div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+<div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+<div class="flex items-center space-x-3"><span class="text-teal-400 font-bold">5.3</span><span class="font-semibold">The closing presentation + Capstone</span></div>
+<button class="text-neutral-400 hover:text-white text-2xl leading-none" onclick="closeModal()">×</button>
+</div>
+<iframe class="flex-1 w-full rounded-b-xl" src="modulo-5-3.html"></iframe>
+</div>
+</div>
+<footer class="border-t border-dark-600 py-8 mt-8">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+<p>AI Strategy Factory · Track 5 — From the Factory to the Client · <a class="text-sky-400 hover:text-sky-300" href="https://inema.club" target="_blank">INEMA.CLUB</a></p>
+</div>
+</footer>
+<script>
+    function toggleTopic(button) {
+      const topicItem = button.closest('.topic-item');
+      const explanation = topicItem.querySelector('.topic-explanation');
+      const moduleCard = button.closest('.bg-dark-800');
+      moduleCard.querySelectorAll('.topic-explanation.active').forEach(exp => { if (exp !== explanation) exp.classList.remove('active'); });
+      explanation.classList.toggle('active');
+    }
+    function openModal(id){ const m=document.getElementById(id); if(m){ m.classList.remove('hidden'); document.body.style.overflow='hidden'; } }
+    function closeModal(){ document.querySelectorAll('.modal').forEach(m=>m.classList.add('hidden')); document.body.style.overflow='auto'; }
+    document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
+    const themeToggle = document.getElementById('theme-toggle');
+    const darkIcon = document.getElementById('theme-toggle-dark-icon');
+    const lightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light') { html.classList.remove('dark'); darkIcon.classList.remove('hidden'); }
+    else { lightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      darkIcon.classList.toggle('hidden'); lightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fábrica de Estratégia de IA — Vire Consultor de IA</title>
+<meta content="Curso prático: construa a sua Fábrica de Estratégia de IA com Claude Code e vire consultor de IA. Do zero ao entregável que vende." name="description"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: {
+        primary: '#FACC15',
+        dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' }
+      } } }
+    }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+
+    /* Light mode overrides - OBRIGATORIO */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+
+    /* Light mode - cores de acento de TODAS as trilhas (landing) */
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .text-teal-400 { color: #0d9488; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5,150,105,0.12); }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37,99,235,0.12); }
+    html:not(.dark) .bg-purple-500\/20 { background-color: rgba(124,58,237,0.12); }
+    html:not(.dark) .bg-amber-500\/20 { background-color: rgba(217,119,6,0.12); }
+    html:not(.dark) .bg-teal-500\/20 { background-color: rgba(13,148,136,0.12); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5,150,105,0.25); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37,99,235,0.25); }
+    html:not(.dark) .border-purple-500\/30 { border-color: rgba(124,58,237,0.25); }
+    html:not(.dark) .border-amber-500\/30 { border-color: rgba(217,119,6,0.25); }
+    html:not(.dark) .border-teal-500\/30 { border-color: rgba(13,148,136,0.25); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,0.08); }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,0.08); }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,0.08); }
+    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13,148,136,0.08); }
+    html:not(.dark) .group:hover .group-hover\:text-emerald-400 { color: #059669; }
+    html:not(.dark) .group:hover .group-hover\:text-blue-400 { color: #2563eb; }
+    html:not(.dark) .group:hover .group-hover\:text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .group:hover .group-hover\:text-amber-400 { color: #92400e; }
+    html:not(.dark) .group:hover .group-hover\:text-teal-400 { color: #0d9488; }
+
+    /* Light mode - remove gradientes + cores especiais */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,0.22); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+
+    /* Light mode - nav + diagramas */
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+
+    /* Dark mode - bordas suavizadas */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+
+    @keyframes wf-pulse { 0%,100% { opacity:.5 } 50% { opacity:1 } }
+    @media (prefers-reduced-motion: no-preference) {
+      .wf-a { animation: wf-pulse 2.6s ease-in-out infinite; }
+      .wf-a:nth-child(2){animation-delay:.3s} .wf-a:nth-child(3){animation-delay:.6s}
+    }
+  </style>
+<link href="https://inematds.github.io/aiestrategia/" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/aiestrategia/en/" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/aiestrategia/es/" hreflang="es" rel="alternate"/></head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="./" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">PT</a><a href="en/" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">EN</a><a href="es/" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">ES</a></div>
+<!-- NAVIGATION -->
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4">
+<a class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300" href="index.html">
+<span class="text-2xl">🏭</span>
+<span class="font-bold text-lg hidden sm:inline">Fábrica de Estratégia de IA</span>
+</a>
+<span class="text-neutral-600">|</span>
+<a class="text-sky-400 hover:text-sky-300 text-sm font-medium" href="https://inema.club" target="_blank">INEMA.CLUB</a>
+</div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors" href="curso/trilha1/index.html"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentos</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors" href="curso/trilha2/index.html"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Síntese</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors" href="curso/trilha3/index.html"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Skills &amp; Agentes</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors" href="curso/trilha4/index.html"><span class="sm:hidden">T4</span><span class="hidden sm:inline">A Fábrica</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors" href="curso/trilha5/index.html"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Consultor</span></a>
+<button class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2" id="theme-toggle">
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-dark-icon" viewbox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-light-icon" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- HERO -->
+<header class="bg-gradient-to-br from-amber-900/20 via-dark-900 to-dark-900 border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+<span class="inline-block px-3 py-1 bg-primary/10 text-primary border border-primary/40 text-xs font-semibold rounded-full mb-5">CURSO PRÁTICO · ENTRE NA ÁREA DE IA + CONSULTORIA</span>
+<h1 class="text-4xl sm:text-5xl font-bold mb-5 leading-tight">Construa a sua <span class="text-primary">Fábrica de Estratégia de IA</span><br class="hidden sm:block"/> e vire consultor de IA.</h1>
+<p class="text-lg text-neutral-300 max-w-3xl mb-4">Você vai montar — com o Claude Code — uma máquina que pesquisa qualquer empresa e cospe um pacote de consultoria com <strong class="text-neutral-100">19 entregáveis</strong>: relatórios, roadmaps, ROI, política de IA, deck e SOW. Custo por pacote: <strong class="text-primary">menos de US$1</strong>.</p>
+<p class="text-lg text-neutral-400 max-w-3xl mb-8">Entrada mínima, saída máxima. Do zero ao entregável que vende — sem precisar ser programador.</p>
+<div class="flex flex-col sm:flex-row justify-start gap-4 mb-12">
+<a class="px-6 py-3 bg-primary text-dark-900 rounded-lg font-bold hover:bg-yellow-300 transition-colors text-center" href="curso/trilha1/index.html">Começar pela Trilha 1 →</a>
+<a class="px-6 py-3 bg-dark-700 text-neutral-200 rounded-lg font-semibold hover:bg-dark-600 transition-colors text-center" href="#trilhas">Ver o mapa do curso</a>
+</div>
+<!-- HERO SVG: pipeline de 3 fases -->
+<div class="rounded-2xl border border-primary/30 bg-dark-900/40 p-3 sm:p-5 overflow-hidden">
+<svg aria-label="A empresa entra, passa pelas fases Pesquisa, Síntese e Geração, e sai como 19 entregáveis de consultoria" class="w-full h-auto" role="img" viewbox="0 0 1000 230">
+<defs>
+<lineargradient id="hero-grad" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#fbbf24"></stop><stop offset="1" stop-color="#f59e0b"></stop></lineargradient>
+<filter height="180%" id="hero-glow" width="180%" x="-40%" y="-40%"><fegaussianblur result="b" stddeviation="1.8"></fegaussianblur><femerge><femergenode in="b"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter>
+<pattern height="32" id="hero-grid" patternunits="userSpaceOnUse" width="32"><circle cx="1.3" cy="1.3" fill="#f59e0b" opacity="0.10" r="1.3"></circle></pattern>
+<marker id="hero-ah" markerheight="9" markerwidth="9" orient="auto" refx="6.5" refy="4.5"><path d="M0,0 L8,4.5 L0,9 L2.4,4.5 Z" fill="#38bdf8"></path></marker>
+<marker id="hero-aha" markerheight="9" markerwidth="9" orient="auto" refx="6.5" refy="4.5"><path d="M0,0 L8,4.5 L0,9 L2.4,4.5 Z" fill="#fbbf24"></path></marker>
+</defs>
+<rect fill="url(#hero-grid)" height="230" width="1000" x="0" y="0"></rect>
+<!-- conectores -->
+<g fill="none" opacity="0.55" stroke="#38bdf8" stroke-width="2">
+<path d="M214,115 L286,115" marker-end="url(#hero-ah)"></path>
+<path d="M430,115 L502,115" marker-end="url(#hero-ah)"></path>
+<path d="M646,115 L718,115" marker-end="url(#hero-ah)"></path>
+</g>
+<path d="M862,115 L922,115" fill="none" marker-end="url(#hero-aha)" opacity="0.7" stroke="#fbbf24" stroke-width="2"></path>
+<!-- Input -->
+<g filter="url(#hero-glow)"><rect fill="#1f1604" height="64" rx="14" stroke="url(#hero-grad)" stroke-width="2.5" width="156" x="58" y="83"></rect></g>
+<text fill="#fbbf24" font-family="Inter,sans-serif" font-size="17" font-weight="600" text-anchor="middle" x="136" y="110">Empresa</text>
+<text fill="#fcd9a0" font-family="Inter,sans-serif" font-size="12" text-anchor="middle" x="136" y="130">nome + descrição</text>
+<!-- Fases -->
+<g font-family="Inter,sans-serif">
+<g class="wf-a"><rect fill="#0e1b26" height="52" rx="11" stroke="#38bdf8" stroke-width="2" width="144" x="286" y="89"></rect><text fill="#bfe6ff" font-size="14" font-weight="600" text-anchor="middle" x="358" y="112">1 · Pesquisa</text><text fill="#9ad6ff" font-size="11" text-anchor="middle" x="358" y="129">Perplexity</text></g>
+<g class="wf-a"><rect fill="#0e1b26" height="52" rx="11" stroke="#38bdf8" stroke-width="2" width="144" x="502" y="89"></rect><text fill="#bfe6ff" font-size="14" font-weight="600" text-anchor="middle" x="574" y="112">2 · Síntese</text><text fill="#9ad6ff" font-size="11" text-anchor="middle" x="574" y="129">Gemini · 15 prompts</text></g>
+<g class="wf-a"><rect fill="#0e1b26" height="52" rx="11" stroke="#38bdf8" stroke-width="2" width="144" x="718" y="89"></rect><text fill="#bfe6ff" font-size="14" font-weight="600" text-anchor="middle" x="790" y="112">3 · Geração</text><text fill="#9ad6ff" font-size="11" text-anchor="middle" x="790" y="129">PPTX · DOCX · PNG</text></g>
+</g>
+<!-- Output -->
+<g filter="url(#hero-glow)"><rect fill="#1f1604" height="72" rx="13" stroke="url(#hero-grad)" stroke-width="2.5" width="64" x="922" y="79"></rect></g>
+<text fill="#fbbf24" font-family="Inter,sans-serif" font-size="22" font-weight="700" text-anchor="middle" x="954" y="111">19</text>
+<text fill="#fcd9a0" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" x="954" y="131">entregáveis</text>
+</svg>
+</div>
+</div>
+</header>
+<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+<!-- STATS -->
+<section class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-16">
+<div class="bg-dark-800 rounded-xl p-5 border border-dark-600 text-center"><div class="text-3xl font-bold text-primary">5</div><div class="text-sm text-neutral-400 mt-1">Trilhas (níveis)</div></div>
+<div class="bg-dark-800 rounded-xl p-5 border border-dark-600 text-center"><div class="text-3xl font-bold text-primary">16</div><div class="text-sm text-neutral-400 mt-1">Módulos</div></div>
+<div class="bg-dark-800 rounded-xl p-5 border border-dark-600 text-center"><div class="text-3xl font-bold text-primary">96</div><div class="text-sm text-neutral-400 mt-1">Tópicos</div></div>
+<div class="bg-dark-800 rounded-xl p-5 border border-dark-600 text-center"><div class="text-3xl font-bold text-primary">19</div><div class="text-sm text-neutral-400 mt-1">Entregáveis</div></div>
+</section>
+<!-- POR QUE AGORA -->
+<section class="mb-16">
+<h2 class="text-2xl font-bold mb-6">Por que isto, por que agora</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6">
+<div class="text-3xl font-bold text-blue-400 mb-2">88% → 6%</div>
+<p class="text-neutral-300 text-sm">88% das empresas já usam IA. Só <strong>6% extraem valor real</strong>. O abismo entre adotar e lucrar é exatamente onde o consultor entra.</p>
+</div>
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<div class="text-3xl font-bold text-emerald-400 mb-2">US$ 72,8 bi</div>
+<p class="text-neutral-300 text-sm">é o tamanho projetado do mercado de consultoria de IA até 2030 — de ~US$22 bi hoje, <strong>+31,6% ao ano</strong>. A onda está só começando.</p>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6">
+<div class="text-3xl font-bold text-primary mb-2">&lt; US$1</div>
+<p class="text-neutral-300 text-sm">é o custo de gerar um pacote de consultoria completo com a sua Fábrica. Entrada mínima, saída máxima.</p>
+</div>
+</div>
+</section>
+<!-- TRILHAS -->
+<section class="mb-16 scroll-mt-20" id="trilhas">
+<h2 class="text-2xl font-bold mb-2">As 5 trilhas — você sobe de nível</h2>
+<p class="text-neutral-400 mb-8">Cada trilha é um nível. Você termina cada uma com algo funcionando na mão.</p>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<a class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-emerald-500/30 p-6 transition-all" href="curso/trilha1/index.html">
+<div class="flex items-center justify-between mb-3">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-semibold">🥉 Nível 1 · Aprendiz</span>
+<span class="text-xs text-neutral-500">3 módulos</span>
+</div>
+<h3 class="text-xl font-bold mb-2 group-hover:text-emerald-400 transition-colors">🧭 Fundamentos &amp; Setup</h3>
+<p class="text-neutral-400 text-sm">A oportunidade, a anatomia da Fábrica e o setup do arsenal (Claude Code + Perplexity + Gemini). Roda o primeiro pacote.</p>
+</a>
+<a class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-blue-500/30 p-6 transition-all" href="curso/trilha2/index.html">
+<div class="flex items-center justify-between mb-3">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full bg-blue-500/20 text-blue-400 text-xs font-semibold">🥈 Nível 2 · Sintetizador</span>
+<span class="text-xs text-neutral-500">3 módulos</span>
+</div>
+<h3 class="text-xl font-bold mb-2 group-hover:text-blue-400 transition-colors">📚 Síntese de Conhecimento</h3>
+<p class="text-neutral-400 text-sm">Os frameworks que consultoria cobra caro + RAG preguiçoso: vire PDFs gigantes em cheat sheets. Monta seu cérebro de consultor.</p>
+</a>
+<a class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-purple-500/30 p-6 transition-all" href="curso/trilha3/index.html">
+<div class="flex items-center justify-between mb-3">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full bg-purple-500/20 text-purple-400 text-xs font-semibold">🥇 Nível 3 · Construtor</span>
+<span class="text-xs text-neutral-500">4 módulos</span>
+</div>
+<h3 class="text-xl font-bold mb-2 group-hover:text-purple-400 transition-colors">🛠️ Skills &amp; Agentes</h3>
+<p class="text-neutral-400 text-sm">Construa skills e subagentes reutilizáveis — incluindo a skill que gera DocX/PPTX/Excel/PDF e o agente que pesquisa empresas.</p>
+</a>
+<a class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-amber-500/30 p-6 transition-all" href="curso/trilha4/index.html">
+<div class="flex items-center justify-between mb-3">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-400 text-xs font-semibold">💎 Nível 4 · Engenheiro</span>
+<span class="text-xs text-neutral-500">3 módulos</span>
+</div>
+<h3 class="text-xl font-bold mb-2 group-hover:text-amber-400 transition-colors">🏭 A Fábrica</h3>
+<p class="text-neutral-400 text-sm">Pesquisa ao vivo com Perplexity, os 15 prompts de entregáveis, orquestração com checkpoints e diagramas Mermaid que vendem.</p>
+</a>
+<a class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-teal-500/30 p-6 transition-all lg:col-span-2" href="curso/trilha5/index.html">
+<div class="flex items-center justify-between mb-3">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full bg-teal-500/20 text-teal-400 text-xs font-semibold">👑 Nível 5 · Consultor</span>
+<span class="text-xs text-neutral-500">3 módulos · capstone</span>
+</div>
+<h3 class="text-xl font-bold mb-2 group-hover:text-teal-400 transition-colors">🤝 Da Fábrica ao Cliente</h3>
+<p class="text-neutral-400 text-sm">Frontend e empacotamento, posicionamento e preço, a apresentação que fecha — e o capstone: a Fábrica rodando para um cliente real.</p>
+</a>
+</div>
+</section>
+<!-- O QUE VOCE LEVA -->
+<section class="mb-16">
+<h2 class="text-2xl font-bold mb-6">O que você leva para casa</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+<h3 class="font-semibold text-primary mb-3 flex items-center"><span class="mr-2">🧰</span> Arsenal reutilizável</h3>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-primary mt-0.5">•</span><span>Skills prontas: <strong>diagnostico-ia</strong> e <strong>gerar-entregavel</strong></span></li>
+<li class="flex items-start space-x-2"><span class="text-primary mt-0.5">•</span><span>Agentes: <strong>pesquisador-empresa</strong> e <strong>redator-estrategia</strong></span></li>
+<li class="flex items-start space-x-2"><span class="text-primary mt-0.5">•</span><span>15 prompts de entregáveis em PT-BR, prontos para colar</span></li>
+<li class="flex items-start space-x-2"><span class="text-primary mt-0.5">•</span><span>Templates: SOW, deck executivo, roadmap 30/60/90, ROI</span></li>
+</ul>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+<h3 class="font-semibold text-primary mb-3 flex items-center"><span class="mr-2">🎯</span> Resultado concreto</h3>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">✓</span><span>Uma Fábrica de Estratégia de IA funcionando</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">✓</span><span>Um pacote de consultoria completo de uma empresa real</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">✓</span><span>Deck + SOW para apresentar e cobrar</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">✓</span><span>Uma oferta de consultor posicionada por nicho</span></li>
+</ul>
+</div>
+</div>
+</section>
+<!-- PARA QUEM -->
+<section class="mb-16">
+<div class="bg-gradient-to-br from-amber-900/20 to-dark-800 rounded-xl border border-primary/30 p-8">
+<h2 class="text-2xl font-bold mb-4">Para quem é</h2>
+<p class="text-neutral-300 mb-4">Para quem quer <strong class="text-primary">entrar na área de IA e de consultoria</strong> e sair com algo que dá para mostrar e vender. Não exige ser dev — você orquestra tudo pelo Claude Code.</p>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
+<div class="bg-dark-800/60 rounded-lg p-4 border border-dark-600"><strong class="text-neutral-100">Iniciante em IA</strong><p class="text-neutral-400 mt-1">quer um caminho rápido, mas completo.</p></div>
+<div class="bg-dark-800/60 rounded-lg p-4 border border-dark-600"><strong class="text-neutral-100">Futuro consultor</strong><p class="text-neutral-400 mt-1">quer um entregável e uma oferta de verdade.</p></div>
+<div class="bg-dark-800/60 rounded-lg p-4 border border-dark-600"><strong class="text-neutral-100">Profissional/empreendedor</strong><p class="text-neutral-400 mt-1">quer aplicar na própria empresa.</p></div>
+</div>
+</div>
+</section>
+<!-- CTA FINAL -->
+<section class="text-center mb-4">
+<h2 class="text-2xl font-bold mb-3">Pronto para sair do zero?</h2>
+<p class="text-neutral-400 mb-6 max-w-2xl mx-auto">Comece pelo Nível 1. Em poucos módulos você roda o seu primeiro pacote de consultoria.</p>
+<div class="flex flex-col sm:flex-row justify-center gap-4">
+<a class="px-8 py-3 bg-primary text-dark-900 rounded-lg font-bold hover:bg-yellow-300 transition-colors" href="curso/trilha1/index.html">Começar agora →</a>
+<a class="px-8 py-3 bg-dark-700 text-neutral-200 rounded-lg font-semibold hover:bg-dark-600 transition-colors" href="https://inema.club" target="_blank">Conhecer a INEMA.CLUB</a>
+</div>
+</section>
+</main>
+<footer class="border-t border-dark-600 py-8 mt-8">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+<p>Fábrica de Estratégia de IA — um curso <a class="text-sky-400 hover:text-sky-300" href="https://inema.club" target="_blank">INEMA.CLUB</a> · 2026</p>
+<p class="mt-1">Baseado no projeto <a class="text-sky-400 hover:text-sky-300" href="https://github.com/inematds/ai-strategy-factory" target="_blank">ai-strategy-factory</a>.</p>
+</div>
+<!-- inema-backlink:v1 -->
+<p style="display:block;width:100%;text-align:center;font-size:.85rem;margin:.75rem 0 0;opacity:.85"><a href="https://www.inema.club/cursos/152-fabrica-de-estrategia-de-ia-vire-consultor-de-ia/" style="color:inherit;text-decoration:underline">Ficha completa deste curso no INEMA.CLUB</a> · <a href="https://www.inema.club/aprender-inteligencia-artificial/" style="color:inherit;text-decoration:underline">Guia: como aprender inteligência artificial</a></p>
+<!-- /inema-backlink:v1 -->
+</footer>
+<script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const darkIcon = document.getElementById('theme-toggle-dark-icon');
+    const lightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light') { html.classList.remove('dark'); darkIcon.classList.remove('hidden'); }
+    else { lightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      darkIcon.classList.toggle('hidden'); lightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

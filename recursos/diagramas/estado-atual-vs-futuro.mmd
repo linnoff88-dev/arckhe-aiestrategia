@@ -1,0 +1,54 @@
+%% Exemplo: arquitetura ATUAL vs FUTURA (habilitada por IA) de uma empresa
+%% Adapte os blocos ao contexto real do cliente.
+%% Renderize em: eraser.io / mermaid.live / skill beautiful-mermaid
+
+flowchart TB
+    subgraph Atual["Estado atual: {empresa}"]
+        direction TB
+        subgraph FontesA["Fontes de dados"]
+            A1["Planilhas / Excel"]
+            A2["CRM"]
+            A3["ERP"]
+        end
+        subgraph SistemasA["Sistemas centrais"]
+            B1["Atendimento manual"]
+            B2["Relatórios manuais"]
+        end
+        subgraph UsuariosA["Usuários"]
+            C1["Vendas"]
+            C2["Operações"]
+        end
+        A1 --> B2
+        A2 --> B1
+        A3 --> B2
+        B1 --> C1
+        B2 --> C2
+        Gargalo["Gargalo: dados em silos,<br/>trabalho repetitivo"]:::warn
+        B2 --- Gargalo
+    end
+
+    subgraph Futuro["Estado futuro: {empresa} (habilitada por IA)"]
+        direction TB
+        subgraph DadosF["Camada de dados"]
+            D1["Plataforma de dados unificada"]
+        end
+        subgraph IAF["Camada de IA"]
+            E1["Assistente de atendimento"]
+            E2["Análise & relatórios automáticos"]
+            E3["Triagem / classificação"]
+        end
+        subgraph AppsF["Aplicações"]
+            F1["Vendas + copiloto"]
+            F2["Operações + automação"]
+        end
+        D1 --> E1
+        D1 --> E2
+        D1 --> E3
+        E1 --> F1
+        E2 --> F2
+        E3 --> F2
+    end
+
+    Atual -.->|"transformação"| Futuro
+
+    classDef warn fill:#fde0e0,stroke:#c0392b,color:#7b241c;

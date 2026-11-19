@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Módulo 3.1 · Skills e subagentes | Fábrica de Estratégia de IA</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: {
+      primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' }
+    } } } }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    /* Light mode - base */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    /* Light mode - acento purple (T3) */
+    html:not(.dark) .text-purple-400 { color:#7c3aed; }
+    html:not(.dark) .bg-purple-500\/20 { background-color: rgba(124,58,237,0.12); }
+    html:not(.dark) .bg-purple-500\/10 { background-color: rgba(124,58,237,0.08); }
+    html:not(.dark) .border-purple-500\/30 { border-color: rgba(124,58,237,0.25); }
+    html:not(.dark) .hover\:bg-purple-500\/30:hover { background-color: rgba(124,58,237,0.18); }
+    html:not(.dark) .hover\:text-purple-400:hover { color:#7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,0.08); }
+    /* Light mode - cores auxiliares */
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37,99,235,0.12); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37,99,235,0.25); }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37,99,235,0.06); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,0.08); }
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,0.08); }
+    html:not(.dark) .text-teal-400 { color: #0d9488; }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) .hover\:bg-teal-500\/10:hover { background-color: rgba(13,148,136,0.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-500\/20 { background-color: rgba(185,28,28,0.10); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185,28,28,0.25); }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185,28,28,0.05); }
+    /* Light mode - remove gradientes + especiais */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,0.22); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+    /* Dark - bordas suaves */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+  </style>
+<link href="https://inematds.github.io/aiestrategia/curso/trilha3/modulo-3-1.html" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/aiestrategia/en/curso/trilha3/modulo-3-1.html" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/aiestrategia/es/curso/trilha3/modulo-3-1.html" hreflang="es" rel="alternate"/></head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="modulo-3-1.html" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">PT</a><a href="../../en/curso/trilha3/modulo-3-1.html" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">EN</a><a href="../../es/curso/trilha3/modulo-3-1.html" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">ES</a></div>
+<!-- NAV -->
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4">
+<a class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300" href="../../index.html">
+<span class="text-2xl">🏭</span>
+<span class="font-bold text-lg hidden sm:inline">Fábrica de Estratégia de IA</span>
+</a>
+<span class="text-neutral-600">|</span>
+<a class="text-sky-400 hover:text-sky-300 text-sm font-medium" href="https://inema.club" target="_blank">INEMA.CLUB</a>
+</div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors" href="../trilha1/index.html"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentos</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors" href="../trilha2/index.html"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Síntese</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-purple-400 bg-purple-500/10" href="index.html"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Skills &amp; Agentes</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors" href="../trilha4/index.html"><span class="sm:hidden">T4</span><span class="hidden sm:inline">A Fábrica</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors" href="../trilha5/index.html"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Consultor</span></a>
+<button class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2" id="theme-toggle">
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-dark-icon" viewbox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-light-icon" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- BREADCRUMB -->
+<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+<div class="flex items-center space-x-2 text-sm text-neutral-400">
+<a class="hover:text-purple-400" href="../../index.html">Início</a><span>/</span>
+<a class="hover:text-purple-400" href="index.html">Trilha 3</a><span>/</span>
+<span class="text-purple-400">Módulo 3.1</span>
+</div>
+</nav>
+<!-- HEADER -->
+<header class="bg-gradient-to-br from-purple-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<span class="inline-block px-3 py-1 bg-purple-500/20 text-purple-400 text-xs font-semibold rounded-full mb-4">MÓDULO 3.1</span>
+<h1 class="text-3xl sm:text-4xl font-bold mb-4">🧱 Skills e subagentes: o que são</h1>
+<p class="text-lg text-neutral-400 max-w-3xl">Skill e subagente são as duas peças que viram a sua Fábrica em ativo. Uma é capacidade sob demanda; a outra, um trabalhador isolado. Entender a diferença é o que evita sobre-engenharia.</p>
+<div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">~45</div><div class="text-xs text-neutral-400">Minutos</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">Intermediário</div><div class="text-xs text-neutral-400">Nível</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">Conceito</div><div class="text-xs text-neutral-400">Tipo</div></div>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<!-- SECAO 1 -->
+<section class="mb-16" id="topico-1">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">1</span>
+<h2 class="text-2xl font-bold">🧩 O que é uma skill</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Uma skill é uma <strong class="text-purple-400">capacidade reutilizável</strong> que o Claude Code carrega sob demanda. Na prática, é um arquivo <code class="text-purple-400">SKILL.md</code>: um frontmatter com <code class="text-purple-400">name</code> e <code class="text-purple-400">description</code>, mais um corpo em Markdown com os passos e arquivos de referência opcionais.</p>
+<p class="text-neutral-300 mb-6 leading-relaxed">A <code class="text-purple-400">description</code> é o gatilho: quando a tarefa que você pede bate com ela, a skill ativa sozinha e injeta os passos no contexto. Você ensina uma vez, usa sempre — sem reescrever o procedimento a cada conversa.</p>
+<div class="rounded-2xl border border-purple-500/30 bg-dark-900/40 p-3 sm:p-4 mb-6 overflow-hidden">
+<svg aria-label="Uma caixa rotulada SKILL contém três caixas de passo numeradas dentro dela; a descrição é o gatilho que ativa a skill" class="w-full h-auto" role="img" viewbox="0 0 1000 250">
+<defs>
+<lineargradient id="m31-grad" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#c084fc"></stop><stop offset="1" stop-color="#a855f7"></stop></lineargradient>
+<filter height="180%" id="m31-glow" width="180%" x="-40%" y="-40%"><fegaussianblur result="b" stddeviation="1.8"></fegaussianblur><femerge><femergenode in="b"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter>
+<pattern height="32" id="m31-grid" patternunits="userSpaceOnUse" width="32"><circle cx="1.3" cy="1.3" fill="#a855f7" opacity="0.12" r="1.3"></circle></pattern>
+</defs>
+<rect fill="url(#m31-grid)" height="250" width="1000" x="0" y="0"></rect>
+<!-- Caixa externa: SKILL -->
+<g filter="url(#m31-glow)"><rect fill="#1a1230" height="170" rx="14" stroke="url(#m31-grad)" stroke-width="2.5" width="600" x="90" y="40"></rect></g>
+<text fill="#c084fc" font-family="Inter,sans-serif" font-size="18" font-weight="700" x="120" y="74">SKILL.md</text>
+<text fill="#cbb6f0" font-family="Inter,sans-serif" font-size="12" x="120" y="96">name + description (o gatilho)</text>
+<!-- 3 caixas de passo internas -->
+<rect fill="#0f0a1c" height="74" rx="9" stroke="#a855f7" stroke-width="1.6" width="170" x="120" y="116"></rect>
+<text fill="#e9d8ff" font-family="Inter,sans-serif" font-size="13" font-weight="600" text-anchor="middle" x="205" y="150">Passo 1</text>
+<text fill="#a78bca" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="205" y="170">ler entrada</text>
+<rect fill="#0f0a1c" height="74" rx="9" stroke="#a855f7" stroke-width="1.6" width="170" x="305" y="116"></rect>
+<text fill="#e9d8ff" font-family="Inter,sans-serif" font-size="13" font-weight="600" text-anchor="middle" x="390" y="150">Passo 2</text>
+<text fill="#a78bca" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="390" y="170">processar</text>
+<rect fill="#0f0a1c" height="74" rx="9" stroke="#a855f7" stroke-width="1.6" width="170" x="490" y="116"></rect>
+<text fill="#e9d8ff" font-family="Inter,sans-serif" font-size="13" font-weight="600" text-anchor="middle" x="575" y="150">Passo 3</text>
+<text fill="#a78bca" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="575" y="170">entregar</text>
+<!-- gatilho da tarefa -->
+<path d="M690,125 L800,125" opacity="0.85" stroke="#38bdf8" stroke-dasharray="7 7" stroke-width="2"></path>
+<rect fill="#0e1b26" height="60" rx="10" stroke="#38bdf8" stroke-width="2" width="150" x="800" y="95"></rect>
+<text fill="#bfe6ff" font-family="Inter,sans-serif" font-size="14" font-weight="700" text-anchor="middle" x="875" y="122">tarefa bate</text>
+<text fill="#9fcfe8" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="875" y="142">→ ativa</text>
+</svg>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+<p class="text-neutral-300 text-sm">Pense na skill como um colega que já sabe o procedimento. Você não explica de novo — só diz "faz aquilo" e a <code class="text-purple-400">description</code> reconhece o pedido. Quanto melhor a descrição, mais certeiro o gatilho.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">Reutilizável</div><p class="text-xs text-neutral-400">ensina uma vez</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">Sob demanda</div><p class="text-xs text-neutral-400">carrega ao precisar</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">SKILL.md</div><p class="text-xs text-neutral-400">frontmatter + passos</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">Gatilho</div><p class="text-xs text-neutral-400">a description ativa</p></div>
+</div>
+</section>
+<!-- SECAO 2 -->
+<section class="mb-16" id="topico-2">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">2</span>
+<h2 class="text-2xl font-bold">🕵️ O que é um subagente</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Um subagente é uma <strong class="text-purple-400">instância separada</strong> do Claude, com a sua própria janela de contexto, o seu próprio system prompt e as suas próprias ferramentas. Ele recebe uma tarefa, trabalha isolado e devolve só o resultado — para que o contexto do agente principal continue limpo.</p>
+<p class="text-neutral-300 mb-6 leading-relaxed">É um trabalhador dedicado. O que ele lê, baixa e processa fica no contexto dele, não no seu. Você só recebe o resumo do que importa — o equivalente a delegar uma pesquisa pesada sem afogar a conversa.</p>
+<div class="space-y-6 mb-6">
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">1</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2">Recebe a tarefa</h4><p class="text-neutral-300 text-sm">O agente principal delega um trabalho específico — "pesquise a empresa X", "varra esse setor" — com instruções claras.</p></div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">2</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2">Trabalha isolado</h4><p class="text-neutral-300 text-sm">Lê dezenas de páginas, roda buscas, processa dados — tudo no contexto próprio dele. Nada disso polui o seu thread.</p></div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center"><span class="text-purple-400 font-bold">3</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600"><h4 class="font-semibold text-neutral-100 mb-2">Devolve o resumo</h4><p class="text-neutral-300 text-sm">Retorna só a conclusão — os achados que interessam. O agente principal segue com o contexto enxuto e focado.</p></div>
+</div>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">Isolado</div><p class="text-xs text-neutral-400">contexto próprio</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">Dedicado</div><p class="text-xs text-neutral-400">prompt + tools próprios</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">Devolve resumo</div><p class="text-xs text-neutral-400">só o que importa</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">Contexto limpo</div><p class="text-xs text-neutral-400">protege o principal</p></div>
+</div>
+</section>
+<!-- SECAO 3 -->
+<section class="mb-16" id="topico-3">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">3</span>
+<h2 class="text-2xl font-bold">⚖️ Skill vs agente: quando cada um</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">A confusão mais comum é usar agente onde bastava skill — e sobre-engenheirar. A regra é simples. <strong class="text-purple-400">Skill</strong> é uma capacidade que você dá ao agente principal (gerar um PPTX, rodar um diagnóstico). <strong class="text-purple-400">Subagente</strong> é um trabalhador separado para um trabalho que queima muito contexto ou precisa de isolamento (varrer a web, pesquisar uma empresa).</p>
+<p class="text-neutral-300 mb-6 leading-relaxed">Regra de bolso: mesmo thread + procedimento reutilizável → skill. Thread separado + trabalho pesado ou independente → subagente.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-purple-900/20 rounded-xl border border-purple-500/30 p-6">
+<h4 class="font-bold text-purple-400 mb-4">✓ Vira SKILL quando…</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>É um procedimento que se repete no mesmo thread</span></li>
+<li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Você quer dar uma capacidade ao agente principal</span></li>
+<li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>O resultado fica na conversa (deck, diagnóstico, SOW)</span></li>
+<li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Não queima muito contexto para rodar</span></li>
+</ul>
+</div>
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6">
+<h4 class="font-bold text-blue-400 mb-4">✓ Vira AGENTE quando…</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-blue-400">✓</span><span>O trabalho queima muito contexto (varrer a web)</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">✓</span><span>Precisa de isolamento — não quer poluir o thread</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">✓</span><span>É independente e pode rodar em paralelo</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">✓</span><span>Você só quer o resumo de volta, não o caminho</span></li>
+</ul>
+</div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Na dúvida, comece com skill</h3>
+<p class="text-neutral-300 text-sm">Subagente é mais poder, mas também mais peça móvel. Se a tarefa cabe no mesmo thread sem afogar o contexto, faça skill. Promova para subagente só quando o isolamento ou o volume de contexto pedirem.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">Skill</div><p class="text-xs text-neutral-400">capacidade</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">Agente</div><p class="text-xs text-neutral-400">delegação pesada</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">Mesmo thread</div><p class="text-xs text-neutral-400">→ skill</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">Thread à parte</div><p class="text-xs text-neutral-400">→ subagente</p></div>
+</div>
+</section>
+<!-- SECAO 4 -->
+<section class="mb-16" id="topico-4">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">4</span>
+<h2 class="text-2xl font-bold">🔬 Anatomia de uma skill (<code class="text-purple-400">SKILL.md</code>)</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Uma skill é um arquivo só. No topo, um frontmatter YAML com <code class="text-purple-400">name</code> e <code class="text-purple-400">description</code>. Abaixo, um corpo em Markdown com os passos. Veja o esqueleto mínimo de uma skill de diagnóstico de IA.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-6">
+<p class="text-xs text-neutral-500 mb-2 font-mono">// .claude/skills/diagnostico-ia/SKILL.md</p>
+<pre class="font-mono text-sm text-neutral-300 whitespace-pre-wrap leading-relaxed">---
+name: diagnostico-ia
+description: Use ao diagnosticar a maturidade de IA de uma
+  empresa descrita em texto — gera maturidade 1-5, quick wins
+  e roadmap 30/60/90.
+---
+
+# Diagnóstico de IA
+
+## Passos
+1. Ler a descrição da empresa.
+2. Pontuar a maturidade de IA (1-5).
+3. Listar 3 quick wins (esforço × impacto).
+4. Sugerir um roadmap 30/60/90.</pre>
+</div>
+<div class="space-y-3 mb-6">
+<div class="flex items-start space-x-3 bg-dark-800 rounded-lg p-4 border border-dark-600"><span class="text-purple-400 font-mono text-sm mt-0.5">name</span><p class="text-neutral-300 text-sm flex-1"><strong class="text-neutral-100">id curto</strong> — o nome da skill, usado para referenciá-la. Sem espaços, direto ao ponto.</p></div>
+<div class="flex items-start space-x-3 bg-dark-800 rounded-lg p-4 border border-dark-600"><span class="text-purple-400 font-mono text-sm mt-0.5">description</span><p class="text-neutral-300 text-sm flex-1"><strong class="text-neutral-100">o gatilho</strong> — descreve <em>quando</em> usar a skill. É o que o Claude lê para decidir se ativa.</p></div>
+<div class="flex items-start space-x-3 bg-dark-800 rounded-lg p-4 border border-dark-600"><span class="text-purple-400 font-mono text-sm mt-0.5">body</span><p class="text-neutral-300 text-sm flex-1"><strong class="text-neutral-100">os passos</strong> — o procedimento em Markdown que o agente segue depois de ativar.</p></div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> A description é a parte mais ignorada</h3>
+<p class="text-neutral-300 text-sm">É a peça mais importante e a mais negligenciada. Uma description vaga ("ajuda com estratégia") nunca ativa na hora certa. Diga <strong>quando</strong> usar, com gatilhos concretos — é isso que faz a skill aparecer sozinha.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">name</div><p class="text-xs text-neutral-400">id curto</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">description</div><p class="text-xs text-neutral-400">o gatilho</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">body</div><p class="text-xs text-neutral-400">os passos</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">1 arquivo</div><p class="text-xs text-neutral-400">tudo num SKILL.md</p></div>
+</div>
+</section>
+<!-- SECAO 5 -->
+<section class="mb-16" id="topico-5">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">5</span>
+<h2 class="text-2xl font-bold">📁 Onde skills e subagentes vivem</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Tudo mora numa pasta <code class="text-purple-400">.claude/</code>. Skills ficam em <code class="text-purple-400">.claude/skills/&lt;nome&gt;/SKILL.md</code>; subagentes em <code class="text-purple-400">.claude/agents/&lt;nome&gt;.md</code>. A escolha é entre escopo de projeto (vai junto no Git) e escopo pessoal (vale em todo projeto seu).</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-purple-900/20 rounded-xl border border-purple-500/30 p-6">
+<h4 class="font-bold text-purple-400 mb-4">📦 Do projeto (<code>.claude/</code>)</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Vive na raiz do repositório do projeto</span></li>
+<li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Vai junto no Git — todo o time herda</span></li>
+<li class="flex items-start space-x-2"><span class="text-purple-400">✓</span><span>Ideal para a Fábrica: versionada com o código</span></li>
+</ul>
+</div>
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6">
+<h4 class="font-bold text-blue-400 mb-4">🏠 Pessoal (<code>~/.claude/</code>)</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-blue-400">✓</span><span>Vive na sua home — fora de qualquer repo</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">✓</span><span>Vale em todo projeto que você abrir</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">✓</span><span>Ideal para ferramentas suas, de uso geral</span></li>
+</ul>
+</div>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-5 mb-6">
+<p class="text-xs text-neutral-500 mb-2 font-mono">// estrutura do projeto</p>
+<pre class="font-mono text-sm text-neutral-300 whitespace-pre-wrap leading-relaxed">.claude/
+├── skills/
+│   ├── diagnostico-ia/SKILL.md
+│   └── gerar-entregavel/SKILL.md
+└── agents/
+    ├── pesquisador-empresa.md
+    └── redator-estrategia.md</pre>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">skills/</div><p class="text-xs text-neutral-400">um SKILL.md cada</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">agents/</div><p class="text-xs text-neutral-400">um .md cada</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">Projeto</div><p class="text-xs text-neutral-400">vai no Git</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">Pessoal</div><p class="text-xs text-neutral-400">vale em tudo</p></div>
+</div>
+</section>
+<!-- SECAO 6 -->
+<section class="mb-16" id="topico-6">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">6</span>
+<h2 class="text-2xl font-bold">💎 O ecossistema de recursos reutilizáveis</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Aqui está o porquê de tudo isso virar ativo. Cada skill e cada agente é construído <strong class="text-purple-400">uma vez</strong> e reusado para sempre. Juntos, eles formam as engrenagens da Fábrica — o seu arsenal.</p>
+<p class="text-neutral-300 mb-6 leading-relaxed">É a tese "entrada mínima, saída máxima" virada código. O esforço vai para a construção, não para a entrega. Quanto mais peças você acumula, mais a Fábrica entrega sozinha — e o custo marginal de cada novo cliente despenca.</p>
+<div class="space-y-3 mb-6">
+<div class="flex items-center space-x-3 bg-dark-800 rounded-lg p-4 border border-dark-600"><span class="text-lg">🧩</span><div><strong class="text-purple-400">Skills</strong><span class="text-neutral-400 text-sm"> — as capacidades: diagnosticar, gerar deck, escrever SOW</span></div></div>
+<div class="flex items-center space-x-3 bg-dark-800 rounded-lg p-4 border border-dark-600"><span class="text-lg">🕵️</span><div><strong class="text-purple-400">Subagentes</strong><span class="text-neutral-400 text-sm"> — os trabalhadores: pesquisar empresa, varrer setor</span></div></div>
+<div class="flex items-center space-x-3 bg-dark-800 rounded-lg p-4 border border-dark-600"><span class="text-lg">⚙️</span><div><strong class="text-purple-400">A Fábrica</strong><span class="text-neutral-400 text-sm"> — skills + agentes orquestrados num pipeline só</span></div></div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/40 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Construa o arsenal, não o entregável</h3>
+<p class="text-neutral-300 text-sm">Toda vez que você fizer uma tarefa à mão, pergunte: "isso vira skill ou agente?". Se sim, transforme — e nunca mais refaça. O entregável é descartável; a peça reutilizável é o que se acumula e te dá alavancagem.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">Construir 1x</div><p class="text-xs text-neutral-400">reusar sempre</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">Engrenagens</div><p class="text-xs text-neutral-400">peças da Fábrica</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">Arsenal</div><p class="text-xs text-neutral-400">se acumula</p></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-semibold text-sm mb-1">Alavancagem</div><p class="text-xs text-neutral-400">custo marginal ↓</p></div>
+</div>
+</section>
+<!-- RESUMO + MISSAO -->
+<section class="mb-12">
+<div class="bg-gradient-to-br from-purple-900/40 via-dark-800 to-dark-800 rounded-xl border border-purple-500/30 p-8">
+<h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">✅</span> Resumo do módulo</h2>
+<div class="space-y-4 mb-8">
+<div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Skill = capacidade sob demanda</strong><span class="text-neutral-400"> — um SKILL.md (name + description + passos) que ativa quando a tarefa bate.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Subagente = trabalho isolado</strong><span class="text-neutral-400"> — instância separada, com contexto próprio, que devolve só o resumo.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Escolha pela regra</strong><span class="text-neutral-400"> — capacidade no mesmo thread → skill; delegação pesada e isolada → agente.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-neutral-100">Cada peça vira ativo</strong><span class="text-neutral-400"> — construída uma vez, reusada sempre; é o arsenal da Fábrica.</span></div></div>
+</div>
+<div class="bg-dark-900/50 rounded-lg p-6 border border-primary/30 mb-8">
+<h3 class="font-bold text-primary mb-2 flex items-center"><span class="mr-2">🎯</span> Missão 3.1 — Mapeie seu arsenal</h3>
+<p class="text-neutral-300 text-sm mb-3">Liste as suas tarefas e classifique cada uma como skill ou subagente:</p>
+<ol class="space-y-2 text-neutral-300 text-sm list-decimal list-inside">
+<li><strong>3 tarefas repetitivas</strong> suas que viram <strong class="text-purple-400">skill</strong> (ex.: diagnosticar empresa, gerar deck, escrever SOW).</li>
+<li><strong>2 tarefas</strong> que viram <strong class="text-purple-400">subagente</strong> (ex.: pesquisar uma empresa na web, varrer um setor inteiro).</li>
+</ol>
+<p class="text-neutral-400 text-xs mt-3"><strong>Sucesso:</strong> 3 skills + 2 agentes mapeados. <strong>O que você ganhou:</strong> o desenho do seu arsenal — o que construir nas próximas aulas.</p>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+<h3 class="font-semibold text-purple-400 mb-2">Próximo módulo:</h3>
+<p class="text-neutral-300">3.2 — Construa sua primeira skill (diagnostico-ia)</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors" href="index.html">← Voltar para Trilha</a>
+<a class="flex-1 text-center px-6 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-500 transition-colors" href="modulo-3-2.html">Próximo Módulo →</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="border-t border-dark-600 py-8 mt-8">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+<p>Fábrica de Estratégia de IA · Módulo 3.1 · <a class="text-sky-400 hover:text-sky-300" href="https://inema.club" target="_blank">INEMA.CLUB</a></p>
+</div>
+</footer>
+<script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const darkIcon = document.getElementById('theme-toggle-dark-icon');
+    const lightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light') { html.classList.remove('dark'); darkIcon.classList.remove('hidden'); }
+    else { lightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      darkIcon.classList.toggle('hidden'); lightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>
