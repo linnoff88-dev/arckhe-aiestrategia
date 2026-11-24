@@ -1,4 +1,4 @@
-﻿# ðŸ­ FÃ¡brica de EstratÃ©gia de IA â€” Vire Consultor de IA
+# ðŸ­ FÃ¡brica de EstratÃ©gia de IA â€” Vire Consultor de IA
 
 <div align="center">
   <img src="capa/logo.svg" alt="Arckhé AI" height="48" />
@@ -9,8 +9,8 @@
 > Curso prÃ¡tico, mÃ£o na massa, para quem quer **entrar na Ã¡rea de IA e de consultoria de IA**.
 > VocÃª constrÃ³i â€” com o Claude Code â€” uma mÃ¡quina que pesquisa qualquer empresa e gera um pacote de consultoria completo (**19 entregÃ¡veis**), e aprende a se posicionar e vender como consultor.
 
-**â–¶ Acesse o curso:** https://inematds.github.io/aiestrategia/
-**Comunidade:** [INEMA.CLUB](https://inema.club)
+**â–¶ Acesse o curso:** https://linnoff88-dev.github.io/
+**Comunidade:** [ARCKHÉ AI](https://ARCKHÉ AI)
 
 ---
 
@@ -57,23 +57,23 @@ aiestrategia/
 
 ## Como usar
 
-1. Acesse https://inematds.github.io/aiestrategia/ e siga pela Trilha 1.
+1. Acesse https://linnoff88-dev.github.io/ e siga pela Trilha 1.
 2. FaÃ§a cada **MissÃ£o** antes de avanÃ§ar â€” o curso Ã© cumulativo.
 3. Use os arquivos de `recursos/` direto no seu Claude Code.
 
 ## CrÃ©ditos
 
-Curso da [INEMA.CLUB](https://inema.club), baseado no projeto [ai-strategy-factory](https://github.com/inematds/ai-strategy-factory). ConstruÃ­do com Claude Code. Diagramas via [Mermaid](https://mermaid.live) / [eraser.io](https://www.eraser.io/make/free-mermaid-diagram-maker).
+Curso da [ARCKHÉ AI](https://ARCKHÉ AI), baseado no projeto [ai-strategy-factory](https://github.com/linnoff88-dev/ai-strategy-factory). ConstruÃ­do com Claude Code. Diagramas via [Mermaid](https://mermaid.live) / [eraser.io](https://www.eraser.io/make/free-mermaid-diagram-maker).
 
-Design no formato de cursos INEMA.CLUB (dark premium, SVG inline, responsivo, dark/light).
+Design no formato de cursos ARCKHÉ AI (dark premium, SVG inline, responsivo, dark/light).
 
-<!-- inema-backlink:v1 -->
-## Mais no INEMA.CLUB
+<!-- ARCKHÉ-backlink:v1 -->
+## Mais no ARCKHÉ AI
 
-- [Ficha completa deste curso](https://www.inema.club/cursos/152-fabrica-de-estrategia-de-ia-vire-consultor-de-ia/)
-- [Guia: como aprender inteligÃªncia artificial](https://www.inema.club/aprender-inteligencia-artificial/)
-- [Todos os cursos](https://www.inema.club/cursos/)
-<!-- /inema-backlink:v1 -->
+- [Ficha completa deste curso](https://www.ARCKHÉ AI/cursos/152-fabrica-de-estrategia-de-ia-vire-consultor-de-ia/)
+- [Guia: como aprender inteligÃªncia artificial](https://www.ARCKHÉ AI/aprender-inteligencia-artificial/)
+- [Todos os cursos](https://www.ARCKHÉ AI/cursos/)
+<!-- /ARCKHÉ-backlink:v1 -->
 
 ---
 
