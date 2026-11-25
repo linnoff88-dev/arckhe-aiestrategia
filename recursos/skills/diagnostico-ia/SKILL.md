@@ -3,7 +3,7 @@ name: diagnostico-ia
 description: >-
   Use quando o usuário pedir um diagnóstico de IA de uma empresa — avaliar o
   nível de maturidade em IA, achar quick wins (vitórias rápidas) e montar um
-  mini-roadmap 30/60/90 a partir de uma descrição da empresa (nome, setor,
+  mini-roadmap 30/60/90 a partir de uma descriçêo da empresa (nome, setor,
   porte, dores, stack). Acione com pedidos como "faz um diagnóstico de IA da
   empresa X", "avalia a maturidade de IA dessa empresa", "onde essa empresa
   está em IA e por onde começar", "monta um diagnóstico pra eu apresentar a um
@@ -16,10 +16,10 @@ Produz um diagnóstico curto e vendável de uma empresa: onde ela está em IA
 (escala 1-5), 3-5 vitórias rápidas, e um plano 30/60/90 dias. Saída em markdown
 pronto para virar slide ou .docx (ver skill `gerar-entregavel`).
 
-Este é um diagnóstico **rápido** (modo quick): roda só com a descrição que o
+Este é um diagnóstico **rápido** (modo quick): roda só com a descriçêo que o
 usuário deu, sem precisar de pesquisa ao vivo. Se houver pesquisa estruturada
 disponível (um `CompanyContext` do agente `pesquisador-empresa`), use-a para
-embasar as notas. Sem pesquisa, marque suposições com `(suposição)`.
+embasar as notas. Sem pesquisa, marque suposições com `(suposiçêo)`.
 
 ## Referências a anexar
 
@@ -28,47 +28,47 @@ conhecimento do curso (pasta `conhecimento/` montada na T2), em especial:
 
 - **AI Maturity** — a escala 1-5 (Passivo → Transformacional), baseada na curva
   de maturidade da BCG.
-- **Quick Wins** — matriz esforço × impacto e critérios de seleção.
+- **Quick Wins** — matriz esforço × impacto e critérios de seleçêo.
 - **Roadmap 30/60/90** — fases e marcos.
 
-Se a pasta `conhecimento/` não existir, use as escalas embutidas abaixo (são o
+Se a pasta `conhecimento/` nêo existir, use as escalas embutidas abaixo (sêo o
 resumo fiel desses frameworks).
 
 ## Passos (determinísticos)
 
 ### 1. Coletar o contexto da empresa
 
-Extraia da descrição do usuário (ou do `CompanyContext`):
+Extraia da descriçêo do usuário (ou do `CompanyContext`):
 
 - `nome` da empresa
 - `setor` / indústria
 - `porte` (nº de funcionários → pequena <100, média 100-500, grande 500-2000,
   enterprise 2000+)
-- `localização`
+- `localizaçêo`
 - `stack` tecnológico conhecido (ERP, CRM, ferramentas, nuvem)
 - `objetivos` declarados
 - `dores` / desafios
 
-Falta de dado **não** bloqueia. Liste o que falta em "Suposições e lacunas".
+Falta de dado **nêo** bloqueia. Liste o que falta em "Suposições e lacunas".
 
 ### 2. Aplicar a escala de Maturidade de IA (1-5)
 
 Posicione a empresa em **um** dos 5 estágios e justifique com evidência da
-descrição:
+descriçêo:
 
 | Nível | Estágio | Sinais |
 |---|---|---|
 | 1 | **Passivo** | Nenhuma iniciativa de IA, processos tradicionais/manuais |
 | 2 | **Consciente** | Explorando IA, pilotos iniciais, uso pontual de ferramentas |
-| 3 | **Ativo** | Vários projetos de IA, alguns em produção |
+| 3 | **Ativo** | Vários projetos de IA, alguns em produçêo |
 | 4 | **Operacional** | IA integrada a processos centrais |
-| 5 | **Transformacional** | Organização nativa de IA, vantagem competitiva |
+| 5 | **Transformacional** | Organizaçêo nativa de IA, vantagem competitiva |
 
-Depois, dê uma nota **1-5 por dimensão** numa tabela:
+Depois, dê uma nota **1-5 por dimensêo** numa tabela:
 
-| Dimensão | Nota (1-5) | Evidência | Lacuna |
+| Dimensêo | Nota (1-5) | Evidência | Lacuna |
 |---|---|---|---|
-| Estratégia & Visão | | | |
+| Estratégia & Visêo | | | |
 | Dados & Infraestrutura | | | |
 | Tecnologia & Ferramentas | | | |
 | Talento & Skills | | | |
@@ -82,7 +82,7 @@ A nota geral do diagnóstico = estágio (1-5) + média das dimensões como refor
 
 Selecione 3-5 iniciativas que cabem nos critérios:
 
-- Implementação em **< 60 dias**
+- Implementaçêo em **< 60 dias**
 - Investimento **baixo** (ferramentas SaaS ou recursos internos)
 - Risco **baixo**
 - ROI **demonstrável**
@@ -98,12 +98,12 @@ impacto / baixo esforço**. Formato:
 
 Três fases, com objetivo e 2-4 ações por fase:
 
-- **30 dias — Fundação:** governança mínima, auditoria de dados, priorizar quick
+- **30 dias — Fundaçêo:** governança mínima, auditoria de dados, priorizar quick
   wins, montar comitê/responsável.
 - **60 dias — Vitórias rápidas:** lançar 2-3 quick wins, capturar as primeiras
   métricas de ROI, treinar usuários.
 - **90 dias — Escala:** expandir os pilotos que deram certo, framework de
-  medição, começar a Central de Excelência.
+  mediçêo, começar a Central de Excelência.
 
 (Se o cliente pedir, estenda para 180/360 usando o template
 `templates/roadmap-30-60-90.md`.)
@@ -121,7 +121,7 @@ Monte um único arquivo markdown com esta estrutura exata:
 - Próximo passo recomendado
 
 ## Contexto da empresa
-{setor, porte, localização, stack, objetivos, dores}
+{setor, porte, localizaçêo, stack, objetivos, dores}
 
 ## Maturidade de IA
 {estágio + parágrafo de evidência}
@@ -138,10 +138,10 @@ Monte um único arquivo markdown com esta estrutura exata:
 ```
 
 Tom: direto, brasileiro ("você" / impessoal), concreto (números, R$, %), sóbrio.
-Sem floreio. Toda nota precisa de evidência ou da marca `(suposição)`.
+Sem floreio. Toda nota precisa de evidência ou da marca `(suposiçêo)`.
 
 ## Critério de sucesso
 
 O arquivo abre como um diagnóstico que dá para apresentar a um cliente: posiciona
 a empresa (1-5), entrega 3-5 quick wins acionáveis e um plano 30/60/90 — sem
-inventar fatos não embasados.
+inventar fatos nêo embasados.

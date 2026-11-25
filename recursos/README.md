@@ -1,6 +1,6 @@
 # Arsenal — recursos reutilizáveis da Fábrica de Estratégia de IA
 
-Arquivos prontos para copiar e usar. São o "arsenal" que você leva do curso:
+Arquivos prontos para copiar e usar. Sêo o "arsenal" que você leva do curso:
 skills do Claude Code, definições de subagentes, os 15 prompts de entregáveis,
 templates comerciais e diagramas. Tudo em PT-BR, adaptado do repo
 `ai-strategy-factory`.
@@ -36,12 +36,12 @@ recursos/
 │   ├── 14-biblioteca-de-casos-de-uso.md
 │   └── 15-glossario.md
 ├── templates/
-│   ├── sow.md                     # declaração de trabalho (PT-BR)
+│   ├── sow.md                     # declaraçêo de trabalho (PT-BR)
 │   ├── deck-executivo.md          # outline do deck slide a slide
 │   ├── roadmap-30-60-90.md        # roadmap 30/60/90/180/360 em branco
 │   └── roi-calculator.md          # estrutura da planilha de ROI (cores/fórmulas)
 └── diagramas/
-    ├── pipeline.mmd               # pipeline 3 fases (Pesquisa→Síntese→Geração)
+    ├── pipeline.mmd               # pipeline 3 fases (Pesquisa→Síntese→Geraçêo)
     ├── estado-atual-vs-futuro.mmd # arquitetura atual vs futura (exemplo)
     └── README.md                  # como renderizar e usar
 ```
@@ -49,13 +49,13 @@ recursos/
 ## O que é cada recurso (e a que módulo pertence)
 
 ### Skills (Claude Code)
-Skills são capacidades reutilizáveis que disparam sozinhas pela `description`.
+Skills sêo capacidades reutilizáveis que disparam sozinhas pela `description`.
 Copie a pasta da skill para `~/.claude/skills/` (global) ou `.claude/skills/`
 (do projeto).
 
 | Skill | O que faz | Módulo |
 |---|---|---|
-| `skills/diagnostico-ia/` | Recebe a descrição de uma empresa, aplica a escala de maturidade 1-5, lista quick wins e monta um roadmap 30/60/90. Saída em markdown. | T3 · M3.2 |
+| `skills/diagnostico-ia/` | Recebe a descriçêo de uma empresa, aplica a escala de maturidade 1-5, lista quick wins e monta um roadmap 30/60/90. Saída em markdown. | T3 · M3.2 |
 | `skills/gerar-entregavel/` | Converte um markdown de entregável em `.docx` e `.pptx` (e `.xlsx`/`.pdf`) com python-docx / python-pptx. | T3 · M3.3 |
 
 ### Agentes (subagentes)
@@ -70,22 +70,22 @@ Use como referência para criar o agente no Claude Code.
 ### Prompts (15 entregáveis)
 Um arquivo por entregável, com objetivo, o **prompt pronto para colar** (com
 placeholders `{empresa}` / `{contexto}` / `{pesquisa}`) e o formato de saída.
-São a adaptação PT-BR dos 15 prompts do repo. Módulo: **T4 · M4.2**.
+Sêo a adaptaçêo PT-BR dos 15 prompts do repo. Módulo: **T4 · M4.2**.
 
 | # | Arquivo | Entregável |
 |---|---|---|
 | 01 | `01-inventario-tecnologico.md` | Inventário tecnológico & infraestrutura de dados |
 | 02 | `02-dores-por-departamento.md` | Matriz de dores por departamento |
 | 03 | `03-diagramas.md` | Diagramas Mermaid (estado atual + futuro) |
-| 04 | `04-maturidade.md` | Maturidade & prontidão para IA (1-5) |
+| 04 | `04-maturidade.md` | Maturidade & prontidêo para IA (1-5) |
 | 05 | `05-roadmap.md` | Roadmap 30/60/90/180/360 |
 | 06 | `06-quick-wins.md` | Vitórias rápidas |
-| 07 | `07-comparacao-fornecedores.md` | Comparação de fornecedores & construir vs comprar |
-| 08 | `08-consolidacao-licencas.md` | Consolidação de licenças |
+| 07 | `07-comparacao-fornecedores.md` | Comparaçêo de fornecedores & construir vs comprar |
+| 08 | `08-consolidacao-licencas.md` | Consolidaçêo de licenças |
 | 09 | `09-calculadora-roi.md` | Calculadora de ROI & custo |
 | 10 | `10-politica-de-ia.md` | Política de uso aceitável de IA |
 | 11 | `11-governanca-de-dados.md` | Governança de dados |
-| 12 | `12-gestao-da-mudanca.md` | Gestão da mudança & treinamento |
+| 12 | `12-gestao-da-mudanca.md` | Gestêo da mudança & treinamento |
 | 13 | `13-biblioteca-de-prompts.md` | Biblioteca de prompts |
 | 14 | `14-biblioteca-de-casos-de-uso.md` | Biblioteca de casos de uso |
 | 15 | `15-glossario.md` | Glossário de termos de IA |
@@ -96,13 +96,13 @@ Documentos de venda e entrega, em branco para preencher. Módulo: **T5 · M5.3**
 
 | Template | O que é |
 |---|---|
-| `templates/sow.md` | Declaração de Trabalho: escopo, entregáveis, prazo, preço, premissas, exclusões. |
+| `templates/sow.md` | Declaraçêo de Trabalho: escopo, entregáveis, prazo, preço, premissas, exclusões. |
 | `templates/deck-executivo.md` | Outline do deck que fecha (problema → diagnóstico → quick wins → roadmap → ROI → governança → próximos passos). |
 | `templates/roadmap-30-60-90.md` | Roadmap 30/60/90/180/360 em branco. |
-| `templates/roi-calculator.md` | Estrutura da planilha de ROI: abas, fórmulas e convenção de cores. |
+| `templates/roi-calculator.md` | Estrutura da planilha de ROI: abas, fórmulas e convençêo de cores. |
 
 ### Diagramas
-Mermaid + guia de renderização. Módulo: **T4 · M4.3**.
+Mermaid + guia de renderizaçêo. Módulo: **T4 · M4.3**.
 
 | Arquivo | O que é |
 |---|---|
@@ -122,14 +122,14 @@ Mermaid + guia de renderização. Módulo: **T4 · M4.3**.
    `diagramas/README.md`) e insira nos documentos.
 5. **Empacotar** — converta os markdowns em `.docx`/`.pptx` com a skill
    `gerar-entregavel`; monte o ROI em `.xlsx` pelo `roi-calculator.md`.
-6. **Vender** — preencha o `deck-executivo.md` e o `sow.md` para a reunião.
+6. **Vender** — preencha o `deck-executivo.md` e o `sow.md` para a reuniêo.
 
-Saída padrão dos artefatos: `~/projetos/output/<empresa>/`.
+Saída padrêo dos artefatos: `~/projetos/output/<empresa>/`.
 
 ## Fidelidade
 
-Tudo aqui é adaptação PT-BR (traduzida e enxuta) do repo `ai-strategy-factory`:
+Tudo aqui é adaptaçêo PT-BR (traduzida e enxuta) do repo `ai-strategy-factory`:
 os 15 prompts de `synthesis/prompts/`, os modelos de `models.py`, as 9 categorias
-de `research/query_templates.py`, a geração de documentos de
+de `research/query_templates.py`, a geraçêo de documentos de
 `.claude/document-creation-skills.md` e a arquitetura de `docs/ARCHITECTURE.md`.
-Não inventa APIs — espelha o que o repo faz.
+Nêo inventa APIs — espelha o que o repo faz.

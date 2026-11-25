@@ -15,7 +15,7 @@ Pesquisa / insumos (use quick wins e casos de uso, se gerados):
 # Tarefa: Calculadora de ROI & Análise de Custo
 
 Com base nos quick wins e casos de uso acima, crie uma análise de ROI usando um
-framework de criação de valor e benchmarks do setor, em markdown PT-BR.
+framework de criaçêo de valor e benchmarks do setor, em markdown PT-BR.
 
 ## Seções obrigatórias
 
@@ -25,14 +25,14 @@ framework de criação de valor e benchmarks do setor, em markdown PT-BR.
 ### 2. Framework de valor
 - Ganhos de eficiência (tempo/custo)
 - Aumento de receita (vendas/novas receitas)
-- Redução de risco (custos evitados, compliance)
+- Reduçêo de risco (custos evitados, compliance)
 - Valor estratégico (vantagem competitiva)
 
 ### 3. Investimento necessário (3 anos)
-Tabelas por categoria (tecnologia, implementação, custos contínuos), com
+Tabelas por categoria (tecnologia, implementaçêo, custos contínuos), com
 contingência de 15%. Some o total.
 
-### 4. Análise de criação de valor
+### 4. Análise de criaçêo de valor
 - Eficiência (iniciativa | métrica | atual | melhorado | economia/ano)
 - Receita (iniciativa | métrica | receita/ano)
 - Risco (iniciativa | tipo | probabilidade | impacto | custo evitado)
@@ -50,7 +50,7 @@ contingência de 15%. Some o total.
 Cenários melhor / base / conservador, com premissas, ROI e NPV de cada.
 
 ### 8. Benchmarks do setor
-| Métrica | Projeção da empresa | Média do setor | Quartil superior |
+| Métrica | Projeçêo da empresa | Média do setor | Quartil superior |
 
 ### 9. Linha do tempo de captura de valor
 | Marco | Prazo | Valor liberado | Acumulado |

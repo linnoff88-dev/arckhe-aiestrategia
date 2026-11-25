@@ -1,6 +1,6 @@
-# 05 — Roadmap de Implementação 30/60/90/180/360
+# 05 — Roadmap de Implementaçêo 30/60/90/180/360
 
-**Objetivo:** transformar o diagnóstico de `{empresa}` num plano de adoção de IA
+**Objetivo:** transformar o diagnóstico de `{empresa}` num plano de adoçêo de IA
 em 5 fases, com atividades, donos e marcos.
 
 ## Prompt (cole e use)
@@ -15,39 +15,39 @@ Pesquisa / insumos (use maturidade e casos de uso, se gerados):
 # Tarefa: Roadmap 30/60/90/180/360
 
 Com base na maturidade e nos casos de uso acima, crie um roadmap detalhado de
-adoção de IA, em markdown PT-BR.
+adoçêo de IA, em markdown PT-BR.
 
 ## Seções obrigatórias
 
 ### 1. Resumo executivo
-- Visão de transformação
+- Visêo de transformaçêo
 - Marcos por janela de tempo
-- Recursos necessários (visão geral)
+- Recursos necessários (visêo geral)
 - Dependências e riscos críticos
 
 ### 2. Linha do tempo (visual em texto)
-Fundação → Vitórias rápidas → Escala → Otimizar → Transformar.
+Fundaçêo → Vitórias rápidas → Escala → Otimizar → Transformar.
 
-### 3. Fase 1 — Fundação (1-30 dias)
+### 3. Fase 1 — Fundaçêo (1-30 dias)
 Objetivos, atividades (tabela: Atividade | Dono | Entregável | Critério de
 sucesso), marcos (checklist) e recursos.
 
 ### 4. Fase 2 — Vitórias rápidas (31-60 dias)
-Lançar 2-3 quick wins, demonstrar valor, criar tração. Mesma estrutura.
+Lançar 2-3 quick wins, demonstrar valor, criar traçêo. Mesma estrutura.
 
 ### 5. Fase 3 — Escala (61-90 dias)
-Expandir pilotos, novos casos, framework de medição. Mesma estrutura + tabela de
+Expandir pilotos, novos casos, framework de mediçêo. Mesma estrutura + tabela de
 prioridades de escala.
 
 ### 6. Fase 4 — Otimizar (91-180 dias)
 Otimizar implementações, expandir departamentos, comunicar valor.
 
 ### 7. Fase 5 — Transformar (181-360 dias)
-Operação aumentada por IA, vantagem competitiva, capacidade sustentável.
+Operaçêo aumentada por IA, vantagem competitiva, capacidade sustentável.
 
-### 8. Dependências & mitigação de riscos
+### 8. Dependências & mitigaçêo de riscos
 Tabela de dependências e registro de riscos (risco | probabilidade | impacto |
-mitigação).
+mitigaçêo).
 
 ### 9. Recursos & investimento por fase
 Tabelas por fase e por categoria (tecnologia, pessoas, treinamento, apoio externo).
@@ -56,7 +56,7 @@ Tabelas por fase e por categoria (tecnologia, pessoas, treinamento, apoio extern
 Indicadores antecedentes e de resultado.
 
 ## Formato de saída
-- Organização por linha do tempo, com datas/durações.
+- Organizaçêo por linha do tempo, com datas/durações.
 - Atividades acionáveis com donos claros e marcos mensuráveis.
 - Realista nos recursos.
 ```

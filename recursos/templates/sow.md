@@ -1,4 +1,4 @@
-# Declaração de Trabalho (SOW) — Estratégia de IA
+# Declaraçêo de Trabalho (SOW) — Estratégia de IA
 
 > Statement of Work. Modelo PT-BR para fechar um projeto de diagnóstico/estratégia
 > de IA. Substitua os `{placeholders}`. Tom direto e específico; escopo fechado
@@ -9,11 +9,11 @@
 **Cliente:** {empresa}
 **Fornecedor / Consultor:** {seu nome / empresa}
 **Data:** {data}
-**Versão:** 1.0
+**Versêo:** 1.0
 
 ## 1. Contexto e objetivo
 
-{1-2 parágrafos: a situação do cliente e o que este trabalho resolve. Ex.: "A
+{1-2 parágrafos: a situaçêo do cliente e o que este trabalho resolve. Ex.: "A
 {empresa}, do setor {setor}, com {porte} funcionários, quer entender onde está
 em IA e por onde começar. Este trabalho entrega um diagnóstico de maturidade,
 vitórias rápidas priorizadas e um plano 30/60/90."}
@@ -23,11 +23,11 @@ vitórias rápidas priorizadas e um plano 30/60/90."}
 Está **dentro** do escopo:
 
 - Pesquisa estruturada da empresa (perfil, setor, concorrência, dores).
-- Diagnóstico de maturidade de IA (escala 1-5, por dimensão).
+- Diagnóstico de maturidade de IA (escala 1-5, por dimensêo).
 - Lista priorizada de vitórias rápidas (matriz esforço × impacto).
-- Roadmap de implementação 30/60/90 (opcional: 180/360).
+- Roadmap de implementaçêo 30/60/90 (opcional: 180/360).
 - {acrescente os entregáveis contratados — ver §3}.
-- Uma apresentação executiva (deck) dos resultados.
+- Uma apresentaçêo executiva (deck) dos resultados.
 
 ## 3. Entregáveis
 
@@ -37,18 +37,18 @@ Está **dentro** do escopo:
 | 2 | Vitórias rápidas priorizadas | .docx / planilha | lista com esforço, impacto, ROI estimado |
 | 3 | Roadmap 30/60/90 | .docx + diagrama | fases, ações e marcos aprovados |
 | 4 | {entregável adicional, ex.: política de uso de IA} | .docx | {critério} |
-| 5 | Deck executivo | .pptx | apresentado em reunião |
+| 5 | Deck executivo | .pptx | apresentado em reuniêo |
 
 > Os entregáveis saem do pacote da Fábrica de Estratégia de IA (até 19 peças).
 > Liste aqui só o que foi contratado.
 
 ## 4. Prazo e cronograma
 
-| Fase | Duração | Entrega |
+| Fase | Duraçêo | Entrega |
 |---|---|---|
 | Pesquisa & diagnóstico | {ex.: 1 semana} | Diagnóstico draft |
 | Roadmap & entregáveis | {ex.: 1 semana} | Pacote completo |
-| Apresentação | {ex.: 1 dia} | Reunião + ajustes finais |
+| Apresentaçêo | {ex.: 1 dia} | Reuniêo + ajustes finais |
 
 Prazo total estimado: **{ex.: 2-3 semanas}** a partir do aceite e do acesso às
 informações necessárias.
@@ -65,17 +65,17 @@ informações necessárias.
 - O cliente fornece acesso às informações solicitadas (stack, dores, dados de
   contexto) dentro de {ex.: 3 dias úteis}.
 - Um ponto focal do cliente fica disponível para 1-2 reuniões curtas.
-- As recomendações são estratégicas; **implementação técnica** não está incluída
+- As recomendações sêo estratégicas; **implementaçêo técnica** nêo está incluída
   salvo se contratada à parte.
 
 ## 7. Exclusões
 
-Não estão incluídos (orçados separadamente, se desejado):
+Nêo estêo incluídos (orçados separadamente, se desejado):
 
-- Desenvolvimento ou integração de software / agentes em produção.
-- Implementação e operação das ferramentas recomendadas.
+- Desenvolvimento ou integraçêo de software / agentes em produçêo.
+- Implementaçêo e operaçêo das ferramentas recomendadas.
 - Treinamento extensivo de equipe (além do material de mudança entregue).
-- Garantias de resultado financeiro específico — as projeções de ROI são
+- Garantias de resultado financeiro específico — as projeções de ROI sêo
   estimativas baseadas em benchmarks e nas premissas declaradas.
 
 ## 8. Aceite

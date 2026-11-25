@@ -1,12 +1,12 @@
 # Calculadora de ROI — estrutura da planilha
 
-> Especificação da planilha (.xlsx) de ROI de IA. Descreve abas, linhas/colunas,
-> fórmulas e a convenção de cores. Gere com `openpyxl` (skill `gerar-entregavel`).
-> Regra de ouro: **valores calculados são fórmulas, nunca números digitados**.
+> Especificaçêo da planilha (.xlsx) de ROI de IA. Descreve abas, linhas/colunas,
+> fórmulas e a convençêo de cores. Gere com `openpyxl` (skill `gerar-entregavel`).
+> Regra de ouro: **valores calculados sêo fórmulas, nunca números digitados**.
 
 ---
 
-## Convenção de cores (modelo financeiro)
+## Convençêo de cores (modelo financeiro)
 
 | Cor | Código (fonte) | Uso |
 |---|---|---|
@@ -29,7 +29,7 @@ Inputs do usuário (azul), com fundo amarelo nas premissas-chave.
 | B3 | Horas economizadas/semana (caso 1) | input | `#,##0` |
 | B4 | Custo da hora (R$) | input | `R$ #,##0` |
 | B5 | Nº de pessoas impactadas | input | `#,##0` |
-| B6 | Aumento de conversão (%) | input | `0.0%` |
+| B6 | Aumento de conversêo (%) | input | `0.0%` |
 | B7 | Receita base afetada (R$/ano) | input | `R$ #,##0` |
 | B8 | Investimento ano 1 (R$) | input | `R$ #,##0` |
 
@@ -39,7 +39,7 @@ Inputs do usuário (azul), com fundo amarelo nas premissas-chave.
 |---|---|---|---|---|
 | Licenças de plataforma de IA | input | input | input | `=SUM(B:D)` da linha |
 | Infraestrutura | input | input | input | fórmula |
-| Integração | input | input | input | fórmula |
+| Integraçêo | input | input | input | fórmula |
 | Serviços / consultoria | input | input | input | fórmula |
 | Treinamento & mudança | input | input | input | fórmula |
 | Contingência (15%) | `=B*0.15` | fórmula | fórmula | fórmula |
@@ -60,9 +60,9 @@ Três blocos somados:
 **Aumento de receita**
 | Iniciativa | Métrica | Economia/ano |
 |---|---|---|
-| Caso 2 | conversão | `=Premissas!B7*Premissas!B6` |
+| Caso 2 | conversêo | `=Premissas!B7*Premissas!B6` |
 
-**Redução de risco**
+**Reduçêo de risco**
 | Iniciativa | Tipo | Custo evitado |
 |---|---|---|
 | Caso 3 | compliance | input |
@@ -94,8 +94,8 @@ cenário recalcula ROI e NPV por fórmula referenciando a aba Premissas.
 
 ---
 
-### Lembretes de implementação (openpyxl)
-- Indexação **1-based**: `ws.cell(row=1, column=1)` é `A1`.
+### Lembretes de implementaçêo (openpyxl)
+- Indexaçêo **1-based**: `ws.cell(row=1, column=1)` é `A1`.
 - Fórmula como string: `ws['E5'] = '=SUM(B5:D5)'`.
 - Fonte de input: `Font(color='0000FF')`; fórmula: `Font(color='000000')`.
 - Premissa-chave: `PatternFill(start_color='FFFF00', end_color='FFFF00', fill_type='solid')`.

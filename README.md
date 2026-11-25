@@ -1,4 +1,4 @@
-# ðŸ­ FÃ¡brica de EstratÃ©gia de IA â€” Vire Consultor de IA
+# ê°Å¸ÂÂ­ FêÂ¡brica de EstratêÂ©gia de IA ê¢â¬â Vire Consultor de IA
 
 <div align="center">
   <img src="capa/logo.svg" alt="Arckhé AI" height="48" />
@@ -6,74 +6,74 @@
 </div>
 
 
-> Curso prÃ¡tico, mÃ£o na massa, para quem quer **entrar na Ã¡rea de IA e de consultoria de IA**.
-> VocÃª constrÃ³i â€” com o Claude Code â€” uma mÃ¡quina que pesquisa qualquer empresa e gera um pacote de consultoria completo (**19 entregÃ¡veis**), e aprende a se posicionar e vender como consultor.
+> Curso prêÂ¡tico, mêÂ£o na massa, para quem quer **entrar na êÂ¡rea de IA e de consultoria de IA**.
+> VocêÂª constrêÂ³i ê¢â¬â com o Claude Code ê¢â¬â uma mêÂ¡quina que pesquisa qualquer empresa e gera um pacote de consultoria completo (**19 entregêÂ¡veis**), e aprende a se posicionar e vender como consultor.
 
-**â–¶ Acesse o curso:** https://linnoff88-dev.github.io/
-**Comunidade:** [ARCKHÉ AI](https://ARCKHÉ AI)
+**ê¢âÂ¶ Acesse o curso:** https://linnoff88-dev.github.io/
+**Comunidade:** [ARCKHê AI](https://ARCKHê AI)
 
 ---
 
 ## A ideia
 
-Toda empresa quer uma estratÃ©gia de IA para 2026. Quase nenhuma sabe executar. Esse vÃ¡cuo Ã© a oportunidade.
+Toda empresa quer uma estratêÂ©gia de IA para 2026. Quase nenhuma sabe executar. Esse vêÂ¡cuo êÂ© a oportunidade.
 
-A **FÃ¡brica de EstratÃ©gia de IA** recebe o nome + a descriÃ§Ã£o de uma empresa e devolve um pacote de consultoria: 15 documentos Markdown, 2 apresentaÃ§Ãµes PowerPoint e 2 documentos Word â€” roadmap 30/60/90, ROI, polÃ­tica de IA, governanÃ§a, deck executivo e SOW. Custo por pacote: **menos de US$1**. Entrada mÃ­nima, saÃ­da mÃ¡xima.
+A **FêÂ¡brica de EstratêÂ©gia de IA** recebe o nome + a descriêÂ§êÂ£o de uma empresa e devolve um pacote de consultoria: 15 documentos Markdown, 2 apresentaêÂ§êÂµes PowerPoint e 2 documentos Word ê¢â¬â roadmap 30/60/90, ROI, polêÂ­tica de IA, governanêÂ§a, deck executivo e SOW. Custo por pacote: **menos de US$1**. Entrada mêÂ­nima, saêÂ­da mêÂ¡xima.
 
-Este curso te leva do zero a ter essa mÃ¡quina funcionando â€” e a transformÃ¡-la em renda.
+Este curso te leva do zero a ter essa mêÂ¡quina funcionando ê¢â¬â e a transformêÂ¡-la em renda.
 
-## As 5 trilhas (vocÃª sobe de nÃ­vel)
+## As 5 trilhas (vocêÂª sobe de nêÂ­vel)
 
-| NÃ­vel | Trilha | O que vocÃª constrÃ³i |
+| NêÂ­vel | Trilha | O que vocêÂª constrêÂ³i |
 |---|---|---|
-| ðŸ¥‰ Aprendiz | **Fundamentos & Setup** | Mentalidade, anatomia da FÃ¡brica, arsenal (Claude Code + Perplexity + Gemini). Roda o 1Âº pacote. |
-| ðŸ¥ˆ Sintetizador | **SÃ­ntese de Conhecimento** | Frameworks de consultoria + RAG preguiÃ§oso (PDF â†’ cheat sheet). Seu cÃ©rebro de consultor. |
-| ðŸ¥‡ Construtor | **Skills & Agentes** | Skills e subagentes reutilizÃ¡veis â€” incl. a skill que gera DocX/PPTX/Excel/PDF. |
-| ðŸ’Ž Engenheiro | **A FÃ¡brica** | Pesquisa ao vivo (Perplexity), 15 prompts de entregÃ¡veis, orquestraÃ§Ã£o e diagramas Mermaid. |
-| ðŸ‘‘ Consultor | **Da FÃ¡brica ao Cliente** | Frontend, empacotamento, posicionamento, preÃ§o â€” e o capstone: um cliente real. |
+| ê°Å¸Â¥â° Aprendiz | **Fundamentos & Setup** | Mentalidade, anatomia da FêÂ¡brica, arsenal (Claude Code + Perplexity + Gemini). Roda o 1êÂº pacote. |
+| ê°Å¸Â¥Ë Sintetizador | **SêÂ­ntese de Conhecimento** | Frameworks de consultoria + RAG preguiêÂ§oso (PDF ê¢â â cheat sheet). Seu cêÂ©rebro de consultor. |
+| ê°Å¸Â¥â¡ Construtor | **Skills & Agentes** | Skills e subagentes reutilizêÂ¡veis ê¢â¬â incl. a skill que gera DocX/PPTX/Excel/PDF. |
+| ê°Å¸âÅ½ Engenheiro | **A FêÂ¡brica** | Pesquisa ao vivo (Perplexity), 15 prompts de entregêÂ¡veis, orquestraêÂ§êÂ£o e diagramas Mermaid. |
+| ê°Å¸ââ Consultor | **Da FêÂ¡brica ao Cliente** | Frontend, empacotamento, posicionamento, preêÂ§o ê¢â¬â e o capstone: um cliente real. |
 
-SÃ£o **16 mÃ³dulos Â· 96 tÃ³picos**, cada mÃ³dulo com uma **MissÃ£o** prÃ¡tica e um recurso reutilizÃ¡vel.
+SêÂ£o **16 mêÂ³dulos êÂ· 96 têÂ³picos**, cada mêÂ³dulo com uma **MissêÂ£o** prêÂ¡tica e um recurso reutilizêÂ¡vel.
 
-## O arsenal que vocÃª leva (`recursos/`)
+## O arsenal que vocêÂª leva (`recursos/`)
 
 Arquivos reais, prontos para copiar e usar:
 
 - **Skills:** `diagnostico-ia`, `gerar-entregavel`
 - **Agentes:** `pesquisador-empresa`, `redator-estrategia`
-- **15 prompts** de entregÃ¡veis em PT-BR (paste-ready)
+- **15 prompts** de entregêÂ¡veis em PT-BR (paste-ready)
 - **Templates:** SOW, deck executivo, roadmap 30/60/90, calculadora de ROI
 - **Diagramas:** Mermaid (pipeline, estado atual vs futuro)
 
-## Estrutura do repositÃ³rio
+## Estrutura do repositêÂ³rio
 
 ```
 aiestrategia/
-â”œâ”€â”€ index.html              # Landing do curso
-â”œâ”€â”€ curso/
-â”‚   â”œâ”€â”€ trilha1/ â€¦ trilha5/  # Ãndice + mÃ³dulos de cada trilha
-â”œâ”€â”€ recursos/               # Skills, agentes, prompts, templates, diagramas
-â””â”€â”€ docs/                   # Spec do curso
+ê¢âÅê¢ââ¬ê¢ââ¬ index.html              # Landing do curso
+ê¢âÅê¢ââ¬ê¢ââ¬ curso/
+ê¢ââ   ê¢âÅê¢ââ¬ê¢ââ¬ trilha1/ ê¢â¬Â¦ trilha5/  # êÂndice + mêÂ³dulos de cada trilha
+ê¢âÅê¢ââ¬ê¢ââ¬ recursos/               # Skills, agentes, prompts, templates, diagramas
+ê¢ââê¢ââ¬ê¢ââ¬ docs/                   # Spec do curso
 ```
 
 ## Como usar
 
 1. Acesse https://linnoff88-dev.github.io/ e siga pela Trilha 1.
-2. FaÃ§a cada **MissÃ£o** antes de avanÃ§ar â€” o curso Ã© cumulativo.
+2. FaêÂ§a cada **MissêÂ£o** antes de avanêÂ§ar ê¢â¬â o curso êÂ© cumulativo.
 3. Use os arquivos de `recursos/` direto no seu Claude Code.
 
-## CrÃ©ditos
+## CrêÂ©ditos
 
-Curso da [ARCKHÉ AI](https://ARCKHÉ AI), baseado no projeto [ai-strategy-factory](https://github.com/linnoff88-dev/ai-strategy-factory). ConstruÃ­do com Claude Code. Diagramas via [Mermaid](https://mermaid.live) / [eraser.io](https://www.eraser.io/make/free-mermaid-diagram-maker).
+Curso da [ARCKHê AI](https://ARCKHê AI), baseado no projeto [ai-strategy-factory](https://github.com/linnoff88-dev/ai-strategy-factory). ConstruêÂ­do com Claude Code. Diagramas via [Mermaid](https://mermaid.live) / [eraser.io](https://www.eraser.io/make/free-mermaid-diagram-maker).
 
-Design no formato de cursos ARCKHÉ AI (dark premium, SVG inline, responsivo, dark/light).
+Design no formato de cursos ARCKHê AI (dark premium, SVG inline, responsivo, dark/light).
 
-<!-- ARCKHÉ-backlink:v1 -->
-## Mais no ARCKHÉ AI
+<!-- ARCKHê-backlink:v1 -->
+## Mais no ARCKHê AI
 
-- [Ficha completa deste curso](https://www.ARCKHÉ AI/cursos/152-fabrica-de-estrategia-de-ia-vire-consultor-de-ia/)
-- [Guia: como aprender inteligÃªncia artificial](https://www.ARCKHÉ AI/aprender-inteligencia-artificial/)
-- [Todos os cursos](https://www.ARCKHÉ AI/cursos/)
-<!-- /ARCKHÉ-backlink:v1 -->
+- [Ficha completa deste curso](https://www.ARCKHê AI/cursos/152-fabrica-de-estrategia-de-ia-vire-consultor-de-ia/)
+- [Guia: como aprender inteligêÂªncia artificial](https://www.ARCKHê AI/aprender-inteligencia-artificial/)
+- [Todos os cursos](https://www.ARCKHê AI/cursos/)
+<!-- /ARCKHê-backlink:v1 -->
 
 ---
 

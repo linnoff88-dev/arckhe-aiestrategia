@@ -11,7 +11,7 @@
 - Subtítulo: data + "{seu nome / consultoria}"
 
 ## Slide 2 — O problema / contexto
-- A situação atual da {empresa} em 2-3 bullets.
+- A situaçêo atual da {empresa} em 2-3 bullets.
 - A pergunta que o trabalho responde: "onde estamos em IA e por onde começar?"
 
 ## Slide 3 — Diagnóstico: maturidade de IA
@@ -32,7 +32,7 @@
 - Por win: 1 linha — o que é, em quanto tempo, retorno esperado.
 
 ## Slide 7 — Roadmap 30/60/90
-- Linha do tempo com as 3 fases (Fundação → Vitórias rápidas → Escala).
+- Linha do tempo com as 3 fases (Fundaçêo → Vitórias rápidas → Escala).
 - 2-3 marcos por fase.
 
 ## Slide 8 — ROI / o número
@@ -40,8 +40,8 @@
 - Custo de implementar vs valor capturado (referência a benchmarks).
 
 ## Slide 9 — Governança e riscos
-- Política de uso de IA, governança de dados, gestão de mudança — em 3 bullets.
-- Mostra que a estratégia é responsável (LGPD/segurança), não só "use IA".
+- Política de uso de IA, governança de dados, gestêo de mudança — em 3 bullets.
+- Mostra que a estratégia é responsável (LGPD/segurança), nêo só "use IA".
 
 ## Slide 10 — Próximos passos
 - O que decidir agora (aprovar fase 1, liberar acessos).
@@ -54,4 +54,4 @@
 - Cor de destaque: a cor da trilha/identidade; texto escuro sobre claro.
 - Fontes seguras (Arial/Helvetica). Contraste forte.
 - Tabelas e diagramas no lugar de parágrafos longos.
-- Cada projeção de ROI é estimativa — diga isso no slide 8.
+- Cada projeçêo de ROI é estimativa — diga isso no slide 8.

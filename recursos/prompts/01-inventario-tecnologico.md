@@ -12,7 +12,7 @@ Contexto da empresa:
 Pesquisa:
 {pesquisa}
 
-# Tarefa: Inventário Tecnológico & Avaliação de Infraestrutura de Dados
+# Tarefa: Inventário Tecnológico & Avaliaçêo de Infraestrutura de Dados
 
 Com base no contexto e na pesquisa acima, crie um inventário tecnológico
 completo de {empresa}, em markdown PT-BR.
@@ -20,37 +20,37 @@ completo de {empresa}, em markdown PT-BR.
 ## Seções obrigatórias
 
 ### 1. Resumo executivo
-- Visão geral do cenário tecnológico atual
+- Visêo geral do cenário tecnológico atual
 - Principais achados e lacunas críticas
-- Prontidão para adoção de IA (avaliação de alto nível)
+- Prontidêo para adoçêo de IA (avaliaçêo de alto nível)
 
 ### 2. Stack tecnológico atual
 Tabela com as colunas:
-| Categoria | Ferramenta/Plataforma | Função | Pronta p/ IA | Integração de dados |
+| Categoria | Ferramenta/Plataforma | Funçêo | Pronta p/ IA | Integraçêo de dados |
 
-Categorias: sistemas centrais (ERP, CRM), comunicação & colaboração, dados &
+Categorias: sistemas centrais (ERP, CRM), comunicaçêo & colaboraçêo, dados &
 analytics, desenvolvimento & DevOps, segurança & compliance, ferramentas do
 setor.
 
-### 3. Avaliação da infraestrutura de dados
+### 3. Avaliaçêo da infraestrutura de dados
 - Fontes de dados (bancos internos, integrações de terceiros, entrada manual,
   feeds externos)
-- Indicadores de qualidade (estruturado vs não-estruturado, atualidade,
+- Indicadores de qualidade (estruturado vs nêo-estruturado, atualidade,
   problemas conhecidos, maturidade de governança)
-- Acessibilidade (APIs, exportação, tempo real, restrições de segurança/privacidade)
+- Acessibilidade (APIs, exportaçêo, tempo real, restrições de segurança/privacidade)
 
 ### 4. Cenário de integrações
-Descreva como os sistemas se conectam: integrações principais, direção do fluxo
+Descreva como os sistemas se conectam: integrações principais, direçêo do fluxo
 de dados, métodos (API, transferência de arquivo, manual) e lacunas.
 
-### 5. Prontidão para IA
-| Dimensão | Estado atual | Lacuna | Prioridade |
+### 5. Prontidêo para IA
+| Dimensêo | Estado atual | Lacuna | Prioridade |
 |---|---|---|---|
 | Qualidade dos dados | | | |
 | Acessibilidade dos dados | | | |
-| Infraestrutura de computação | | | |
+| Infraestrutura de computaçêo | | | |
 | Skills técnicos | | | |
-| Capacidade de integração | | | |
+| Capacidade de integraçêo | | | |
 
 ### 6. Recomendações
 - Ações imediatas (0-30 dias)
@@ -60,10 +60,10 @@ de dados, métodos (API, transferência de arquivo, manual) e lacunas.
 ## Formato de saída
 - Markdown, com as tabelas indicadas.
 - Específico com nomes de ferramentas onde houver.
-- Marque suposições claramente onde a informação for limitada.
+- Marque suposições claramente onde a informaçêo for limitada.
 - Recomendações acionáveis e priorizadas.
 ```
 
 ## Saída esperada
-Documento markdown com resumo executivo, tabela de stack, avaliação de dados,
-mapa de integrações, tabela de prontidão para IA e recomendações priorizadas.
+Documento markdown com resumo executivo, tabela de stack, avaliaçêo de dados,
+mapa de integrações, tabela de prontidêo para IA e recomendações priorizadas.

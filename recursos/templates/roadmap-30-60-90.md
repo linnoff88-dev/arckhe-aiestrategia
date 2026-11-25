@@ -1,6 +1,6 @@
-# Roadmap de Implementação 30/60/90/180/360
+# Roadmap de Implementaçêo 30/60/90/180/360
 
-> Template do roadmap de adoção de IA. Cinco fases: Fundação → Vitórias rápidas
+> Template do roadmap de adoçêo de IA. Cinco fases: Fundaçêo → Vitórias rápidas
 > → Escala → Otimizar → Transformar. Cada fase: objetivos, atividades (com dono),
 > marcos e recursos. Preencha a partir do diagnóstico e da biblioteca de casos
 > de uso.
@@ -8,21 +8,21 @@
 ---
 
 ## Resumo executivo
-- Visão geral da transformação.
+- Visêo geral da transformaçêo.
 - Marcos-chave por janela de tempo.
-- Recursos necessários (visão geral).
+- Recursos necessários (visêo geral).
 - Dependências e riscos críticos.
 
 ## Linha do tempo (visual)
 
 ```
 |--30 dias--|--60 dias--|--90 dias--|--180 dias--|--360 dias--|
-  Fundação    Vit. rápidas   Escala     Otimizar     Transformar
+  Fundaçêo    Vit. rápidas   Escala     Otimizar     Transformar
 ```
 
 ---
 
-## Fase 1 — Fundação (dias 1-30)
+## Fase 1 — Fundaçêo (dias 1-30)
 **Objetivos:** governança mínima de IA, auditoria de dados, priorizar vitórias
 rápidas, montar time/parcerias.
 
@@ -37,7 +37,7 @@ rápidas, montar time/parcerias.
 - [ ] Lista curta de fornecedores
 
 ## Fase 2 — Vitórias rápidas (dias 31-60)
-**Objetivos:** lançar 2-3 quick wins, demonstrar valor cedo, criar tração.
+**Objetivos:** lançar 2-3 quick wins, demonstrar valor cedo, criar traçêo.
 
 | Atividade | Dono | Entregável | Critério de sucesso |
 |---|---|---|---|
@@ -50,15 +50,15 @@ rápidas, montar time/parcerias.
 
 ## Fase 3 — Escala (dias 61-90)
 **Objetivos:** expandir os pilotos que deram certo, lançar mais casos de uso,
-estruturar medição.
+estruturar mediçêo.
 
 | Atividade | Dono | Entregável | Critério de sucesso |
 |---|---|---|---|
 | | | | |
 
 **Marcos**
-- [ ] 3+ iniciativas de IA em produção
-- [ ] Central de Excelência (CoE) em formação
+- [ ] 3+ iniciativas de IA em produçêo
+- [ ] Central de Excelência (CoE) em formaçêo
 - [ ] Framework de ROI operando
 
 ## Fase 4 — Otimizar (dias 91-180)
@@ -71,11 +71,11 @@ medir e comunicar valor.
 
 **Marcos**
 - [ ] Quick wins otimizados
-- [ ] Expansão entre departamentos
+- [ ] Expansêo entre departamentos
 - [ ] Painel executivo no ar
 
 ## Fase 5 — Transformar (dias 181-360)
-**Objetivos:** operação aumentada por IA, vantagem competitiva, capacidade
+**Objetivos:** operaçêo aumentada por IA, vantagem competitiva, capacidade
 sustentável, planejar a próxima onda.
 
 | Atividade | Dono | Entregável | Critério de sucesso |
@@ -91,26 +91,26 @@ sustentável, planejar a próxima onda.
 
 ## Dependências e riscos
 
-| Dependência | Fase impactada | Mitigação |
+| Dependência | Fase impactada | Mitigaçêo |
 |---|---|---|
 | | | |
 
-| Risco | Probabilidade | Impacto | Mitigação |
+| Risco | Probabilidade | Impacto | Mitigaçêo |
 |---|---|---|---|
 | | | | |
 
 ## Recursos e investimento por fase
 
-| Fase | Duração | Time | Investimento estimado |
+| Fase | Duraçêo | Time | Investimento estimado |
 |---|---|---|---|
-| Fundação | 30d | | |
+| Fundaçêo | 30d | | |
 | Vitórias rápidas | 30d | | |
 | Escala | 30d | | |
 | Otimizar | 90d | | |
 | Transformar | 180d | | |
 
 ## Métricas de sucesso
-- **Indicadores antecedentes:** taxa de conclusão de iniciativas, adoção,
-  conclusão de treinamentos.
+- **Indicadores antecedentes:** taxa de conclusêo de iniciativas, adoçêo,
+  conclusêo de treinamentos.
 - **Indicadores de resultado:** ROI atingido, ganho de eficiência, impacto em
   receita.

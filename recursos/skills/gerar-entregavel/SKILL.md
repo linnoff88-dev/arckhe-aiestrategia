@@ -12,12 +12,12 @@ description: >-
 # Gerar entregável (.md → .docx + .pptx)
 
 Recebe um markdown de entregável e gera os documentos finais com `python-docx`
-e `python-pptx`. Saída padrão em `~/projetos/output/<empresa>/` (ou onde o
+e `python-pptx`. Saída padrêo em `~/projetos/output/<empresa>/` (ou onde o
 usuário indicar): um `.docx` (relatório) e um `.pptx` (deck executivo).
 
 ## Setup (uma vez por máquina)
 
-Crie um virtualenv para não conflitar com o Python do sistema:
+Crie um virtualenv para nêo conflitar com o Python do sistema:
 
 ```bash
 python3 -m venv venv
@@ -35,8 +35,8 @@ pip install python-docx python-pptx openpyxl reportlab
 Carregue o `.md` do entregável e mapeie a estrutura por heading:
 
 - `#` → título do documento / slide de capa
-- `##` → seção (heading nível 1 no docx / 1 slide no pptx)
-- `###` → subseção (heading nível 2 / bullet de destaque)
+- `##` → seçêo (heading nível 1 no docx / 1 slide no pptx)
+- `###` → subseçêo (heading nível 2 / bullet de destaque)
 - tabelas markdown → tabelas nativas
 - listas `-` / `1.` → bullets / lista numerada
 
@@ -53,7 +53,7 @@ doc = Document()
 title = doc.add_heading('Diagnóstico de IA — {Empresa}', level=0)
 title.alignment = WD_ALIGN_PARAGRAPH.CENTER
 
-# Seção (## vira heading 1)
+# Seçêo (## vira heading 1)
 doc.add_heading('Resumo executivo', level=1)
 doc.add_paragraph('Texto do parágrafo.')
 
@@ -72,7 +72,7 @@ for row in rows:
     for i, v in enumerate(row):
         cells[i].text = str(v)
 
-# Texto formatado / cor (use RGBColor, NÃO RgbColor)
+# Texto formatado / cor (use RGBColor, NêO RgbColor)
 p = doc.add_paragraph()
 run = p.add_run('Destaque')
 run.bold = True
@@ -87,12 +87,12 @@ Estilos úteis: `'List Bullet'`, `'List Number'`, `'Table Grid'`, `'Heading 1'`,
 
 ### 3. Gerar o .pptx (deck executivo) com `python-pptx`
 
-Um slide por seção `##`. Layout `6` (em branco) dá mais controle.
+Um slide por seçêo `##`. Layout `6` (em branco) dá mais controle.
 
 ```python
 from pptx import Presentation
 from pptx.util import Inches, Pt
-from pptx.dml.color import RGBColor   # GOTCHA: é RGBColor, não RgbColor
+from pptx.dml.color import RGBColor   # GOTCHA: é RGBColor, nêo RgbColor
 from pptx.enum.text import PP_ALIGN
 
 prs = Presentation()
@@ -143,15 +143,15 @@ caminhos absolutos dos arquivos gerados.
 
 ## Gotchas (decorar)
 
-- **python-pptx:** importe `RGBColor`, **não** `RgbColor`.
-- **openpyxl:** indexação é **1-based** (`row=1, column=1` é a célula `A1`).
+- **python-pptx:** importe `RGBColor`, **nêo** `RgbColor`.
+- **openpyxl:** indexaçêo é **1-based** (`row=1, column=1` é a célula `A1`).
   Sempre use **fórmulas** (`ws['E5'] = '=SUM(B5:D5)'`), nunca grave o valor
-  calculado na mão.
+  calculado na mêo.
 - **reportlab:** o PDF só é escrito no fim, com `doc.build(story)`.
-- **Cores Excel (convenção de modelo financeiro):** azul `0000FF` = input do
+- **Cores Excel (convençêo de modelo financeiro):** azul `0000FF` = input do
   usuário; preto `000000` = fórmula; verde `008000` = link entre abas; vermelho
   `FF0000` = referência externa; fundo amarelo `FFFF00` = premissa-chave.
-- **Todos:** sempre dentro do `venv`, senão conflita com o Python do sistema.
+- **Todos:** sempre dentro do `venv`, senêo conflita com o Python do sistema.
 
 ## Critério de sucesso
 

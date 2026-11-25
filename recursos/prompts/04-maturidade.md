@@ -1,7 +1,7 @@
-# 04 — Modelo de Maturidade & Prontidão para IA
+# 04 — Modelo de Maturidade & Prontidêo para IA
 
 **Objetivo:** posicionar `{empresa}` na escala de maturidade de IA (1-5) e
-avaliar a prontidão por dimensão.
+avaliar a prontidêo por dimensêo.
 
 ## Prompt (cole e use)
 
@@ -12,9 +12,9 @@ Contexto da empresa:
 Pesquisa:
 {pesquisa}
 
-# Tarefa: Avaliação de Maturidade & Prontidão para IA
+# Tarefa: Avaliaçêo de Maturidade & Prontidêo para IA
 
-Com base na pesquisa e no contexto acima, crie uma avaliação de maturidade de IA
+Com base na pesquisa e no contexto acima, crie uma avaliaçêo de maturidade de IA
 usando a Curva de Maturidade de IA (BCG) e padrões do setor, em markdown PT-BR.
 
 ## Seções obrigatórias
@@ -25,21 +25,21 @@ usando a Curva de Maturidade de IA (BCG) e padrões do setor, em markdown PT-BR.
 - Áreas de foco recomendadas
 - Estimativa de prazo para o próximo nível
 
-### 2. Posição na curva de maturidade
+### 2. Posiçêo na curva de maturidade
 Avalie contra os estágios:
 1. **Passivo** — nenhuma iniciativa de IA, processos tradicionais
 2. **Consciente** — explorando IA, pilotos iniciais
-3. **Ativo** — vários projetos, alguns em produção
+3. **Ativo** — vários projetos, alguns em produçêo
 4. **Operacional** — IA integrada a processos centrais
-5. **Transformacional** — organização nativa de IA, vantagem competitiva
+5. **Transformacional** — organizaçêo nativa de IA, vantagem competitiva
 
 Indique o estágio atual e justifique com evidência da pesquisa.
 
-### 3. Análise por dimensão
-Nota 1-5 por dimensão:
-| Dimensão | Nota | Evidência | Análise de lacuna |
+### 3. Análise por dimensêo
+Nota 1-5 por dimensêo:
+| Dimensêo | Nota | Evidência | Análise de lacuna |
 |---|---|---|---|
-| Estratégia & Visão | | | |
+| Estratégia & Visêo | | | |
 | Dados & Infraestrutura | | | |
 | Tecnologia & Ferramentas | | | |
 | Talento & Skills | | | |
@@ -47,15 +47,15 @@ Nota 1-5 por dimensão:
 | Cultura & Mudança | | | |
 | Casos de uso & Valor | | | |
 
-Para cada dimensão, detalhe: estado atual, forças, lacunas, recomendações.
+Para cada dimensêo, detalhe: estado atual, forças, lacunas, recomendações.
 
 ### 4. Gráfico de radar
-Liste os valores (1-5) de cada dimensão para um radar.
+Liste os valores (1-5) de cada dimensêo para um radar.
 
-### 5. Comparação com pares
-| Dimensão | Nota da empresa | Média do setor | Lacuna |
+### 5. Comparaçêo com pares
+| Dimensêo | Nota da empresa | Média do setor | Lacuna |
 
-### 6. Prontidão
+### 6. Prontidêo
 - Pronto para começar agora
 - Curto prazo (3-6 meses)
 - Longo prazo (6-12 meses)
@@ -71,4 +71,4 @@ Iniciativas, investimentos, prazo e fatores críticos de sucesso.
 
 ## Saída esperada
 Markdown com estágio (1-5), tabela das 7 dimensões com notas, valores do radar,
-comparação com o setor e roadmap de evolução.
+comparaçêo com o setor e roadmap de evoluçêo.

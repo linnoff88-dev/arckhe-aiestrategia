@@ -12,28 +12,28 @@ Contexto da empresa:
 # Tarefa: Glossário de Termos de IA
 
 Crie um glossário completo de termos de IA, ML e dados relevantes para a jornada
-de IA de {empresa}, em markdown PT-BR. Definições claras e não-técnicas, para
+de IA de {empresa}, em markdown PT-BR. Definições claras e nêo-técnicas, para
 todos os times se comunicarem sobre IA.
 
 ## Seções obrigatórias
 
-### 1. Introdução
+### 1. Introduçêo
 Para que serve o glossário e como usar.
 
 ### 2. Conceitos centrais de IA (ordem alfabética)
-Defina ao menos: IA, IA generativa, IA agêntica, AGI, viés em IA, chatbot, visão
+Defina ao menos: IA, IA generativa, IA agêntica, AGI, viés em IA, chatbot, visêo
 computacional, data lake, deep learning, embeddings, fine-tuning, modelo de
-fundação (foundation model), GPT, alucinação, inferência, LLM (modelo de
+fundaçêo (foundation model), GPT, alucinaçêo, inferência, LLM (modelo de
 linguagem grande), machine learning, modelo, NLP (processamento de linguagem
-natural), rede neural, prompt, prompt engineering, RAG (geração aumentada por
-recuperação), RLHF, análise de sentimento, aprendizado supervisionado, token,
-dados de treinamento, transformer, aprendizado não-supervisionado, banco de
+natural), rede neural, prompt, prompt engineering, RAG (geraçêo aumentada por
+recuperaçêo), RLHF, análise de sentimento, aprendizado supervisionado, token,
+dados de treinamento, transformer, aprendizado nêo-supervisionado, banco de
 dados vetorial.
 
-Cada termo: definição em 1-2 frases + exemplo quando ajudar.
+Cada termo: definiçêo em 1-2 frases + exemplo quando ajudar.
 
 ### 3. Termos de negócio & estratégia
-Maturidade de IA, prontidão para IA, Centro de Excelência (CoE), transformação
+Maturidade de IA, prontidêo para IA, Centro de Excelência (CoE), transformaçêo
 digital, MLOps, ROI, TCO (custo total de propriedade).
 
 ### 4. Termos de dados
@@ -41,7 +41,7 @@ Governança de dados, data lake, pipeline de dados, qualidade de dados, data
 warehouse, ETL, metadados.
 
 ### 5. Termos técnicos
-API, computação em nuvem, edge computing, GPU, latência, SaaS.
+API, computaçêo em nuvem, edge computing, GPU, latência, SaaS.
 
 ### 6. Termos específicos do setor
 Adicione os termos relevantes ao setor de {empresa}.
@@ -50,7 +50,7 @@ Adicione os termos relevantes ao setor de {empresa}.
 | Sigla | Termo completo |
 
 ## Formato de saída
-- Organização alfabética; definições claras e não-técnicas.
+- Organizaçêo alfabética; definições claras e nêo-técnicas.
 - Exemplos onde ajudar; relevância ao contexto de negócio.
 ```
 

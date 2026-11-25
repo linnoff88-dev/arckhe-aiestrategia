@@ -7,7 +7,7 @@ página do entregável.
 ## Arquivos
 
 - `pipeline.mmd` — o pipeline de 3 fases da Fábrica (Pesquisa → Síntese →
-  Geração). Use no M1.2 / M4.3 para explicar a arquitetura.
+  Geraçêo). Use no M1.2 / M4.3 para explicar a arquitetura.
 - `estado-atual-vs-futuro.mmd` — exemplo de arquitetura **atual** vs **futura
   (habilitada por IA)** de uma empresa. Adapte os blocos ao cliente; é o
   diagrama-âncora do diagnóstico.
@@ -33,10 +33,10 @@ Três caminhos, do mais rápido ao mais integrado:
   imagem com `add_picture(...)`.
 - **Na página do entregável (HTML):** dá para embutir o Mermaid e deixar o
   navegador renderizar, ou usar o SVG exportado.
-- **Convenção de cores:** marque gargalos/dores do estado atual em vermelho
+- **Convençêo de cores:** marque gargalos/dores do estado atual em vermelho
   (classe `warn` no exemplo) e a camada de IA do estado futuro na cor de
   destaque do entregável. Isso cria o contraste "antes × depois" que fecha
-  reunião.
+  reuniêo.
 
 ## Dica de fidelidade
 
